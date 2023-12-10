@@ -1,16 +1,8 @@
 ﻿namespace Task1Lib
 {
-    public class FileChecker
+    public static class FileChecker
     {
-        private string[] _files;
-
-        public FileChecker(string[] args)
-        {
-            _files = args;
-            CheckFiles(_files);
-        }
-
-        private void CheckFiles(string[] files)
+        private static void CheckFiles(string[] files)
         {
             try
             {
