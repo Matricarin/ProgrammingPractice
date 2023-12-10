@@ -1,5 +1,15 @@
 ﻿//task1
 
+namespace Task1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            
+        }
+    }
+}
 //читаем построчно файл
 
 //файл должен быть формата txt, иначе выкидываем исключение
@@ -15,5 +25,3 @@
 
 //сохраняем файл в место, где лежит исходный текстовый файл
 //имя_файла_analyze.csv
-
-Console.WriteLine("Hello world!");
