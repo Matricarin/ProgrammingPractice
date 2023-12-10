@@ -36,11 +36,15 @@ namespace Task1Lib
         {
             _dict.OrderBy(w => w.Key);
 
+            List<(string, double, double)> result = new List<(string, double, double)>();
+
             foreach (var word in _dict)
             {
                 var freq = word.Value / _amountOfWords;
-                yield return (word.Key, freq, freq * 100);
+                result.Add((word.Key, freq, freq * 100));
             }
+
+            return result;
         }
     }
 }
