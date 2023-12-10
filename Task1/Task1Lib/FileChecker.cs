@@ -2,32 +2,25 @@
 {
     public static class FileChecker
     {
-        private static void CheckFiles(string[] files)
+        public static void CheckFiles(string[] files)
         {
-            try
+            if (files.Length == 0)
             {
-                if (files.Length == 0)
-                {
-                    throw new Exception("File names are not entered.");
-                }
-
-                foreach (string file in files)
-                {
-                    var format = file.Contains(".txt");
-                    if (!format)
-                    {
-                        throw new Exception($"Unsupported file format: {file}");
-                    }
-
-                    if (!File.Exists(file))
-                    {
-                        throw new Exception("The file was not found.");
-                    }
-                }
+                throw new Exception("File names are not entered.");
             }
-            catch (Exception e)
+
+            foreach (string file in files)
             {
-                Console.WriteLine($"{e.Message}");
+                var format = file.Contains(".txt");
+                if (!format)
+                {
+                    throw new Exception($"Unsupported file format: {file}");
+                }
+
+                if (!File.Exists(file))
+                {
+                    throw new Exception("The file was not found.");
+                }
             }
         }
     }
