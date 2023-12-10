@@ -8,6 +8,17 @@ namespace Task1Lib
 {
     public class FileChecker
     {
-        public FileChecker(string[] args) { }
+        private string[] _files;
+
+        public FileChecker(string[] args)
+        {
+            _files = args;
+            CheckFiles(_files);
+        }
+
+        private void CheckFiles(string[] files)
+        {
+
+        }
     }
 }
