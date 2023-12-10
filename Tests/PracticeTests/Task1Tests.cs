@@ -35,14 +35,14 @@ namespace PracticeTests
         [Test]
         public void Test_GetWordsFrequency_method_third_value()
         {
-            var list = new List<(string, double, double)>();
-            foreach (var valueTuple in _analyzer.GetWordsFrequency())
+            var list = _analyzer.GetWordsFrequency();
+
+            var expected = new List<(string, double, double)>()
             {
-                list.Add(valueTuple);
-            }
-            var third = list[3];
-            Assert.True(third.Item1 == "three" && third.Item2 == (double)1/6 &&
-                        third.Item3 == (double)1/6 * 100);
+                ("one", 0.5, 50),
+                ("three", 1 / 6, (double)1 / 6 * 100),
+                ("two", 1 / 3, (double)1 / 3 * 100)
+            };
         }
     }
 }
