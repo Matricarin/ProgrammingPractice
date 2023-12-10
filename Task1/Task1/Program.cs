@@ -1,4 +1,5 @@
 ﻿//task1
+using Task1Lib;
 
 namespace Task1
 {
