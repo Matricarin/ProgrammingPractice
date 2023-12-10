@@ -7,7 +7,18 @@ namespace Task1
     {
         static void Main(string[] args)
         {
-            
+            try
+            {
+                FileChecker.CheckFiles(args);
+
+
+
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+
         }
     }
 }
