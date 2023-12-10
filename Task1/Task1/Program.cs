@@ -1,5 +1,6 @@
-﻿//task1
-using Task1Lib;
+﻿using Task1Lib;
+
+using System.Text;
 
 namespace Task1
 {
@@ -9,7 +10,37 @@ namespace Task1
         {
             try
             {
-                FileChecker.CheckFiles(args);
+                FileChecker.CheckFiles(args[0]);
+
+                var analyzer = new Analyzer();
+
+                System.Text.Encoding encoding;
+
+                using (var stream = File.OpenRead(args[0]))
+                {
+                    var reader = new StreamReader(stream);
+
+                    var sb = new StringBuilder();
+
+                    while (reader.EndOfStream)
+                    {
+                        encoding = reader.CurrentEncoding;
+
+                        var ch = Convert.ToChar(reader.Read());
+
+                        if (!Char.IsLetterOrDigit(ch))
+                        {
+                            analyzer.AddWord(sb.ToString());
+                            sb.Clear();
+                        }
+                        else
+                        {
+                            sb.Append(ch);
+                        }
+                        
+                    }
+                    reader.Close();
+                }
 
 
 
