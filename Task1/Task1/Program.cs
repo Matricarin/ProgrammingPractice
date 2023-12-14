@@ -1,4 +1,5 @@
-﻿using Task1Lib;
+﻿using System.Globalization;
+using Task1Lib;
 
 using System.Text;
 
@@ -14,13 +15,9 @@ namespace Task1
 
                 var analyzer = new Analyzer();
 
-                System.Text.Encoding encoding;
-
                 using (var stream = File.OpenRead(args[0]))
                 {
                     var reader = new StreamReader(stream);
-                    
-                    encoding = reader.CurrentEncoding;
 
                     var sb = new StringBuilder();
 
@@ -59,11 +56,20 @@ namespace Task1
 
                 using (var stream = File.Create(resultFileName))
                 {
+                    var encoding = Encoding.UTF8;
+
+                    var numberFormatInfo = new NumberFormatInfo()
+                    {
+                        NumberDecimalSeparator = "."
+                    };
+
                     var writer = new StreamWriter(stream, encoding);
 
                     foreach (var result in resultAnalysis)
                     {
-                        writer.WriteLine($"{result.Item1}, {result.Item2}, {result.Item3}");
+                        writer.WriteLine($"{result.Item1.ToString(numberFormatInfo)}, " +
+                                         $"{result.Item2.ToString(numberFormatInfo)}, " +
+                                         $"{result.Item3.ToString(numberFormatInfo)}");
                     };
                     writer.Close();
                 }
