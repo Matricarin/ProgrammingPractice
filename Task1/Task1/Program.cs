@@ -1,7 +1,7 @@
-﻿using System.Globalization;
-using Task1Lib;
+﻿using Task1Lib;
 
 using System.Text;
+using System.Globalization;
 
 namespace Task1
 {
@@ -15,34 +15,30 @@ namespace Task1
 
                 var analyzer = new Analyzer();
 
+                var sb = new StringBuilder();
+
+                string text = string.Empty;
+
                 using (var stream = File.OpenRead(args[0]))
                 {
-                    var reader = new StreamReader(stream);
+                    byte[] bytes = new byte[stream.Length];
 
-                    var sb = new StringBuilder();
+                    stream.Read(bytes, 0, bytes.Length);
+                    
+                    text = Encoding.UTF8.GetString(bytes);
+                }
 
-                    while (true)
+                foreach (var ch in text)
+                {
+                    if (Char.IsLetterOrDigit(ch))
                     {
-                        var ch = Convert.ToChar(reader.Read());
-
-                        if (Char.IsLetterOrDigit(ch))
-                        {
-                            var s = ch.ToString().ToLower();
-                            sb.Append(char.Parse(s));
-                        }
-                        else
-                        {
-                            analyzer.AddWord(sb.ToString());
-                            sb.Clear();
-                        }
-
-                        if (reader.EndOfStream)
-                        {
-                            break;
-                        }
-                        
+                        sb.Append(ch);
                     }
-                    reader.Close();
+                    else
+                    {
+                        analyzer.AddWord(sb.ToString());
+                        sb.Clear();
+                    }
                 }
 
                 var resultAnalysis = analyzer.GetWordsFrequency();
