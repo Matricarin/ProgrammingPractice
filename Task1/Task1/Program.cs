@@ -17,22 +17,34 @@ namespace Task1
 
                 var sb = new StringBuilder();
 
-                string text = string.Empty;
+                FileInfo info = new FileInfo(args[0]);
+
+                var fileLength = info.Length;
+
+                var data = new byte[fileLength];
 
                 using (var stream = File.OpenRead(args[0]))
                 {
-                    byte[] bytes = new byte[stream.Length];
-
-                    stream.Read(bytes, 0, bytes.Length);
-                    
-                    text = Encoding.UTF8.GetString(bytes);
+                    int bytesRead = 0;
+                    int size = 1;
+                    while (bytesRead < fileLength && size > 0)
+                    {
+                        size = stream.Read(data, bytesRead, data.Length - bytesRead);
+                        bytesRead += size;
+                    }
                 }
 
+                var text = Encoding.UTF8.GetString(data);
+                
                 foreach (var ch in text)
                 {
                     if (Char.IsLetterOrDigit(ch))
                     {
                         sb.Append(ch);
+                    }
+                    else if (ch == '\n')
+                    {
+                        continue;
                     }
                     else
                     {
@@ -40,6 +52,8 @@ namespace Task1
                         sb.Clear();
                     }
                 }
+
+                analyzer.AddWord(sb.ToString());
 
                 var resultAnalysis = analyzer.GetWordsFrequency();
 
