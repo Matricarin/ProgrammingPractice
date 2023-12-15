@@ -53,7 +53,11 @@ namespace Task1
                     }
                 }
 
-                analyzer.AddWord(sb.ToString());
+                if (sb.ToString() != string.Empty ||
+                    sb.ToString() != "")
+                {
+                    analyzer.AddWord(sb.ToString());
+                }
 
                 var resultAnalysis = analyzer.GetWordsFrequency();
 
