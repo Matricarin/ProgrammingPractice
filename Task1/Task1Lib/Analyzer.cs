@@ -33,7 +33,7 @@
 
             foreach (var word in _dictionaryOfWordsWithQuantity)
             {
-                var frequency = word.Value / _amountOfWords;
+                var frequency = Math.Round(word.Value / _amountOfWords, 2);
                 result.Add((word.Key, frequency, frequency * 100));
             }
 
