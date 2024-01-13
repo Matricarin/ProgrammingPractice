@@ -28,9 +28,8 @@
 
         public IEnumerable<(string Word, double Frequency, double Percent)> GetWordsFrequency()
         {
-            _dictionaryOfWordsWithQuantity.OrderBy(w => w.Key);
-
-            List<(string, double, double)> result = new List<(string, double, double)>();
+            List<(string Word, double Frequency, double Percent)> result = 
+                new List<(string Word, double Frequency, double Percent)>();
 
             foreach (var word in _dictionaryOfWordsWithQuantity)
             {
@@ -38,7 +37,7 @@
                 result.Add((word.Key, frequency, frequency * 100));
             }
 
-            return result;
+            return result.OrderByDescending(w => w.Frequency);
         }
     }
 }
