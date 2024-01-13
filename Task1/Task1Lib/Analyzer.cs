@@ -2,25 +2,25 @@
 {
     public class Analyzer
     {
-        private Dictionary<string, int> _dict;
+        private Dictionary<string, int> _dictionaryOfWordsWithQuantity;
 
         private double _amountOfWords;
 
         public Analyzer()
         {
-            _dict = new Dictionary<string, int>();
+            _dictionaryOfWordsWithQuantity = new Dictionary<string, int>();
             _amountOfWords = 0;
         }
 
         public void AddWord(string word)
         {
-            if (!_dict.ContainsKey(word))
+            if (!_dictionaryOfWordsWithQuantity.ContainsKey(word))
             {
-                _dict.Add(word, 1);
+                _dictionaryOfWordsWithQuantity.Add(word, 1);
             }
             else
             {
-                _dict[word]++;
+                _dictionaryOfWordsWithQuantity[word]++;
             }
 
             _amountOfWords++;
@@ -28,11 +28,11 @@
 
         public IEnumerable<(string Word, double Frequency, double Percent)> GetWordsFrequency()
         {
-            _dict.OrderBy(w => w.Key);
+            _dictionaryOfWordsWithQuantity.OrderBy(w => w.Key);
 
             List<(string, double, double)> result = new List<(string, double, double)>();
 
-            foreach (var word in _dict)
+            foreach (var word in _dictionaryOfWordsWithQuantity)
             {
                 var frequency = word.Value / _amountOfWords;
                 result.Add((word.Key, frequency, frequency * 100));
