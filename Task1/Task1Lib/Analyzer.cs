@@ -2,7 +2,6 @@
 {
     public class Analyzer
     {
-        //initial commit
         private Dictionary<string, int> _dict;
 
         private double _amountOfWords;
