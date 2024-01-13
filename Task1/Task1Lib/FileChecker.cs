@@ -2,7 +2,7 @@
 {
     public static class FileChecker
     {
-        public static FileInfo CheckFiles(string file)
+        public static FileInfo CheckFiles(string fileName)
         {
             if (file.Length == 0)
             {
