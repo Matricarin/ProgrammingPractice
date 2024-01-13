@@ -34,8 +34,8 @@
 
             foreach (var word in _dict)
             {
-                var freq = word.Value / _amountOfWords;
-                result.Add((word.Key, freq, freq * 100));
+                var frequency = word.Value / _amountOfWords;
+                result.Add((word.Key, frequency, frequency * 100));
             }
 
             return result;
