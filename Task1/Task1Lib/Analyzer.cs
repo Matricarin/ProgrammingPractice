@@ -26,7 +26,7 @@
             _amountOfWords++;
         }
 
-        public IEnumerable<(string, double, double)> GetWordsFrequency()
+        public IEnumerable<(string Word, double Frequency, double Percent)> GetWordsFrequency()
         {
             _dict.OrderBy(w => w.Key);
 
