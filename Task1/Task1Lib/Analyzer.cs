@@ -3,7 +3,6 @@
     public class Analyzer
     {
         private Dictionary<string, int> _dictionaryOfWordsWithQuantity;
-
         private double _amountOfWords;
 
         public Analyzer()
