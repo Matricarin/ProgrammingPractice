@@ -40,8 +40,8 @@ namespace PracticeTests
             var expected = new List<(string, double, double)>()
             {
                 ("one", 0.5, 50),
-                ("three", 1 / 6, (double)1 / 6 * 100),
-                ("two", 1 / 3, (double)1 / 3 * 100)
+                ("three", 1 / 6.0, 1 / 6.0 * 100),
+                ("two", 1 / 3.0, 1 / 3.0 * 100)
             };
         }
     }
