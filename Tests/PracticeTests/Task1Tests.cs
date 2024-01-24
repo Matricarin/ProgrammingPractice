@@ -25,6 +25,14 @@ namespace PracticeTests
         }
 
         [Test]
+        public void Test_AddWord_method()
+        {
+            var analyzer = new Analyzer();
+            analyzer.AddWord("test");
+            Assert.True(analyzer.GetWordsFrequency().Any());
+        }
+
+        [Test]
         public void Test_GetWordsFrequency_method_first_value()
         {
             var first = _analyzer.GetWordsFrequency().First();
@@ -47,5 +55,6 @@ namespace PracticeTests
 
             CollectionAssert.AreEqual(expected, list);
         }
+
     }
 }
