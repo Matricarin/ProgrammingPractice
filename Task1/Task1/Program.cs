@@ -5,9 +5,9 @@ using System.Globalization;
 
 namespace Task1
 {
-    class Program
+    internal static class Program
     {
-        static void Main(string[] args)
+        private static void Main(string[] args)
         {
             try
             {
@@ -23,8 +23,8 @@ namespace Task1
 
                 using (var stream = File.OpenRead(args[0]))
                 {
-                    int bytesRead = 0;
-                    int size = 1;
+                    var bytesRead = 0;
+                    var size = 1;
                     while (bytesRead < fileLength && size > 0)
                     {
                         size = stream.Read(data, bytesRead, data.Length - bytesRead);
