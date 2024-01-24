@@ -13,7 +13,7 @@ namespace Task1
             {
                 var analyzer = new Analyzer();
 
-                var sb = new StringBuilder();
+                var stringBuilder = new StringBuilder();
 
                 var info = new FileInfo(args[0]);
 
@@ -38,7 +38,7 @@ namespace Task1
                 {
                     if (Char.IsLetterOrDigit(ch))
                     {
-                        sb.Append(ch);
+                        stringBuilder.Append(ch);
                     }
                     else if (ch == '\n')
                     {
@@ -46,15 +46,15 @@ namespace Task1
                     }
                     else
                     {
-                        analyzer.AddWord(sb.ToString());
-                        sb.Clear();
+                        analyzer.AddWord(stringBuilder.ToString());
+                        stringBuilder.Clear();
                     }
                 }
 
-                if (sb.ToString() != string.Empty ||
-                    sb.ToString() != "")
+                if (stringBuilder.ToString() != string.Empty ||
+                    stringBuilder.ToString() != "")
                 {
-                    analyzer.AddWord(sb.ToString());
+                    analyzer.AddWord(stringBuilder.ToString());
                 }
 
                 var resultAnalysis = analyzer.GetWordsFrequency();
