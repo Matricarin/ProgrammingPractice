@@ -2,14 +2,14 @@ using Task1Lib;
 
 namespace PracticeTests
 {
-    public class Tests
+    public class Task1Tests
     {
-        private Analyzer _analyzer;
+        private readonly Analyzer _analyzer = new();
+
 
         [SetUp]
         public void Setup()
         {
-            _analyzer = new Analyzer();
             _analyzer.AddWord("one");
             _analyzer.AddWord("one");
             _analyzer.AddWord("one");
@@ -42,6 +42,8 @@ namespace PracticeTests
                 ("three", 1 / 6.0, 1 / 6.0 * 100),
                 ("two", 1 / 3.0, 1 / 3.0 * 100)
             };
+
+            Assert.That(list, Is.EquivalentTo(expected));
         }
     }
 }
