@@ -34,18 +34,18 @@ namespace PracticeTests
         }
 
         [Test]
-        public void Test_GetWordsFrequency_method_third_value()
+        public void Test_GetWordsFrequency_method_check_multiple_values()
         {
             var list = _analyzer.GetWordsFrequency();
 
             var expected = new List<(string, double, double)>()
             {
-                ("one", 0.5, 50),
-                ("three", 1 / 6.0, 1 / 6.0 * 100),
-                ("two", 1 / 3.0, 1 / 3.0 * 100)
+                ("one",  Math.Round(1 / 2.0, 2), Math.Round(1 / 2.0, 2) * 100),
+                ("two", Math.Round(1 / 3.0, 2), Math.Round(1 / 3.0, 2) * 100),
+                ("three", Math.Round(1 / 6.0, 2), Math.Round(1 / 6.0, 2) * 100)
             };
 
-            Assert.That(list, Is.EquivalentTo(expected));
+            CollectionAssert.AreEqual(expected, list);
         }
     }
 }
