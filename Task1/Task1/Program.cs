@@ -11,13 +11,11 @@ namespace Task1
         {
             try
             {
-                FileChecker.CheckFiles(args[0]);
-
                 var analyzer = new Analyzer();
 
                 var sb = new StringBuilder();
 
-                FileInfo info = new FileInfo(args[0]);
+                var info = new FileInfo(args[0]);
 
                 var fileLength = info.Length;
 
@@ -92,7 +90,7 @@ namespace Task1
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine(e.Message);
             }
 
         }
