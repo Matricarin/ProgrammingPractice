@@ -25,11 +25,18 @@ namespace PracticeTests
         }
 
         [Test]
-        public void Test_AddWord_method()
+        public void Test_AddWord_method_has_value()
         {
             var analyzer = new Analyzer();
             analyzer.AddWord("test");
             Assert.True(analyzer.GetWordsFrequency().Any());
+        }
+
+        [Test]
+        public void Test_AddWord_method_has_not_value()
+        {
+            var analyzer = new Analyzer();
+            Assert.False(analyzer.GetWordsFrequency().Any());
         }
 
         [Test]
