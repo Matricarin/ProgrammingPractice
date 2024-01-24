@@ -79,9 +79,9 @@ namespace Task1
 
                     foreach (var result in resultAnalysis)
                     {
-                        writer.WriteLine($"{result.Item1.ToString(numberFormatInfo)}, " +
-                                         $"{result.Item2.ToString(numberFormatInfo)}, " +
-                                         $"{result.Item3.ToString(numberFormatInfo)}");
+                        writer.WriteLine($"{result.Word.ToString(numberFormatInfo)}, " +
+                                         $"{result.Frequency.ToString(numberFormatInfo)}, " +
+                                         $"{result.Percent.ToString(numberFormatInfo)}");
                     };
                     writer.Close();
                 }
