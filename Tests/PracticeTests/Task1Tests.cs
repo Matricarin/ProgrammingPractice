@@ -28,8 +28,7 @@ namespace PracticeTests
         public void Test_GetWordsFrequency_method_first_value()
         {
             var first = _analyzer.GetWordsFrequency().First();
-            Assert.True(first.Item1 == "one" && first.Item2 == (double)1/2 &&
-                        first.Item3 == (double)1/2 * 100);
+            Assert.True(first.Word == "one" && first.Frequency == 1 / 2.0 && first.Percent == 1 / 2.0 * 100);
         }
 
         [Test]
