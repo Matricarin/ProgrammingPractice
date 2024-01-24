@@ -2,7 +2,7 @@
 {
     public class Analyzer
     {
-        private Dictionary<string, int> _dictionaryOfWordsWithQuantity;
+        private readonly Dictionary<string, int> _dictionaryOfWordsWithQuantity;
         private double _amountOfWords;
 
         public Analyzer()
@@ -27,8 +27,7 @@
 
         public IEnumerable<(string Word, double Frequency, double Percent)> GetWordsFrequency()
         {
-            List<(string Word, double Frequency, double Percent)> result = 
-                new List<(string Word, double Frequency, double Percent)>();
+            var result = new List<(string Word, double Frequency, double Percent)>();
 
             foreach (var word in _dictionaryOfWordsWithQuantity)
             {
