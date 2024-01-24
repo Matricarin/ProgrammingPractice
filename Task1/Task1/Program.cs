@@ -36,7 +36,7 @@ namespace Task1
                 
                 foreach (var ch in text)
                 {
-                    if (Char.IsLetterOrDigit(ch))
+                    if (char.IsLetterOrDigit(ch))
                     {
                         stringBuilder.Append(ch);
                     }
