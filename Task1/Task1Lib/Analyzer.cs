@@ -24,9 +24,30 @@ namespace Task1Lib
             _amountOfWords++;
         }
 
-        public void SetWordsInAnalyzerFromText(string text)
+        public void GetWordsIntoAnalyzerFromText(string text)
         {
+            foreach (var ch in text)
+            {
+                if (char.IsLetterOrDigit(ch))
+                {
+                    _stringBuilder.Append(ch);
+                }
+                else if (ch == '\n')
+                {
+                    continue;
+                }
+                else
+                {
+                    this.AddWord(_stringBuilder.ToString());
+                    _stringBuilder.Clear();
+                }
+            }
 
+            if (_stringBuilder.ToString() != string.Empty ||
+                _stringBuilder.ToString() != "")
+            {
+                this.AddWord(_stringBuilder.ToString());
+            }
         }
 
         public IEnumerable<(string Word, double Frequency, double Percent)> GetWordsFrequency()
