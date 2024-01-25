@@ -55,13 +55,26 @@ namespace PracticeTests
 
             var expected = new List<(string, double, double)>()
             {
-                ("one",  Math.Round(1 / 2.0, 2), Math.Round(1 / 2.0, 2) * 100),
-                ("two", Math.Round(1 / 3.0, 2), Math.Round(1 / 3.0, 2) * 100),
-                ("three", Math.Round(1 / 6.0, 2), Math.Round(1 / 6.0, 2) * 100)
+                ("one",  Math.Round(1 / 2.0, 2),  Math.Round(1 / 2.0, 2) * 100),
+                ("two",  Math.Round(1 / 3.0, 2),  Math.Round(1 / 3.0, 2) * 100),
+                ("three",  Math.Round(1 / 6.0, 2),  Math.Round(1 / 6.0, 2) * 100)
             };
 
             CollectionAssert.AreEqual(expected, list);
         }
 
+        [Test]
+        public void Test_GetWordsIntoAnalyzerFromText()
+        {
+            const string text = "test test, test, test \n test";
+
+            const int expected = 5;
+
+            var myAnalyzer = new Analyzer();
+
+            myAnalyzer.GetWordsIntoAnalyzerFromText(text);
+
+            Assert.True(expected == myAnalyzer.AmountOfWords);
+        }
     }
 }
