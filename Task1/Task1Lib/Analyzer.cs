@@ -4,7 +4,7 @@ namespace Task1Lib
 {
     public class Analyzer
     {
-        public double AmountOfWords { get; private set; } = 0;
+        public int AmountOfWords { get; private set; } = 0;
         
         private readonly Dictionary<string, int> _dictionaryOfWordsWithQuantity = new();
 
@@ -38,6 +38,7 @@ namespace Task1Lib
                 }
                 else
                 {
+                    if (string.IsNullOrEmpty(_stringBuilder.ToString())) continue;
                     this.AddWord(_stringBuilder.ToString());
                     _stringBuilder.Clear();
                 }
@@ -56,7 +57,7 @@ namespace Task1Lib
 
             foreach (var word in _dictionaryOfWordsWithQuantity)
             {
-                var frequency = Math.Round(word.Value / AmountOfWords, 2);
+                var frequency = Math.Round(word.Value / (double)AmountOfWords, 2);
                 result.Add((word.Key, frequency, frequency * 100));
             }
 
