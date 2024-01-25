@@ -31,7 +31,6 @@ namespace Task1
             {
                 Console.WriteLine(e.Message);
             }
-
         }
 
         private static string OpenAndReadFile(string fileName)
