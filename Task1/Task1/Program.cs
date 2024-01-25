@@ -15,53 +15,13 @@ namespace Task1
             {
                 var analyzer = new Analyzer();
 
-                var stringBuilder = new StringBuilder();
+                var text = OpenAndReadFile(fileName);
 
-                var info = new FileInfo(fileName);
-
-                var fileLength = info.Length;
-
-                var data = new byte[fileLength];
-
-                using (var stream = File.OpenRead(fileName))
-                {
-                    var bytesRead = 0;
-                    var size = 1;
-                    while (bytesRead < fileLength && size > 0)
-                    {
-                        size = stream.Read(data, bytesRead, data.Length - bytesRead);
-                        bytesRead += size;
-                    }
-                }
-
-                var text = Encoding.UTF8.GetString(data);
-                
-                foreach (var ch in text)
-                {
-                    if (char.IsLetterOrDigit(ch))
-                    {
-                        stringBuilder.Append(ch);
-                    }
-                    else if (ch == '\n')
-                    {
-                        continue;
-                    }
-                    else
-                    {
-                        analyzer.AddWord(stringBuilder.ToString());
-                        stringBuilder.Clear();
-                    }
-                }
-
-                if (stringBuilder.ToString() != string.Empty ||
-                    stringBuilder.ToString() != "")
-                {
-                    analyzer.AddWord(stringBuilder.ToString());
-                }
+                analyzer.GetWordsIntoAnalyzerFromText(text);
 
                 var resultAnalysis = analyzer.GetWordsFrequency();
 
-                var resultFileName = fileName.Substring(0, fileName.IndexOf('.')) + "_analyze.csv";
+                var resultFileName = GetOutputFileName(fileName);
 
                 if (File.Exists(resultFileName))
                 {
@@ -96,5 +56,19 @@ namespace Task1
             }
 
         }
+
+        private static string OpenAndReadFile(string fileName)
+        {
+            var data = File.ReadAllText(fileName);
+            return data;
+        }
+        
+        private static string WriteResultsInCsvFile(IEnumerable<(string Word, double Frequency, double Percent)> results, string fileName)
+        {
+            return string.Empty;
+        }
+
+        private static string GetOutputFileName(string fileName) =>
+            fileName.Substring(0, fileName.IndexOf('.')) + "_analyze.csv";
     }
 }
