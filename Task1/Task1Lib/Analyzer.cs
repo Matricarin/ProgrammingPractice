@@ -1,15 +1,14 @@
-﻿namespace Task1Lib
+﻿using System.Text;
+
+namespace Task1Lib
 {
     public class Analyzer
     {
-        private readonly Dictionary<string, int> _dictionaryOfWordsWithQuantity;
-        private double _amountOfWords;
+        private double _amountOfWords = 0;
 
-        public Analyzer()
-        {
-            _dictionaryOfWordsWithQuantity = new Dictionary<string, int>();
-            _amountOfWords = 0;
-        }
+        private readonly Dictionary<string, int> _dictionaryOfWordsWithQuantity = new();
+
+        private readonly StringBuilder _stringBuilder = new();
 
         public void AddWord(string word)
         {
@@ -23,6 +22,11 @@
             }
 
             _amountOfWords++;
+        }
+
+        public void SetWordsInAnalyzerFromText(string text)
+        {
+
         }
 
         public IEnumerable<(string Word, double Frequency, double Percent)> GetWordsFrequency()
