@@ -21,32 +21,9 @@ namespace Task1
 
                 var resultAnalysis = analyzer.GetWordsFrequency();
 
-                var resultFileName = GetOutputFileName(fileName);
+                var resultFileName = GetOutputFileNameWithExtension(fileName, "csv");
 
-                if (File.Exists(resultFileName))
-                {
-                    File.Delete(resultFileName);
-                }
-
-                using (var stream = File.Create(resultFileName))
-                {
-                    var encoding = Encoding.UTF8;
-
-                    var numberFormatInfo = new NumberFormatInfo()
-                    {
-                        NumberDecimalSeparator = "."
-                    };
-
-                    var writer = new StreamWriter(stream, encoding);
-
-                    foreach (var result in resultAnalysis)
-                    {
-                        writer.WriteLine($"{result.Word.ToString(numberFormatInfo)}, " +
-                                         $"{result.Frequency.ToString(numberFormatInfo)}, " +
-                                         $"{result.Percent.ToString(numberFormatInfo)}");
-                    };
-                    writer.Close();
-                }
+                CreateAndWriteResultsInFile(resultAnalysis, resultFileName);
 
                 Console.WriteLine("Complete.");
             }
@@ -63,12 +40,37 @@ namespace Task1
             return data;
         }
         
-        private static string WriteResultsInCsvFile(IEnumerable<(string Word, double Frequency, double Percent)> results, string fileName)
+        private static void CreateAndWriteResultsInFile(IEnumerable<(string Word, double Frequency, double Percent)> results, string fileName)
         {
-            return string.Empty;
+            if (File.Exists(fileName))
+            {
+                File.Delete(fileName);
+            }
+
+            using (var stream = File.Create(fileName))
+            {
+                var encoding = Encoding.UTF8;
+
+                var numberFormatInfo = new NumberFormatInfo()
+                {
+                    NumberDecimalSeparator = "."
+                };
+
+                var writer = new StreamWriter(stream, encoding);
+
+                foreach (var result in results)
+                {
+                    writer.WriteLine($"{result.Word.ToString(numberFormatInfo)}, " +
+                                     $"{result.Frequency.ToString(numberFormatInfo)}, " +
+                                     $"{result.Percent.ToString(numberFormatInfo)}");
+                }
+
+                ;
+                writer.Close();
+            }
         }
 
-        private static string GetOutputFileName(string fileName) =>
-            fileName.Substring(0, fileName.IndexOf('.')) + "_analyze.csv";
+        private static string GetOutputFileNameWithExtension(string fileName, string ext) =>
+            Path.GetFileNameWithoutExtension(fileName) + "_analyze." + $"{ext}";
     }
 }
