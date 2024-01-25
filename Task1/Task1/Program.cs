@@ -9,19 +9,21 @@ namespace Task1
     {
         private static void Main(string[] args)
         {
+            var fileName = args[0];
+
             try
             {
                 var analyzer = new Analyzer();
 
                 var stringBuilder = new StringBuilder();
 
-                var info = new FileInfo(args[0]);
+                var info = new FileInfo(fileName);
 
                 var fileLength = info.Length;
 
                 var data = new byte[fileLength];
 
-                using (var stream = File.OpenRead(args[0]))
+                using (var stream = File.OpenRead(fileName))
                 {
                     var bytesRead = 0;
                     var size = 1;
@@ -59,7 +61,7 @@ namespace Task1
 
                 var resultAnalysis = analyzer.GetWordsFrequency();
 
-                var resultFileName = args[0].Substring(0, args[0].IndexOf('.')) + "_analyze.csv";
+                var resultFileName = fileName.Substring(0, fileName.IndexOf('.')) + "_analyze.csv";
 
                 if (File.Exists(resultFileName))
                 {
