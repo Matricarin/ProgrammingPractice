@@ -7,11 +7,18 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Task1", "Task1", "{48A69C39
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{AC6FB30A-B748-4093-907A-5C71636E6890}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task1", "Task1\Task1\Task1.csproj", "{66B8D833-F36E-4FDA-ABE1-ED3453047414}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task1", "Task1\Task1\Task1.csproj", "{66B8D833-F36E-4FDA-ABE1-ED3453047414}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PracticeTests", "Tests\PracticeTests\PracticeTests.csproj", "{28D48126-9DF6-47B3-8F39-D930DA02953C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PracticeTests", "Tests\PracticeTests\PracticeTests.csproj", "{28D48126-9DF6-47B3-8F39-D930DA02953C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task1Lib", "Task1\Task1Lib\Task1Lib.csproj", "{3F9A2059-6C5A-404F-AE13-92B9BF36AF67}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task1Lib", "Task1\Task1Lib\Task1Lib.csproj", "{3F9A2059-6C5A-404F-AE13-92B9BF36AF67}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestData", "TestData", "{2326F72A-40CC-4496-AFA6-547112A83706}"
+	ProjectSection(SolutionItems) = preProject
+		Tests\TestData\Task1Test1.txt = Tests\TestData\Task1Test1.txt
+		Tests\TestData\Task1Test2.md = Tests\TestData\Task1Test2.md
+		Tests\TestData\Task1Test3.doc = Tests\TestData\Task1Test3.doc
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +46,7 @@ Global
 		{66B8D833-F36E-4FDA-ABE1-ED3453047414} = {48A69C39-AB5E-4613-9CAB-93E24D1A3516}
 		{28D48126-9DF6-47B3-8F39-D930DA02953C} = {AC6FB30A-B748-4093-907A-5C71636E6890}
 		{3F9A2059-6C5A-404F-AE13-92B9BF36AF67} = {48A69C39-AB5E-4613-9CAB-93E24D1A3516}
+		{2326F72A-40CC-4496-AFA6-547112A83706} = {AC6FB30A-B748-4093-907A-5C71636E6890}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E45194B0-6EB6-40D4-B102-081853F691AD}
