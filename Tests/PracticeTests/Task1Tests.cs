@@ -76,5 +76,47 @@ namespace PracticeTests
 
             Assert.True(expected == myAnalyzer.AmountOfWords);
         }
+
+        [Test]
+        public void Test_ReadAndOpenFileTestTxt()
+        {
+            const string text = "test test, test, test \n test";
+
+            const int expected = 5;
+
+            var myAnalyzer = new Analyzer();
+
+            myAnalyzer.GetWordsIntoAnalyzerFromText(text);
+
+            Assert.True(expected == myAnalyzer.AmountOfWords);
+        }
+
+        [Test]
+        public void Test_ReadAndOpenFileTestMd()
+        {
+            const string text = "test test, test, test \n test";
+
+            const int expected = 5;
+
+            var myAnalyzer = new Analyzer();
+
+            myAnalyzer.GetWordsIntoAnalyzerFromText(text);
+
+            Assert.True(expected == myAnalyzer.AmountOfWords);
+        }
+
+        [Test]
+        public void Test_ReadAndOpenFileTestDoc()
+        {
+            const string text = "test test, test, test \n test";
+
+            const int expected = 5;
+
+            var myAnalyzer = new Analyzer();
+
+            myAnalyzer.GetWordsIntoAnalyzerFromText(text);
+
+            Assert.True(expected == myAnalyzer.AmountOfWords);
+        }
     }
 }
