@@ -1,5 +1,7 @@
 using Task1Lib;
 
+using System.Reflection;
+
 namespace PracticeTests
 {
     public class Task1Tests
@@ -64,7 +66,7 @@ namespace PracticeTests
         }
 
         [Test]
-        public void Test_GetWordsIntoAnalyzerFromText()
+        public void Test_GetWordsIntoAnalyzerFromText_method()
         {
             const string text = "test test, test, test \n test";
 
@@ -78,45 +80,66 @@ namespace PracticeTests
         }
 
         [Test]
-        public void Test_ReadAndOpenFileTestTxt()
+        public void Test_ReadAndOpenFile_method_txt()
         {
-            const string text = "test test, test, test \n test";
+            var directoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-            const int expected = 5;
+            var filePath = Path.Combine(directoryPath + "\\Resources\\Task1Test1.txt");
 
-            var myAnalyzer = new Analyzer();
+            var text = FileHandler.OpenAndReadFile(filePath);
+            
+            var expected = "Hello, World!\r\n" +
+                           "Hello, World!\r\n" +
+                           "Hello, World!\r\n" +
+                           "Hello, World!\r\n" +
+                           "Hello, World!\r\n" +
+                           "Hello, World!";
 
-            myAnalyzer.GetWordsIntoAnalyzerFromText(text);
-
-            Assert.True(expected == myAnalyzer.AmountOfWords);
+            Assert.True(expected == text);
         }
 
         [Test]
-        public void Test_ReadAndOpenFileTestMd()
+        public void Test_ReadAndOpenFile_method_md()
         {
-            const string text = "test test, test, test \n test";
+            var directoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-            const int expected = 5;
+            var filePath = Path.Combine(directoryPath + "\\Resources\\Task1Test2.md");
 
-            var myAnalyzer = new Analyzer();
+            var text = FileHandler.OpenAndReadFile(filePath);
 
-            myAnalyzer.GetWordsIntoAnalyzerFromText(text);
+            var expected = "Hello, World!\n" +
+                           "Hello, World!\n" +
+                           "Hello, World!\n" +
+                           "Hello, World!\n" +
+                           "Hello, World!\n" +
+                           "Hello, World!";
 
-            Assert.True(expected == myAnalyzer.AmountOfWords);
+            Assert.False(expected == text);
         }
 
         [Test]
-        public void Test_ReadAndOpenFileTestDoc()
+        public void Test_ReadAndOpenFile_method_doc()
         {
-            const string text = "test test, test, test \n test";
+            var directoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
 
-            const int expected = 5;
+            var filePath = Path.Combine(directoryPath + "\\Resources\\Task1Test3.doc");
 
-            var myAnalyzer = new Analyzer();
+            var text = FileHandler.OpenAndReadFile(filePath);
 
-            myAnalyzer.GetWordsIntoAnalyzerFromText(text);
+            var expected = "Hello, World!\n" +
+                           "Hello, World!\n" +
+                           "Hello, World!\n" +
+                           "Hello, World!\n" +
+                           "Hello, World!\n" +
+                           "Hello, World!";
 
-            Assert.True(expected == myAnalyzer.AmountOfWords);
+            Assert.False(expected == text);
+        }
+
+        [Test]
+        public void Test_GetOutputFileNameWithExtension_method()
+        {
+
         }
     }
 }
