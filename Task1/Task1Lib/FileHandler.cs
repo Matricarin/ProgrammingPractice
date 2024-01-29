@@ -5,13 +5,13 @@ namespace Task1Lib
 {
     public static class FileHandler
     {
-        private static string OpenAndReadFile(string fileName)
+        public static string OpenAndReadFile(string fileName)
         {
             var data = File.ReadAllText(fileName);
             return data;
         }
 
-        private static void CreateAndWriteResultsInFile(IEnumerable<(string Word, double Frequency, double Percent)> results, string fileName)
+        public static void CreateAndWriteResultsInFile(IEnumerable<(string Word, double Frequency, double Percent)> results, string fileName)
         {
             if (File.Exists(fileName))
             {
@@ -41,7 +41,7 @@ namespace Task1Lib
             }
         }
 
-        private static string GetOutputFileNameWithExtension(string fileName, string ext) =>
+        public static string GetOutputFileNameWithExtension(string fileName, string ext) =>
             Path.GetFileNameWithoutExtension(fileName) + "_analyze." + $"{ext}";
     }
 }
