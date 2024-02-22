@@ -1,44 +1,67 @@
-﻿namespace Task1Lib
+﻿using System.Text;
+
+namespace Task1Lib
 {
     public class Analyzer
     {
-        private Dictionary<string, int> _dict;
+        public int AmountOfWords { get; private set; } = 0;
+        
+        private readonly Dictionary<string, int> _dictionaryOfWordsWithQuantity = new();
 
-        private double _amountOfWords;
-
-        public Analyzer()
-        {
-            _dict = new Dictionary<string, int>();
-            _amountOfWords = 0;
-        }
-
+        private readonly StringBuilder _stringBuilder = new();
+        
         public void AddWord(string word)
         {
-            if (!_dict.ContainsKey(word))
+            if (!_dictionaryOfWordsWithQuantity.ContainsKey(word))
             {
-                _dict.Add(word, 1);
+                _dictionaryOfWordsWithQuantity.Add(word, 1);
             }
             else
             {
-                _dict[word]++;
+                _dictionaryOfWordsWithQuantity[word]++;
             }
 
-            _amountOfWords++;
+            AmountOfWords++;
         }
 
-        public IEnumerable<(string, double, double)> GetWordsFrequency()
+        public void GetWordsIntoAnalyzerFromText(string text)
         {
-            _dict.OrderBy(w => w.Key);
-
-            List<(string, double, double)> result = new List<(string, double, double)>();
-
-            foreach (var word in _dict)
+            foreach (var ch in text)
             {
-                var freq = word.Value / _amountOfWords;
-                result.Add((word.Key, freq, freq * 100));
+                if (char.IsLetterOrDigit(ch))
+                {
+                    _stringBuilder.Append(ch);
+                }
+                else if (ch == '\n')
+                {
+                    continue;
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(_stringBuilder.ToString())) continue;
+                    this.AddWord(_stringBuilder.ToString());
+                    _stringBuilder.Clear();
+                }
             }
 
-            return result;
+            if (_stringBuilder.ToString() != string.Empty ||
+                _stringBuilder.ToString() != "")
+            {
+                this.AddWord(_stringBuilder.ToString());
+            }
+        }
+
+        public IEnumerable<(string Word, double Frequency, double Percent)> GetWordsFrequency()
+        {
+            var result = new List<(string Word, double Frequency, double Percent)>();
+
+            foreach (var word in _dictionaryOfWordsWithQuantity)
+            {
+                var frequency = Math.Round(word.Value / (double)AmountOfWords, 2);
+                result.Add((word.Key, frequency, frequency * 100));
+            }
+
+            return result.OrderByDescending(w => w.Frequency);
         }
     }
 }
