@@ -95,28 +95,6 @@ namespace PracticeTests.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to a, 0.24, 24
-        ///aa, 0.18, 18
-        ///second, 0.09, 9
-        ///девятый, 0.09, 9
-        ///b, 0.09, 9
-        ///third, 0.06, 6
-        ///fifth, 0.06, 6
-        ///tenth, 0.06, 6
-        ///first, 0.03, 3
-        ///fourth, 0.03, 3
-        ///sixth, 0.03, 3
-        ///seveth, 0.03, 3
-        ///восьмой, 0.03, 3
-        ///.
-        /// </summary>
-        public static string Task1Test4Result {
-            get {
-                return ResourceManager.GetString("Task1Test4Result", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to first second third
         ///second second third fourth
         ///fifth

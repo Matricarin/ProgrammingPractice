@@ -147,7 +147,15 @@ namespace PracticeTests
         [Test]
         public void Test_CreateAndWriteResultsInFile()
         {
+            var myAnalyzer = new Analyzer();
 
+            myAnalyzer.GetWordsIntoAnalyzerFromText(Properties.Resources.Task1Test4Source);
+
+            var content = myAnalyzer.GetWordsFrequency();
+
+            FileHandler.CreateAndWriteResultsInFile(content, "result");
+
+            Assert.True(File.Exists("result"));
         }
     }
 }

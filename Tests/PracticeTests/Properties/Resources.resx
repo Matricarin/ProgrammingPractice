@@ -127,9 +127,6 @@
   <data name="Task1Test3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Task1Test3.doc;System.Byte[], mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="Task1Test4Result" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Task1Test4Result.csv;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
-  </data>
   <data name="Task1Test4Source" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Task1Test4Source.txt;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
   </data>
