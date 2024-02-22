@@ -139,6 +139,14 @@ namespace PracticeTests
         [Test]
         public void Test_GetOutputFileNameWithExtension_method()
         {
+            const string expected = "TestName_analyze.txt";
+            var result = FileHandler.GetOutputFileNameWithExtension("TestName", "txt");
+            Assert.True(expected == result);
+        }
+
+        [Test]
+        public void Test_CreateAndWriteResultsInFile()
+        {
 
         }
     }
