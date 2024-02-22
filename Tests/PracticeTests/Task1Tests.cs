@@ -88,12 +88,12 @@ namespace PracticeTests
 
             var text = FileHandler.OpenAndReadFile(filePath);
             
-            var expected = "Hello, World!\r\n" +
-                           "Hello, World!\r\n" +
-                           "Hello, World!\r\n" +
-                           "Hello, World!\r\n" +
-                           "Hello, World!\r\n" +
-                           "Hello, World!";
+            const string expected = "Hello, World!\r\n" +
+                                    "Hello, World!\r\n" +
+                                    "Hello, World!\r\n" +
+                                    "Hello, World!\r\n" +
+                                    "Hello, World!\r\n" +
+                                    "Hello, World!";
 
             Assert.True(expected == text);
         }
@@ -107,12 +107,12 @@ namespace PracticeTests
 
             var text = FileHandler.OpenAndReadFile(filePath);
 
-            var expected = "Hello, World!\n" +
-                           "Hello, World!\n" +
-                           "Hello, World!\n" +
-                           "Hello, World!\n" +
-                           "Hello, World!\n" +
-                           "Hello, World!";
+            const string expected = "Hello, World!\n" +
+                                    "Hello, World!\n" +
+                                    "Hello, World!\n" +
+                                    "Hello, World!\n" +
+                                    "Hello, World!\n" +
+                                    "Hello, World!";
 
             Assert.False(expected == text);
         }
@@ -126,12 +126,12 @@ namespace PracticeTests
 
             var text = FileHandler.OpenAndReadFile(filePath);
 
-            var expected = "Hello, World!\n" +
-                           "Hello, World!\n" +
-                           "Hello, World!\n" +
-                           "Hello, World!\n" +
-                           "Hello, World!\n" +
-                           "Hello, World!";
+            const string expected = "Hello, World!\n" +
+                                    "Hello, World!\n" +
+                                    "Hello, World!\n" +
+                                    "Hello, World!\n" +
+                                    "Hello, World!\n" +
+                                    "Hello, World!";
 
             Assert.False(expected == text);
         }
