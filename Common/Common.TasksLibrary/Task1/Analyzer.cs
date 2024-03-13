@@ -57,8 +57,8 @@ namespace Common.TasksLibrary.Task1
 
             foreach (var word in _dictionaryOfWordsWithQuantity)
             {
-                var frequency = Math.Round(word.Value / (double)AmountOfWords, 2);
-                result.Add((word.Key, frequency, frequency * 100));
+                var frequency = Math.Round(word.Value / (double)AmountOfWords, Numbers.Integers.Two);
+                result.Add((word.Key, frequency, frequency * Numbers.Integers.OneHundred));
             }
 
             return result.OrderByDescending(w => w.Frequency);
