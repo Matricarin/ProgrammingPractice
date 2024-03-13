@@ -1,6 +1,5 @@
-using Task1Lib;
-
 using System.Reflection;
+using Common.TasksLibrary.Task1;
 
 namespace PracticeTests
 {

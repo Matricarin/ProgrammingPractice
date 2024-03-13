@@ -9,6 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Task1Lib\Task1Lib.csproj" />
+    <ProjectReference Include="..\..\Common\Common.TasksLibrary\Common.TasksLibrary.csproj" />
   </ItemGroup>
 </Project>

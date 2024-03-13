@@ -1,6 +1,6 @@
-﻿using Task1Lib;
+﻿using Common.TasksLibrary.Task1;
 
-namespace Task1
+namespace Tasks.Task1
 {
     internal static class Program
     {

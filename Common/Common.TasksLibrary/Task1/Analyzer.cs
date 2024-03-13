@@ -1,15 +1,15 @@
 ﻿using System.Text;
 
-namespace Task1Lib
+namespace Common.TasksLibrary.Task1
 {
     public class Analyzer
     {
         public int AmountOfWords { get; private set; } = 0;
-        
+
         private readonly Dictionary<string, int> _dictionaryOfWordsWithQuantity = new();
 
         private readonly StringBuilder _stringBuilder = new();
-        
+
         public void AddWord(string word)
         {
             if (!_dictionaryOfWordsWithQuantity.ContainsKey(word))
@@ -39,7 +39,7 @@ namespace Task1Lib
                 else
                 {
                     if (string.IsNullOrEmpty(_stringBuilder.ToString())) continue;
-                    this.AddWord(_stringBuilder.ToString());
+                    AddWord(_stringBuilder.ToString());
                     _stringBuilder.Clear();
                 }
             }
@@ -47,7 +47,7 @@ namespace Task1Lib
             if (_stringBuilder.ToString() != string.Empty ||
                 _stringBuilder.ToString() != "")
             {
-                this.AddWord(_stringBuilder.ToString());
+                AddWord(_stringBuilder.ToString());
             }
         }
 
