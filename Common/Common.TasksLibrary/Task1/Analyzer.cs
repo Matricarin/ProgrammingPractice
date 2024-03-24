@@ -3,7 +3,7 @@ using Common.TasksLibrary.Models;
 
 namespace Common.TasksLibrary.Task1
 {
-    public class Analyzer
+    public class WordFrequencyAnalyzer : IAnalyzer<WordWithPercent>
     {
         public int AmountOfWords { get; private set; } = 0;
 
@@ -23,6 +23,11 @@ namespace Common.TasksLibrary.Task1
             }
 
             AmountOfWords++;
+        }
+        
+        public IEnumerable<WordWithPercent> GetAnalyzeSourceTextResults(string text)
+        {
+            throw new NotImplementedException();
         }
         
         public void GetWordsIntoAnalyzerFromText(string text)
@@ -64,5 +69,6 @@ namespace Common.TasksLibrary.Task1
 
             return result.OrderByDescending(w => w.Frequency);
         }
+
     }
 }
