@@ -1,5 +1,6 @@
 ﻿using System.Globalization;
 using System.Text;
+using Common.TasksLibrary.Models;
 
 namespace Common.TasksLibrary.Task1
 {
@@ -11,7 +12,7 @@ namespace Common.TasksLibrary.Task1
             return data;
         }
 
-        public static void CreateAndWriteResultsInFile(IEnumerable<(string Word, double Frequency, double Percent)> results, string fileName)
+        public static void CreateAndWriteResultsInFile(IEnumerable<WordWithPercent> results, string fileName)
         {
             if (File.Exists(fileName))
             {
@@ -31,12 +32,9 @@ namespace Common.TasksLibrary.Task1
 
                 foreach (var result in results)
                 {
-                    writer.WriteLine($"{result.Word.ToString(numberFormatInfo)}, " +
-                                     $"{result.Frequency.ToString(numberFormatInfo)}, " +
-                                     $"{result.Percent.ToString(numberFormatInfo)}");
+                    writer.WriteLine(result.ToString());
                 }
 
-                ;
                 writer.Close();
             }
         }
