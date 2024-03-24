@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Common.TasksLibrary.Models;
 
 namespace Common.TasksLibrary.Task1
 {
@@ -23,7 +24,7 @@ namespace Common.TasksLibrary.Task1
 
             AmountOfWords++;
         }
-
+        
         public void GetWordsIntoAnalyzerFromText(string text)
         {
             foreach (var ch in text)
@@ -50,15 +51,15 @@ namespace Common.TasksLibrary.Task1
                 AddWord(_stringBuilder.ToString());
             }
         }
-
-        public IEnumerable<(string Word, double Frequency, double Percent)> GetWordsFrequency()
+        
+        public IEnumerable<WordWithPercent> GetWordsFrequency()
         {
-            var result = new List<(string Word, double Frequency, double Percent)>();
+            var result = new List<WordWithPercent>();
 
             foreach (var word in _dictionaryOfWordsWithQuantity)
             {
                 var frequency = Math.Round(word.Value / (double)AmountOfWords, Numbers.Integers.Two);
-                result.Add((word.Key, frequency, frequency * Numbers.Integers.OneHundred));
+                result.Add(new WordWithPercent(word.Key, frequency, frequency * Numbers.Integers.OneHundred));
             }
 
             return result.OrderByDescending(w => w.Frequency);
