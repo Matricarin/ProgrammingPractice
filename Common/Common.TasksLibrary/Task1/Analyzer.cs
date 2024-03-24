@@ -3,25 +3,20 @@ using Common.TasksLibrary.Models;
 
 namespace Common.TasksLibrary.Task1
 {
-    public sealed class WordFrequencyAnalyzer 
+    public static class WordFrequencyAnalyzer 
     {
-        private int AmountOfWords 
-        { 
-            get => GetAmountOfWords();
-        }             
+        private static readonly Dictionary<string, int> _dictionaryOfWordsWithQuantity = new();
 
-        private readonly Dictionary<string, int> _dictionaryOfWordsWithQuantity = new();
+        private static readonly StringBuilder _stringBuilder = new();
 
-        private readonly StringBuilder _stringBuilder = new();
-
-        public IEnumerable<WordWithPercent> GetAnalyzeSourceTextResults(string text)
+        public static IEnumerable<WordWithPercent> GetAnalyzeSourceTextResults(string text)
         {
-            throw new NotImplementedException();
+            
         }
 
-        private int GetAmountOfWords() => _dictionaryOfWordsWithQuantity.Sum(w => w.Value);
+        private static int GetAmountOfWords() => _dictionaryOfWordsWithQuantity.Sum(w => w.Value);
         
-        private void AddWord(string word)
+        private static void AddWord(string word)
         {
             if (!_dictionaryOfWordsWithQuantity.ContainsKey(word))
             {
@@ -33,7 +28,7 @@ namespace Common.TasksLibrary.Task1
             }
         }
         
-        private void GetWordsIntoAnalyzerFromText(string text)
+        private static void GetWordsIntoAnalyzerFromText(string text)
         {
             foreach (var ch in text)
             {
@@ -60,13 +55,13 @@ namespace Common.TasksLibrary.Task1
             }
         }
         
-        private IEnumerable<WordWithPercent> GetWordsFrequency()
+        private static IEnumerable<WordWithPercent> GetWordsFrequency()
         {
             var result = new List<WordWithPercent>();
 
             foreach (var word in _dictionaryOfWordsWithQuantity)
             {
-                var frequency = Math.Round(word.Value / (double)AmountOfWords, Numbers.Integers.Two);
+                var frequency = Math.Round(word.Value / (double)GetAmountOfWords(), Numbers.Integers.Two);
                 result.Add(new WordWithPercent(word.Key, frequency, frequency * Numbers.Integers.OneHundred));
             }
 
