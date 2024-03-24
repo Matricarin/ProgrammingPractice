@@ -3,9 +3,9 @@ using Common.TasksLibrary.Models;
 
 namespace Common.TasksLibrary.Task1
 {
-    public class WordFrequencyAnalyzer : IAnalyzer<WordWithPercent>
+    public sealed class WordFrequencyAnalyzer 
     {
-        public int AmountOfWords 
+        private int AmountOfWords 
         { 
             get => GetAmountOfWords();
         }             
