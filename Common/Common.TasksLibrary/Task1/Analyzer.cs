@@ -1,4 +1,4 @@
-using System.Text;
+﻿using System.Text;
 using Common.TasksLibrary.Models;
 
 namespace Common.TasksLibrary.Task1
@@ -14,6 +14,13 @@ namespace Common.TasksLibrary.Task1
 
         private readonly StringBuilder _stringBuilder = new();
 
+        public IEnumerable<WordWithPercent> GetAnalyzeSourceTextResults(string text)
+        {
+            throw new NotImplementedException();
+        }
+
+        private int GetAmountOfWords() => _dictionaryOfWordsWithQuantity.Sum(w => w.Value);
+        
         private void AddWord(string word)
         {
             if (!_dictionaryOfWordsWithQuantity.ContainsKey(word))
@@ -24,16 +31,9 @@ namespace Common.TasksLibrary.Task1
             {
                 _dictionaryOfWordsWithQuantity[word]++;
             }
-
-            AmountOfWords++;
         }
         
-        public IEnumerable<WordWithPercent> GetAnalyzeSourceTextResults(string text)
-        {
-            throw new NotImplementedException();
-        }
-        
-        public void GetWordsIntoAnalyzerFromText(string text)
+        private void GetWordsIntoAnalyzerFromText(string text)
         {
             foreach (var ch in text)
             {
@@ -60,7 +60,7 @@ namespace Common.TasksLibrary.Task1
             }
         }
         
-        public IEnumerable<WordWithPercent> GetWordsFrequency()
+        private IEnumerable<WordWithPercent> GetWordsFrequency()
         {
             var result = new List<WordWithPercent>();
 
