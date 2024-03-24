@@ -11,7 +11,8 @@ namespace Common.TasksLibrary.Task1
 
         public static IEnumerable<WordWithPercent> GetAnalyzeSourceTextResults(string text)
         {
-            
+            GetWordsIntoAnalyzerFromText(text);
+            return GetWordsFrequency();
         }
 
         private static int GetAmountOfWords() => _dictionaryOfWordsWithQuantity.Sum(w => w.Value);
