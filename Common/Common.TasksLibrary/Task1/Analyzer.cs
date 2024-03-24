@@ -1,11 +1,14 @@
-﻿using System.Text;
+using System.Text;
 using Common.TasksLibrary.Models;
 
 namespace Common.TasksLibrary.Task1
 {
     public class WordFrequencyAnalyzer : IAnalyzer<WordWithPercent>
     {
-        public int AmountOfWords { get; private set; } = 0;
+        public int AmountOfWords 
+        { 
+            get => GetAmountOfWords();
+        }             
 
         private readonly Dictionary<string, int> _dictionaryOfWordsWithQuantity = new();
 
