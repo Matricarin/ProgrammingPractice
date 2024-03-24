@@ -24,10 +24,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Task1\Task1Lib\Task1Lib.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Include="Resources\Task1Test1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -37,6 +33,10 @@
     <Content Include="Resources\Task1Test3.doc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\Common.TasksLibrary\Common.TasksLibrary.csproj" />
   </ItemGroup>
 
   <ItemGroup>

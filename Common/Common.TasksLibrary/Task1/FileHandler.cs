@@ -1,7 +1,8 @@
-﻿using System.Text;
-using System.Globalization;
+﻿using System.Globalization;
+using System.Text;
+using Common.TasksLibrary.Models;
 
-namespace Task1Lib
+namespace Common.TasksLibrary.Task1
 {
     public static class FileHandler
     {
@@ -11,7 +12,7 @@ namespace Task1Lib
             return data;
         }
 
-        public static void CreateAndWriteResultsInFile(IEnumerable<(string Word, double Frequency, double Percent)> results, string fileName)
+        public static void CreateAndWriteResultsInFile(IEnumerable<WordWithPercent> results, string fileName)
         {
             if (File.Exists(fileName))
             {
@@ -31,12 +32,9 @@ namespace Task1Lib
 
                 foreach (var result in results)
                 {
-                    writer.WriteLine($"{result.Word.ToString(numberFormatInfo)}, " +
-                                     $"{result.Frequency.ToString(numberFormatInfo)}, " +
-                                     $"{result.Percent.ToString(numberFormatInfo)}");
+                    writer.WriteLine(result.ToString());
                 }
 
-                ;
                 writer.Close();
             }
         }
