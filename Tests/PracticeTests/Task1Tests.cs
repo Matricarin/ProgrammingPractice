@@ -20,12 +20,6 @@ namespace PracticeTests
         }
 
         [Test]
-        public void FirstTest()
-        {
-            Assert.True(true);
-        }
-
-        [Test]
         public void Test_AddWord_method_has_value()
         {
             var analyzer = new Analyzer();
