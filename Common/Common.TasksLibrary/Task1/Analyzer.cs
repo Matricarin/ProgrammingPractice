@@ -11,7 +11,7 @@ namespace Common.TasksLibrary.Task1
 
         private readonly StringBuilder _stringBuilder = new();
 
-        public void AddWord(string word)
+        private void AddWord(string word)
         {
             if (!_dictionaryOfWordsWithQuantity.ContainsKey(word))
             {
