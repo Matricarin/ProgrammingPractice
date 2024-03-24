@@ -4,7 +4,7 @@ using Common.TasksLibrary.Models;
 
 namespace Common.TasksLibrary.Task1
 {
-    public static class FileHandler
+    public sealed class FileHandler
     {
         public static string OpenAndReadFile(string fileName)
         {
