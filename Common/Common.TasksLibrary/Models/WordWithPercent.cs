@@ -1,8 +1,6 @@
-﻿using System.Globalization;
-
-namespace Common.TasksLibrary.Models
+﻿namespace Common.TasksLibrary.Models
 {
-    sealed class WordWithPercent
+    public sealed class WordWithPercent
     {
         public WordWithPercent(string word, double frequency, double percent)
         {
