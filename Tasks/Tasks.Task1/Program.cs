@@ -10,11 +10,9 @@ namespace Tasks.Task1
 
             try
             {
-                var analyzer = new WordFrequencyAnalyzer();
-
                 var text = FileHandler.OpenAndReadFile(fileName);
 
-                var resultAnalysis = analyzer.GetAnalyzeSourceTextResults(text);
+                var resultAnalysis = WordFrequencyAnalyzer.GetAnalyzeSourceTextResults(text);
 
                 var resultFileName = FileHandler.GetOutputFileNameWithExtension(fileName, "csv");
 
