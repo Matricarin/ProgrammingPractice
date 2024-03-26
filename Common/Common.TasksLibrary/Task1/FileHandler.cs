@@ -12,8 +12,9 @@ namespace Common.TasksLibrary.Task1
             return data;
         }
 
-        public static void CreateAndWriteResultsInFile(IEnumerable<WordWithPercent> results, string fileName)
+        public static void CreateAndWriteResultsInCsvFile(IEnumerable<WordWithPercent> results)
         {
+
             using (var stream = File.Create(fileName))
             {
                 var encoding = Encoding.UTF8;
@@ -33,8 +34,5 @@ namespace Common.TasksLibrary.Task1
                 writer.Close();
             }
         }
-
-        private static string GetOutputFileNameWithExtension(string fileName, string ext) =>
-            Path.GetFileNameWithoutExtension(fileName) + "_analyze." + $"{ext}";
     }
 }
