@@ -14,8 +14,7 @@ namespace Common.TasksLibrary.Task1
 
         public static void CreateAndWriteResultsInCsvFile(IEnumerable<WordWithPercent> results)
         {
-
-            using (var stream = File.Create(fileName))
+            using (var stream = File.Create(Constants.ResultCsvFileName))
             {
                 var encoding = Encoding.UTF8;
                 
