@@ -7,7 +7,7 @@ public static class WordFrequencyAnalyzer
 {
     public static IEnumerable<WordWithPercent> GetAnalyzeSourceTextResults(string text)
     {
-        GetWordsIntoAnalyzerFromText(text);
+        var dictionaryOfWordsWithQuantity = GetWordsIntoAnalyzerFromText(text);
         return GetWordsFrequency();
     }
 
@@ -28,13 +28,16 @@ public static class WordFrequencyAnalyzer
         }
     }
 
-    private static void GetWordsIntoAnalyzerFromText(string text)
+    private static IDictionary<string, int> GetWordsIntoAnalyzerFromText(string text)
     {
+        var stringBuilder = new StringBuilder();
+        var result = new Dictionary<string, int>();
+
         foreach (var ch in text)
         {
             if (char.IsLetterOrDigit(ch))
             {
-                _stringBuilder.Append(ch);
+                stringBuilder.Append(ch);
             }
             else if (ch.ToString() == Environment.NewLine)
             {
@@ -42,19 +45,21 @@ public static class WordFrequencyAnalyzer
             }
             else
             {
-                if (string.IsNullOrEmpty(_stringBuilder.ToString()))
+                if (string.IsNullOrEmpty(stringBuilder.ToString()))
                 {
                     continue;
                 }
-                AddWord(_stringBuilder.ToString());
-                _stringBuilder.Clear();
+                result.AddWord(stringBuilder.ToString());
+                stringBuilder.Clear();
             }
         }
 
-        if (_stringBuilder.ToString() != string.Empty)
+        if (stringBuilder.ToString() != string.Empty)
         {
-            AddWord(_stringBuilder.ToString());
+            result.AddWord(stringBuilder.ToString());
         }
+
+        return result;
     }
 
     private static IEnumerable<WordWithPercent> GetWordsFrequency(IDictionary<string, int> dictionary)
