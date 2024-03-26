@@ -6,7 +6,7 @@ namespace Tasks.Task1
     {
         private static void Main(string[] args)
         {
-            var fileName = args[0];
+            var fileInfo = new FileInfo(args.First());
 
             try
             {
