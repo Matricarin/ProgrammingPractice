@@ -55,9 +55,10 @@ public static class WordFrequencyAnalyzer
             }
         }
 
-        if (_stringBuilder.ToString() != string.Empty ||
-            _stringBuilder.ToString() != "")
+        if (_stringBuilder.ToString() != string.Empty)
+        {
             AddWord(_stringBuilder.ToString());
+        }
     }
 
     private static IEnumerable<WordWithPercent> GetWordsFrequency()
