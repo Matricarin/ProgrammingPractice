@@ -8,7 +8,7 @@ public static class WordFrequencyAnalyzer
     public static IEnumerable<WordWithPercent> GetAnalyzeSourceTextResults(string text)
     {
         var dictionaryOfWordsWithQuantity = GetWordsIntoAnalyzerFromText(text);
-        return GetWordsFrequency();
+        return GetWordsFrequency(dictionaryOfWordsWithQuantity);
     }
 
     private static int GetAmountOfWords(this IDictionary<string,int> dictionary)
