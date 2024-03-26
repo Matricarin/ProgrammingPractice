@@ -35,20 +35,25 @@ public static class WordFrequencyAnalyzer
     private static void GetWordsIntoAnalyzerFromText(string text)
     {
         foreach (var ch in text)
+        {
             if (char.IsLetterOrDigit(ch))
             {
                 _stringBuilder.Append(ch);
             }
-            else if (ch == '\n')
+            else if (ch.ToString() == Environment.NewLine)
             {
                 continue;
             }
             else
             {
-                if (string.IsNullOrEmpty(_stringBuilder.ToString())) continue;
+                if (string.IsNullOrEmpty(_stringBuilder.ToString()))
+                {
+                    continue;
+                }
                 AddWord(_stringBuilder.ToString());
                 _stringBuilder.Clear();
             }
+        }
 
         if (_stringBuilder.ToString() != string.Empty ||
             _stringBuilder.ToString() != "")
