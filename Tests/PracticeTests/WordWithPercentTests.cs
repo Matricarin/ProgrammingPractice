@@ -5,6 +5,7 @@ namespace PracticeTests
     [TestFixture]
     public class WordWithPercentTests
     {
+        private const string Expected = "word, 0.05, 5";
         private WordWithPercent _word;
         
         [SetUp]
@@ -17,8 +18,7 @@ namespace PracticeTests
         public void Test_TestToStringMethod()
         {
             var result = _word.ToString();
-            Assert.Equals("word, 0.05, 5", result);
+            Assert.AreEqual(Expected, result);
         }
-
     }
 }
