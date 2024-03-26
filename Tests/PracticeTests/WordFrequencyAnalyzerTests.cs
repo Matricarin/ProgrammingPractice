@@ -74,63 +74,6 @@ namespace PracticeTests
         //}
 
         //[Test]
-        //public void Test_ReadAndOpenFile_method_txt()
-        //{
-        //    var directoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-        //    var filePath = Path.Combine(directoryPath + "\\Resources\\Task1Test1.txt");
-
-        //    var text = FileHandler.OpenAndReadFile(filePath);
-            
-        //    const string expected = "Hello, World!\r\n" +
-        //                            "Hello, World!\r\n" +
-        //                            "Hello, World!\r\n" +
-        //                            "Hello, World!\r\n" +
-        //                            "Hello, World!\r\n" +
-        //                            "Hello, World!";
-
-        //    Assert.True(expected == text);
-        //}
-
-        //[Test]
-        //public void Test_ReadAndOpenFile_method_md()
-        //{
-        //    var directoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-        //    var filePath = Path.Combine(directoryPath + "\\Resources\\Task1Test2.md");
-
-        //    var text = FileHandler.OpenAndReadFile(filePath);
-
-        //    const string expected = "Hello, World!\n" +
-        //                            "Hello, World!\n" +
-        //                            "Hello, World!\n" +
-        //                            "Hello, World!\n" +
-        //                            "Hello, World!\n" +
-        //                            "Hello, World!";
-
-        //    Assert.False(expected == text);
-        //}
-
-        //[Test]
-        //public void Test_ReadAndOpenFile_method_doc()
-        //{
-        //    var directoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-        //    var filePath = Path.Combine(directoryPath + "\\Resources\\Task1Test3.doc");
-
-        //    var text = FileHandler.OpenAndReadFile(filePath);
-
-        //    const string expected = "Hello, World!\n" +
-        //                            "Hello, World!\n" +
-        //                            "Hello, World!\n" +
-        //                            "Hello, World!\n" +
-        //                            "Hello, World!\n" +
-        //                            "Hello, World!";
-
-        //    Assert.False(expected == text);
-        //}
-
-        //[Test]
         //public void Test_GetOutputFileNameWithExtension_method()
         //{
         //    const string expected = "TestName_analyze.txt";
