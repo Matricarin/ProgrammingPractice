@@ -11,9 +11,9 @@ public static class WordFrequencyAnalyzer
         return GetWordsFrequency();
     }
 
-    private static int GetAmountOfWords()
+    private static int GetAmountOfWords(this IDictionary<string,int> dictionary)
     {
-        return _dictionaryOfWordsWithQuantity.Sum(w => w.Value);
+        return dictionary.Sum(w => w.Value);
     }
 
     private static void AddWord(string word)
