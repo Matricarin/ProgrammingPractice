@@ -16,15 +16,15 @@ public static class WordFrequencyAnalyzer
         return dictionary.Sum(w => w.Value);
     }
 
-    private static void AddWord(string word)
+    private static void AddWord(this IDictionary<string, int> dictionary, string word)
     {
-        if (!_dictionaryOfWordsWithQuantity.ContainsKey(word))
+        if (!dictionary.ContainsKey(word))
         {
-            _dictionaryOfWordsWithQuantity.Add(word, 1);
+            dictionary.Add(word, 1);
         }
         else
         {
-            _dictionaryOfWordsWithQuantity[word]++;
+            dictionary[word]++;
         }
     }
 
