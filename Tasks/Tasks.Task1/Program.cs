@@ -10,11 +10,11 @@ namespace Tasks.Task1
 
             try
             {
-                var text = FileHandler.OpenAndReadFile(fileName);
+                var text = FileHandler.OpenAndReadFile(fileInfo);
 
                 var resultAnalysis = WordFrequencyAnalyzer.GetAnalyzeSourceTextResults(text);
 
-                FileHandler.CreateAndWriteResultsInFile(resultAnalysis, "");
+                FileHandler.CreateAndWriteResultsInCsvFile(resultAnalysis);
 
                 Console.WriteLine("Complete.");
             }
