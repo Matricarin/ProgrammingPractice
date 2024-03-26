@@ -7,7 +7,13 @@ public static class WordFrequencyAnalyzer
 {
     public static IEnumerable<WordWithPercent> GetAnalyzeSourceTextResults(string text)
     {
+        if (string.IsNullOrEmpty(text))
+        {
+            throw new Exception("WordFrequencyAnalyzer received an empty string ar null.");
+        }
+
         var dictionaryOfWordsWithQuantity = GetWordsIntoAnalyzerFromText(text);
+
         return GetWordsFrequency(dictionaryOfWordsWithQuantity);
     }
 
