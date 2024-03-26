@@ -3,7 +3,8 @@ using Common.TasksLibrary.Task1;
 
 namespace PracticeTests
 {
-    public class Task1Tests
+    [TestFixture]
+    internal class WordFrequencyAnalyzerTests
     {
         //private readonly Analyzer _analyzer = new();
 
