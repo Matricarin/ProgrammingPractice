@@ -6,9 +6,9 @@ namespace Common.TasksLibrary.Task1
 {
     public static class FileHandler
     {
-        public static string OpenAndReadFile(string fileName)
+        public static string OpenAndReadFile(FileInfo fileInfo)
         {
-            var data = File.ReadAllText(fileName);
+            var data = File.ReadAllText(fileInfo.Name);
             return data;
         }
 
