@@ -14,11 +14,6 @@ namespace Common.TasksLibrary.Task1
 
         public static void CreateAndWriteResultsInFile(IEnumerable<WordWithPercent> results, string fileName)
         {
-            if (File.Exists(fileName))
-            {
-                File.Delete(fileName);
-            }
-
             using (var stream = File.Create(fileName))
             {
                 var encoding = Encoding.UTF8;
