@@ -57,13 +57,13 @@ public static class WordFrequencyAnalyzer
         }
     }
 
-    private static IEnumerable<WordWithPercent> GetWordsFrequency()
+    private static IEnumerable<WordWithPercent> GetWordsFrequency(IDictionary<string, int> dictionary)
     {
         var result = new List<WordWithPercent>();
 
-        foreach (var word in _dictionaryOfWordsWithQuantity)
+        foreach (var word in dictionary)
         {
-            var frequency = Math.Round(word.Value / (double) GetAmountOfWords(), Numbers.Integers.Two);
+            var frequency = Math.Round(word.Value / (double)dictionary.GetAmountOfWords(), Numbers.Integers.Two);
             result.Add(new WordWithPercent(word.Key, frequency, frequency * Numbers.Integers.OneHundred));
         }
 
