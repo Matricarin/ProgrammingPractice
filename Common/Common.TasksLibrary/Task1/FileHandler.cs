@@ -39,7 +39,7 @@ namespace Common.TasksLibrary.Task1
             }
         }
 
-        public static string GetOutputFileNameWithExtension(string fileName, string ext) =>
+        private static string GetOutputFileNameWithExtension(string fileName, string ext) =>
             Path.GetFileNameWithoutExtension(fileName) + "_analyze." + $"{ext}";
     }
 }
