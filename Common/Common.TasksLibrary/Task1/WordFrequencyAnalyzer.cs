@@ -5,10 +5,6 @@ namespace Common.TasksLibrary.Task1;
 
 public static class WordFrequencyAnalyzer
 {
-    private static readonly Dictionary<string, int> _dictionaryOfWordsWithQuantity = new();
-
-    private static readonly StringBuilder _stringBuilder = new();
-
     public static IEnumerable<WordWithPercent> GetAnalyzeSourceTextResults(string text)
     {
         GetWordsIntoAnalyzerFromText(text);
