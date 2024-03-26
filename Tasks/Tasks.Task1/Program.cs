@@ -14,9 +14,7 @@ namespace Tasks.Task1
 
                 var resultAnalysis = WordFrequencyAnalyzer.GetAnalyzeSourceTextResults(text);
 
-                var resultFileName = FileHandler.GetOutputFileNameWithExtension(fileName, "csv");
-
-                FileHandler.CreateAndWriteResultsInFile(resultAnalysis, resultFileName);
+                FileHandler.CreateAndWriteResultsInFile(resultAnalysis, "");
 
                 Console.WriteLine("Complete.");
             }
