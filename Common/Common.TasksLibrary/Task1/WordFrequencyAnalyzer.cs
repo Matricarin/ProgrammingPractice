@@ -31,7 +31,8 @@ public static class WordFrequencyAnalyzer
     private static IDictionary<string, int> GetWordsIntoAnalyzerFromText(string text)
     {
         var stringBuilder = new StringBuilder();
-        var result = new Dictionary<string, int>();
+
+        var dictionaryOfWordsWithQuantity = new Dictionary<string, int>();
 
         foreach (var ch in text)
         {
@@ -49,17 +50,19 @@ public static class WordFrequencyAnalyzer
                 {
                     continue;
                 }
-                result.AddWord(stringBuilder.ToString());
+
+                dictionaryOfWordsWithQuantity.AddWord(stringBuilder.ToString());
+
                 stringBuilder.Clear();
             }
         }
 
         if (stringBuilder.ToString() != string.Empty)
         {
-            result.AddWord(stringBuilder.ToString());
+            dictionaryOfWordsWithQuantity.AddWord(stringBuilder.ToString());
         }
 
-        return result;
+        return dictionaryOfWordsWithQuantity;
     }
 
     private static IEnumerable<WordWithPercent> GetWordsFrequency(IDictionary<string, int> dictionary)
@@ -68,8 +71,12 @@ public static class WordFrequencyAnalyzer
 
         foreach (var word in dictionary)
         {
-            var frequency = Math.Round(word.Value / (double)dictionary.GetAmountOfWords(), Numbers.Integers.Two);
-            result.Add(new WordWithPercent(word.Key, frequency, frequency * Numbers.Integers.OneHundred));
+            var frequency = Math.Round(word.Value / (double)dictionary.GetAmountOfWords(), 
+                Numbers.Integers.Two);
+
+            result.Add(new WordWithPercent(word.Key, 
+                frequency, 
+                frequency * Numbers.Integers.OneHundred));
         }
 
         return result.OrderByDescending(w => w.Frequency);
