@@ -18,12 +18,7 @@ namespace Common.TasksLibrary.Task1
             using (var stream = File.Create(fileName))
             {
                 var encoding = Encoding.UTF8;
-
-                var numberFormatInfo = new NumberFormatInfo()
-                {
-                    NumberDecimalSeparator = "."
-                };
-
+                
                 var writer = new StreamWriter(stream, encoding);
 
                 foreach (var result in results)
