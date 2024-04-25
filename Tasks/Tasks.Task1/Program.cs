@@ -6,21 +6,15 @@ namespace Tasks.Task1
     {
         private static void Main(string[] args)
         {
-            var fileName = args[0];
+            var fileInfo = new FileInfo(args.First());
 
             try
             {
-                var analyzer = new Analyzer();
+                var text = FileHandler.OpenAndReadFile(fileInfo);
 
-                var text = FileHandler.OpenAndReadFile(fileName);
+                var resultAnalysis = WordFrequencyAnalyzer.GetAnalyzeSourceTextResults(text);
 
-                analyzer.GetWordsIntoAnalyzerFromText(text);
-
-                var resultAnalysis = analyzer.GetWordsFrequency();
-
-                var resultFileName = FileHandler.GetOutputFileNameWithExtension(fileName, "csv");
-
-                FileHandler.CreateAndWriteResultsInFile(resultAnalysis, resultFileName);
+                FileHandler.CreateAndWriteResultsInCsvFile(resultAnalysis);
 
                 Console.WriteLine("Complete.");
             }

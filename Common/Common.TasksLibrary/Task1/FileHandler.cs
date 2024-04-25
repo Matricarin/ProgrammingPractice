@@ -6,28 +6,18 @@ namespace Common.TasksLibrary.Task1
 {
     public static class FileHandler
     {
-        public static string OpenAndReadFile(string fileName)
+        public static string OpenAndReadFile(FileInfo fileInfo)
         {
-            var data = File.ReadAllText(fileName);
+            var data = File.ReadAllText(fileInfo.Name);
             return data;
         }
 
-        public static void CreateAndWriteResultsInFile(IEnumerable<WordWithPercent> results, string fileName)
+        public static void CreateAndWriteResultsInCsvFile(IEnumerable<WordWithPercent> results)
         {
-            if (File.Exists(fileName))
-            {
-                File.Delete(fileName);
-            }
-
-            using (var stream = File.Create(fileName))
+            using (var stream = File.Create(Constants.ResultCsvFileName))
             {
                 var encoding = Encoding.UTF8;
-
-                var numberFormatInfo = new NumberFormatInfo()
-                {
-                    NumberDecimalSeparator = "."
-                };
-
+                
                 var writer = new StreamWriter(stream, encoding);
 
                 foreach (var result in results)
@@ -38,8 +28,5 @@ namespace Common.TasksLibrary.Task1
                 writer.Close();
             }
         }
-
-        public static string GetOutputFileNameWithExtension(string fileName, string ext) =>
-            Path.GetFileNameWithoutExtension(fileName) + "_analyze." + $"{ext}";
     }
 }

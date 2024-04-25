@@ -15,7 +15,7 @@
 
         public override string ToString()
         {
-            return $"{this.Word}, {this.Frequency}, {this.Percent}";
+            return FormattableString.Invariant($"{this.Word}, {this.Frequency}, {this.Percent}");
         }
     }
 }
