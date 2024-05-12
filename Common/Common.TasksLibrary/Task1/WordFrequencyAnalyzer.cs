@@ -9,7 +9,7 @@ public static class WordFrequencyAnalyzer
     {
         if (string.IsNullOrEmpty(text))
         {
-            throw new Exception("WordFrequencyAnalyzer received an empty string ar null.");
+            throw new Exception("WordFrequencyAnalyzer received an empty string or null.");
         }
 
         var dictionaryOfWordsWithQuantity = GetWordsIntoAnalyzerFromText(text);
