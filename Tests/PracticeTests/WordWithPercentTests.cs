@@ -2,22 +2,21 @@ using Common.TasksLibrary.Models;
 
 namespace PracticeTests
 {
-    [TestFixture("word", 0.05, 5)]
+    [TestFixture]
     internal class WordWithPercentTests
     {
-        private const string Expected = "word, 0.05, 5";
-        private WordWithPercent _word;
-
-        public WordWithPercentTests(string word, double frequency, double percent)
-        {
-            _word = new WordWithPercent(word, frequency, percent);
-        }
-
         [Test]
         public void Test_TestToStringMethod()
         {
-            var result = _word.ToString();
-            Assert.AreEqual(Expected, result);
+            string word = "word";
+            double frequency = 0.05;
+            double percent = 5;
+            string expected = "word, 0.05, 5";
+
+            WordWithPercent wordWithPercent = new WordWithPercent(word, frequency, percent);
+            string result = wordWithPercent.ToString();
+
+            Assert.That(result, Is.EqualTo(expected));
         }
     }
 }
