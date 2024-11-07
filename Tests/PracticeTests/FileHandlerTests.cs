@@ -1,40 +1,30 @@
 ﻿using System.Collections;
-using System.Reflection;
-using System.Text;
 using Common.TasksLibrary.Models;
 using Common.TasksLibrary.Task1;
 
 namespace PracticeTests;
 
-[TestFixtureSource(typeof(FileHandlerTestsData))]
+[TestFixtureSource(typeof(FileHandlerTestsData), nameof(FileHandlerTestsData.FixtureParams))]
 internal class FileHandlerTests
 {
-    private static readonly string? DirectoryPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-    private readonly FileInfo _testFile;
-    private readonly string _csvTestFilePath;
+    private readonly string DirectoryPath = Environment.CurrentDirectory;
+    private FileInfo FileForTest;
+    private List<WordWithPercent> DataForCsv;
 
-    public FileHandlerTests(string resourcePath)
+    public FileHandlerTests(string fileForTest)
     {
-        _testFile = new FileInfo(Path.Combine(DirectoryPath, resourcePath));
-        _csvTestFilePath = Path.Combine(DirectoryPath, "result.csv");
+        FileForTest = new FileInfo(Path.Combine(DirectoryPath, fileForTest));
     }
 
-    [SetUp]
-    public void Setup()
+    public FileHandlerTests(List<WordWithPercent> list)
     {
-        if (File.Exists(_csvTestFilePath)) File.Delete(_csvTestFilePath);
-    }
-
-    [TearDown]
-    public void Teardown()
-    {
-        if (File.Exists(_csvTestFilePath)) File.Delete(_csvTestFilePath);
+        DataForCsv = list;
     }
 
     [Test]
-    public void Test_ReadAndOpenFile_ReadsCorrectContent()
+    public void Test_OpenAndReadFile_ReadsCorrectContent()
     {
-        var text = FileHandler.OpenAndReadFile(_testFile);
+        var text = FileHandler.OpenAndReadFile(FileForTest);
 
         var expected = "Hello, World!" + $"{Environment.NewLine}" +
                        "Hello, World!" + $"{Environment.NewLine}" +
@@ -47,31 +37,30 @@ internal class FileHandlerTests
     }
 
     [Test]
-    public void Test_CreateAndWriteResltsInCsvFile_WritesCorrectly()
+    public void Test_CreateAndWriteResultsInCsvFile_WritesCorrectly()
     {
-        var results = new List<WordWithPercent>
-        {
-            new("Hello", 0.5, 50),
-            new("World", 0.5, 50)
-        };
+        FileHandler.CreateAndWriteResultsInCsvFile(DataForCsv);
 
-        FileHandler.CreateAndWriteResultsInCsvFile(results);
-
-        Assert.IsTrue(File.Exists(_csvTestFilePath), "CSV file was not created");
+        Assert.IsTrue(File.Exists(_csvTestFilePath), "CSV file was not created.");
 
         var csvContent = File.ReadAllText(_csvTestFilePath, Encoding.UTF8);
-        var expectedContent = "Hello, 0.5, 50" + $"{Environment.NewLine}" +
-                              "World, 0.5, 50" + $"{Environment.NewLine}";
-        Assert.AreEqual(expectedContent, csvContent, "CSV content does not match expected output");
+        var expectedContent = "Hello,50\nWorld,50\n";
+        Assert.AreEqual(expectedContent, csvContent, "CSV content does not match expected output.");
     }
 }
 
-internal class FileHandlerTestsData : IEnumerable
+public class FileHandlerTestsData
 {
-    public IEnumerator GetEnumerator()
+    public static IEnumerable FixtureParams
     {
-        yield return new object[] { "\\Resources\\Task1Test1.txt" };
-        yield return new object[] { "\\Resources\\Task1Test2.md" };
-        yield return new object[] { "\\Resources\\Task1Test3.doc" };
+        get
+        {
+            yield return new TestFixtureData("FileHandlerTestFile.txt");
+            yield return new TestFixtureData(new List<WordWithPercent>
+            {
+                new WordWithPercent("Hello", 0.5, 50),
+                new WordWithPercent("World", 0.5, 50)
+            });
+        }
     }
 }

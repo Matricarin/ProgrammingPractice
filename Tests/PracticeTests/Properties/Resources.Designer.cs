@@ -61,40 +61,6 @@ namespace PracticeTests.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hello, World!
-        ///Hello, World!
-        ///Hello, World!
-        ///Hello, World!
-        ///Hello, World!
-        ///Hello, World!.
-        /// </summary>
-        public static string Task1Test1 {
-            get {
-                return ResourceManager.GetString("Task1Test1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] Task1Test2 {
-            get {
-                object obj = ResourceManager.GetObject("Task1Test2", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
-        /// </summary>
-        public static byte[] Task1Test3 {
-            get {
-                object obj = ResourceManager.GetObject("Task1Test3", resourceCulture);
-                return ((byte[])(obj));
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to first second third
         ///second second third fourth
         ///fifth
