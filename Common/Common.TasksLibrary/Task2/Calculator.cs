@@ -1,6 +1,18 @@
-﻿namespace Common.TasksLibrary.Task2;
+﻿using Common.TasksLibrary.Task2.Base;
 
-public sealed class Calculator<T> where T : CalculatorExecutionContext
+namespace Common.TasksLibrary.Task2;
+
+public sealed class Calculator<T> where T : BaseExecutionContext
 {
-    
+    private T _context;
+
+    public Calculator(T executionContext)
+    {
+        _context = executionContext;
+    }
+
+    public void Execute(IEnumerable<string> commands)
+    {
+        
+    }
 }
