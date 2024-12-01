@@ -2,17 +2,21 @@
 
 namespace Common.TasksLibrary.Task2;
 
-public sealed class Calculator<T> where T : BaseExecutionContext
+public sealed class Calculator
 {
-    private T _context;
-
-    public Calculator(T executionContext)
+    private CommandsFactory _factory;
+    internal Dictionary<string, double> VariablesStorage = new Dictionary<string, double>();
+    internal Stack<double> StackStorage = new Stack<double>();
+    public Calculator(CommandsFactory factory)
     {
-        _context = executionContext;
+        _factory = factory;
     }
-
     public void Execute(IEnumerable<string> commands)
     {
-        
+        foreach (var command in commands)
+        {
+            var executingCommand = _factory.GenerateCommand(command);
+            executingCommand.Process(this);
+        }
     }
 }
