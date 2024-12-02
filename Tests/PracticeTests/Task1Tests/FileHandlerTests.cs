@@ -1,4 +1,5 @@
 ﻿using Common.TasksLibrary;
+using Common.TasksLibrary.Constants;
 using Common.TasksLibrary.Task1;
 
 namespace PracticeTests.Task1Tests;
@@ -34,7 +35,7 @@ public class FileHandlerTests
    public void CreateAndWriteCSVFileMethod_Test()
    {
       FileHandler.CreateAndWriteResultsInCsvFile(_testWords);
-      var content = File.ReadAllText(Constants.ResultCsvFileName);
+      var content = File.ReadAllText(StringConstants.ResultCsvFileName);
       Assert.That(content, Is.EqualTo(_contentInResultFile));
    }
 }

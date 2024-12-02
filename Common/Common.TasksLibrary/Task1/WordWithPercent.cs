@@ -23,8 +23,8 @@
             if (obj == null)
                 return false;
             var other = (WordWithPercent)obj;
-            return Math.Abs(this.Frequency - other.Frequency) < Constants.Tolerance
-                   && Math.Abs(this.Percent - other.Percent) < Constants.Tolerance
+            return Math.Abs(this.Frequency - other.Frequency) < Constants.DoublesConstants.Tolerance
+                   && Math.Abs(this.Percent - other.Percent) < Constants.DoublesConstants.Tolerance
                    && this.Word == other.Word;
         }
 

@@ -1,7 +1,4 @@
-﻿using System.Reflection;
-using Common.TasksLibrary.Task2.Commands;
-
-namespace Common.TasksLibrary.Task2.Base;
+﻿namespace Common.TasksLibrary.Task2.Base;
 
 public sealed class CommandsFactory
 {
@@ -17,7 +14,7 @@ public sealed class CommandsFactory
         var parametrizedCommand = executingCommand.Split(' ');
         try
         {
-            var instance = Activator.CreateInstance(Type.GetType(_commandMapper[parametrizedCommand.First()]),parametrizedCommand[1], parametrizedCommand[2]);
+            var instance = Activator.CreateInstance(Type.GetType(_commandMapper[parametrizedCommand.First()]));
             var command = (CalculatorCommand)instance;
             return command;
         }

@@ -1,5 +1,5 @@
 ﻿using Common.TasksLibrary.Task2.Base;
-using static System.Exception;
+using Common.TasksLibrary.Constants;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
@@ -7,8 +7,9 @@ public sealed class DefineCommand : CalculatorCommand
 {
     private string _variableName;
     private double _variableValue;
-    public DefineCommand(string name, string value)
+    public DefineCommand(string parameters)
     {
+        var values = parameters.Split(CharsConstants.WhiteSpace);
         _variableName = name;
         if (!double.TryParse(value, out _variableValue))
         {

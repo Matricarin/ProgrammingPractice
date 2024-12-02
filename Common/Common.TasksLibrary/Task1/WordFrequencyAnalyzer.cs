@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using Common.TasksLibrary.Constants;
 
 namespace Common.TasksLibrary.Task1;
 
@@ -77,11 +78,11 @@ public static class WordFrequencyAnalyzer
         foreach (var word in dictionary)
         {
             var frequency = Math.Round(word.Value / (double)dictionary.GetAmountOfWords(), 
-                Numbers.Integers.Two);
+                IntegersConstants.Two);
 
             result.Add(new WordWithPercent(word.Key, 
                 frequency, 
-                frequency * Numbers.Integers.OneHundred));
+                frequency * IntegersConstants.OneHundred));
         }
 
         return result.OrderByDescending(w => w.Frequency);

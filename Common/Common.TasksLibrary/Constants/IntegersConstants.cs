@@ -1,6 +1,6 @@
-﻿namespace Common.TasksLibrary.Numbers
+﻿namespace Common.TasksLibrary.Constants
 {
-    public static class Integers
+    public static class IntegersConstants
     {
         public const int One = 1;
         public const int Two = 2;
