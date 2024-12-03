@@ -3,5 +3,6 @@
     public static class StringConstants
     {
         public const string ResultCsvFileName = "result.csv";
+        public const string WhiteSpace = " ";
     }
 }
