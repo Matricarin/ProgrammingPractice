@@ -1,6 +1,6 @@
 ﻿namespace Common.TasksLibrary.Constants;
 
-public class CharsConstants
+public static class CharsConstants
 {
     public const char WhiteSpace = ' ';
 }
