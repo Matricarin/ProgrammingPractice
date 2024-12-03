@@ -1,4 +1,7 @@
-﻿namespace Common.TasksLibrary.Task2.Base;
+﻿using Common.TasksLibrary.Constants;
+using Common.TasksLibrary.Extensions;
+
+namespace Common.TasksLibrary.Task2.Base;
 
 public sealed class CommandsFactory
 {
@@ -11,10 +14,11 @@ public sealed class CommandsFactory
 
     public CalculatorCommand GenerateCommand(string executingCommand)
     {
-        var parametrizedCommand = executingCommand.Split(' ');
         try
         {
-            var instance = Activator.CreateInstance(Type.GetType(_commandMapper[parametrizedCommand.First()]));
+            var stringCommand = executingCommand.SubStringBeforeFirstOne(StringConstants.WhiteSpace);
+            var stringParameters = executingCommand.SubStringAfterFirstOne(StringConstants.WhiteSpace);
+            var instance = Activator.CreateInstance(Type.GetType(_commandMapper[stringCommand]), stringParameters);
             var command = (CalculatorCommand)instance;
             return command;
         }
