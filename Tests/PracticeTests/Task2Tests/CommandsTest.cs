@@ -4,7 +4,7 @@
 [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
 public class CommandsTest
 {
-    [Ignore("I am thinking about calculator incance creation")]
+    [Ignore("I am thinking about calculator instance creation")]
     public void Test_DefineCommand_Process()
     {
         Assert.That(false, Is.EqualTo(true));
