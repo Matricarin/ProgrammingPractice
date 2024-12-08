@@ -3,22 +3,19 @@ using Common.TasksLibrary.Task2.Commands;
 
 namespace PracticeTests.Task2Tests;
 
-[TestFixtureSource(typeof(CommandFactoryCommands), nameof(CommandFactoryCommands.Commands))]
+[TestFixture]
+[FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
 public class CommandsFactoryTest
 {
-    private Dictionary<string, string> _commandsDict;
-
-    public CommandsFactoryTest(string command, string instance)
+    [TestCaseSource(typeof(CommandFactoryCommands), nameof(CommandFactoryCommands.Commands))]
+    public void Test_GenerateCommand(string stringCommand, string place)
     {
-        _commandsDict = new Dictionary<string, string>();
-        _commandsDict.Add(command, instance);
-    }
-
-    [Test]
-    public void Test_GenerateCommand()
-    {
+        var commandDict = new Dictionary<string, string>()
+        {
+            { stringCommand, place }
+        };
         var defineCommand = new DefineCommand("b 5");
-        var factory = new CommandsFactory(_commandsDict);
+        var factory = new CommandsFactory(commandDict);
         var command = factory.GenerateCommand("DEFINE b 5");
         Assert.That(command, Is.EqualTo(defineCommand));
     }
