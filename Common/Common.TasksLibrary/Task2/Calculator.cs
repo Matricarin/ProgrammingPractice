@@ -8,10 +8,10 @@ public sealed class Calculator
     internal Dictionary<string, double> VariablesStorage = new Dictionary<string, double>();
     internal Stack<double> StackStorage = new Stack<double>();
     internal IOutput OutputPort { get;}
-    public Calculator(CommandsFactory factory, IOutput outputPort)
+
+    public static CalculatorBuilder CreateCalculatorBuilder()
     {
-        _factory = factory;
-        OutputPort = outputPort;
+        return new CalculatorBuilder();
     }
     public void Execute(IEnumerable<string> commands)
     {
