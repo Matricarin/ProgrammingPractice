@@ -51,6 +51,10 @@
     <Content Include="TestingData\Task2_CalculatorTest_Example_1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Remove="TestingData\JsonExtensionTest_UserTest.json" />
+    <Content Include="TestingData\JsonExtensionTest_UserTest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
