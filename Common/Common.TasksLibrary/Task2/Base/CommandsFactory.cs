@@ -1,15 +1,16 @@
-﻿using Common.TasksLibrary.Constants;
+﻿using System.Reflection;
+using Common.TasksLibrary.Constants;
 using Common.TasksLibrary.Extensions;
 
 namespace Common.TasksLibrary.Task2.Base;
 
 public sealed class CommandsFactory
 {
-    private static Dictionary<string, string> _commandMapper;
+    private static CommandsList _commandsList;
 
-    public CommandsFactory(Dictionary<string, string> commands)
+    public CommandsFactory(CommandsList commands)
     {
-        _commandMapper = commands;
+        _commandsList = commands;
     }
 
     public CalculatorCommand GenerateCommand(string executingCommand)
@@ -18,7 +19,9 @@ public sealed class CommandsFactory
         {
             var stringCommand = executingCommand.SubStringBeforeFirstOne(StringConstants.WhiteSpace);
             var stringParameters = executingCommand.SubStringAfterFirstOne(StringConstants.WhiteSpace);
-            var instance = Activator.CreateInstance(Type.GetType(_commandMapper[stringCommand]), stringParameters);
+            var instance = Activator.CreateInstance(Type.GetType(_commandsList.GetType().GetProperties()
+                    .First(s => s.Name == stringCommand).GetValue(_commandsList).ToString()), 
+                    stringParameters);
             var command = (CalculatorCommand)instance;
             return command;
         }

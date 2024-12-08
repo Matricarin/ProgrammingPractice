@@ -4,10 +4,10 @@ namespace Common.TasksLibrary.Task2;
 
 public sealed class Calculator
 {
-    private readonly CommandsFactory _factory;
-    internal Dictionary<string, double> VariablesStorage = new Dictionary<string, double>();
-    internal Stack<double> StackStorage = new Stack<double>();
-    internal IOutput OutputPort { get;}
+    internal CommandsFactory Factory { get; init; }
+    internal Dictionary<string, double> VariablesStorage { get; init; }
+    internal Stack<double> StackStorage { get; init; }
+    internal IOutput OutputPort { get; init; }
 
     public static CalculatorBuilder CreateCalculatorBuilder()
     {
@@ -17,7 +17,7 @@ public sealed class Calculator
     {
         foreach (var command in commands)
         {
-            var executingCommand = _factory.GenerateCommand(command);
+            var executingCommand = Factory.GenerateCommand(command);
             executingCommand.Process(this);
         }
     }

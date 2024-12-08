@@ -2,14 +2,14 @@
 
 public class CommandsList
 {
-    public string DefineCommand { get; }
-    public string PopCommand { get; }
-    public string PushCommand { get; }
-    public string AdditionCommand { get; }
-    public string SubtractionCommand { get; }
-    public string MultiplicationCommand { get; }
-    public string DevisionCommand { get; }
-    public string SqrtCommand { get; }
-    public string PrintCommand { get; }
-    public string CommentCommand { get; }
+    public string DEFINE { get; }
+    public string POP { get; }
+    public string PUSH { get; }
+    public string ADD { get; }
+    public string SUB { get; }
+    public string MULT { get; }
+    public string DEV { get; }
+    public string SQRT { get; }
+    public string PRINT { get; }
+    public string COMMENT { get; }
 }

@@ -1,6 +1,6 @@
 ﻿using Common.TasksLibrary.Task2.Base;
 
-namespace Common.TasksLibrary.Task2;
+namespace Common.TasksLibrary.Task2.Output;
 
 public class MemoryOutput : IOutput
 {
