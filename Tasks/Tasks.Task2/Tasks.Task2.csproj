@@ -7,8 +7,5 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
-    <ItemGroup>
-      <ProjectReference Include="..\Common\Common.TasksLibrary\Common.TasksLibrary.csproj" />
-    </ItemGroup>
 
 </Project>
