@@ -15,7 +15,7 @@ public class CommandsFactoryTest
     [TestCaseSource(typeof(CommandsFactoryTestData), nameof(CommandsFactoryTestData.GenerateDefineCommand))]
     public void Test_GenerateDefineCommand(string stringCommand, DefineCommand expected)
     {
-        var factory = new CommandsFactory(_commands);
+        var factory = new CommandsFactory();
         var result = factory.GenerateCommand(stringCommand);
         Assert.That(result, Is.EqualTo(expected));
     }
