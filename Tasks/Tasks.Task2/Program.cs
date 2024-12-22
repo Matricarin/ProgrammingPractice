@@ -1,17 +1,38 @@
-﻿namespace Tasks.Task2;
+﻿using Common.TasksLibrary.Task1;
+
+namespace Tasks.Task2;
 
 internal static class Program
 {
     private static void Main(string[] args)
     {
-        //read args
-        
-        //check file
+        var fileInfo = new FileInfo(args.First());
+        ExecuteCommandsFromFile(fileInfo);
+        ExecuteCommandsFromConsoleInput();
+    }
 
-        //use console or read file
-        
-        //after executing commands fom file listen console input
-        
-        //add command to finish program execution
+    private static void ExecuteCommandsFromFile(FileInfo fileInfo)
+    {
+        try
+        {
+            var commands = FileHandler.OpenAndReadFile(fileInfo);
+            
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            throw;
+        }
+    }
+
+    private static void ExecuteCommandsFromConsoleInput()
+    {
+        var exitCode = -1;
+        while (exitCode != 0)
+        {
+            var command = Console.ReadLine();
+            
+        }
+        Environment.Exit(exitCode);
     }
 }
