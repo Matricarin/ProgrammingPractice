@@ -1,4 +1,5 @@
-﻿using Common.TasksLibrary.Task1;
+﻿using Common.TasksLibrary.Task2;
+using Common.TasksLibrary.Task2.Base;
 
 namespace Tasks.Task2;
 
@@ -7,32 +8,39 @@ internal static class Program
     private static void Main(string[] args)
     {
         var fileInfo = new FileInfo(args.First());
-        ExecuteCommandsFromFile(fileInfo);
-        ExecuteCommandsFromConsoleInput();
+
+        var calculator = new CalculatorBuilder
+            {
+                OutputOptions = CalculatorOutputOptions.Console
+            }
+            .Build();
+        
+        ExecuteCommandsFromFile(fileInfo, calculator);
+        
+        ExecuteCommandsFromConsoleInput(calculator);
     }
 
-    private static void ExecuteCommandsFromFile(FileInfo fileInfo)
+    private static void ExecuteCommandsFromFile(FileInfo fileInfo, Calculator calculator)
     {
         try
         {
-            var commands = FileHandler.OpenAndReadFile(fileInfo);
+            var commands = File.ReadAllLines(fileInfo.FullName);
             
+            calculator.Execute(commands);
         }
         catch (Exception e)
         {
             Console.WriteLine(e);
-            throw;
         }
     }
 
-    private static void ExecuteCommandsFromConsoleInput()
+    private static void ExecuteCommandsFromConsoleInput(Calculator calculator)
     {
-        var exitCode = -1;
-        while (exitCode != 0)
+        while (true)
         {
             var command = Console.ReadLine();
             
+            calculator.Execute(command);
         }
-        Environment.Exit(exitCode);
     }
 }
