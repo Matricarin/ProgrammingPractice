@@ -22,16 +22,8 @@ internal static class Program
 
     private static void ExecuteCommandsFromFile(FileInfo fileInfo, Calculator calculator)
     {
-        try
-        {
-            var commands = File.ReadAllLines(fileInfo.FullName);
-            
-            calculator.Execute(commands);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-        }
+        var commands = File.ReadAllLines(fileInfo.FullName);
+        calculator.Execute(commands);
     }
 
     private static void ExecuteCommandsFromConsoleInput(Calculator calculator)
