@@ -10,6 +10,13 @@ internal static class Program
     private static void Main(string[] args)
     {
         CreateConsoleLogger();
+
+        var calculator = CreateCalculatorInstance(CalculatorOutputOptions.Console);
+        
+        if (!IsProgramParametersEmpty(args))
+        {
+            
+        }
         
     }
 
@@ -18,6 +25,25 @@ internal static class Program
         using ILoggerFactory factory = LoggerFactory.Create(f => f.AddConsole());
         _logger = factory.CreateLogger("Program");
         _logger.LogInformation("***  Calculator  ***");
+    }
+
+    private static Calculator CreateCalculatorInstance(CalculatorOutputOptions options)
+    {
+        return new CalculatorBuilder()
+        {
+            OutputOptions = options
+        }.Build();
+    }
+
+    private static bool IsProgramParametersEmpty(string[] args)
+    {
+        if (args.Length == 0)
+        {
+            _logger.LogWarning("Input parameters were empty");
+            return true;
+        }
+
+        return false;
     }
 
     private static void ExecuteCommandsFromFile(FileInfo fileInfo, Calculator calculator)
