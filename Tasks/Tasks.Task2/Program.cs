@@ -1,23 +1,23 @@
 ﻿using Common.TasksLibrary.Task2;
 using Common.TasksLibrary.Task2.Base;
+using Microsoft.Extensions.Logging;
 
 namespace Tasks.Task2;
 
 internal static class Program
 {
+    private static ILogger? _logger;
     private static void Main(string[] args)
     {
-        var fileInfo = new FileInfo(args.First());
+        CreateConsoleLogger();
+        
+    }
 
-        var calculator = new CalculatorBuilder
-            {
-                OutputOptions = CalculatorOutputOptions.Console
-            }
-            .Build();
-        
-        ExecuteCommandsFromFile(fileInfo, calculator);
-        
-        ExecuteCommandsFromConsoleInput(calculator);
+    private static void CreateConsoleLogger()
+    {
+        using ILoggerFactory factory = LoggerFactory.Create(f => f.AddConsole());
+        _logger = factory.CreateLogger("Program");
+        _logger.LogInformation("***  Calculator  ***");
     }
 
     private static void ExecuteCommandsFromFile(FileInfo fileInfo, Calculator calculator)
