@@ -12,10 +12,22 @@ internal static class Program
         CreateConsoleLogger();
 
         var calculator = CreateCalculatorInstance(CalculatorOutputOptions.Console);
-        
-        if (!IsProgramParametersEmpty(args))
+
+        try
         {
-            
+            if (!IsProgramParametersEmpty(args))
+            {
+                var fileInfo = new FileInfo(args.First());
+                ExecuteCommandsFromFile(fileInfo, calculator);
+            }
+        }
+        catch (Exception e)
+        {
+            _logger.LogError(e, "Execution from file was interrupted.");
+        }
+        finally
+        {
+            ExecuteCommandsFromConsoleInput(calculator);
         }
         
     }
@@ -48,16 +60,9 @@ internal static class Program
 
     private static void ExecuteCommandsFromFile(FileInfo fileInfo, Calculator calculator)
     {
-        try
-        {
-            var commands = File.ReadAllLines(fileInfo.FullName);
-            
-            calculator.Execute(commands);
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e);
-        }
+        var commands = File.ReadAllLines(fileInfo.FullName);
+        
+        calculator.Execute(commands);
     }
 
     private static void ExecuteCommandsFromConsoleInput(Calculator calculator)
