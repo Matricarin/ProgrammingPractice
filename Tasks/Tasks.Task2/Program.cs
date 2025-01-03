@@ -7,23 +7,26 @@ internal static class Program
 {
     private static void Main(string[] args)
     {
-        var fileInfo = new FileInfo(args.First());
-
         var calculator = new CalculatorBuilder
             {
                 OutputOptions = CalculatorOutputOptions.Console
             }
             .Build();
-        
-        ExecuteCommandsFromFile(fileInfo, calculator);
-        
+        if (args.Length > 0 && !string.IsNullOrEmpty(args.First()))
+        {
+            var fileInfo = new FileInfo(args.First());
+            ExecuteCommandsFromFile(fileInfo, calculator);
+        }
         ExecuteCommandsFromConsoleInput(calculator);
     }
 
     private static void ExecuteCommandsFromFile(FileInfo fileInfo, Calculator calculator)
     {
         var commands = File.ReadAllLines(fileInfo.FullName);
-        calculator.Execute(commands);
+        if (commands.Length > 0)
+        {
+            calculator.Execute(commands);
+        }
     }
 
     private static void ExecuteCommandsFromConsoleInput(Calculator calculator)
