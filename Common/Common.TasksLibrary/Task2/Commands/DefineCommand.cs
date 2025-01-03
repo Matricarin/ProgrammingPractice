@@ -1,4 +1,5 @@
-﻿using Common.TasksLibrary.Task2.Base;
+﻿using System.Runtime.CompilerServices;
+using Common.TasksLibrary.Task2.Base;
 using Common.TasksLibrary.Constants;
 
 namespace Common.TasksLibrary.Task2.Commands;
