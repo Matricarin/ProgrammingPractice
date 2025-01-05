@@ -23,4 +23,17 @@ public static class StringExtensions
         var index = source.IndexOf(separator, StringComparison.Ordinal);
         return source.Substring(index + separator.Length);
     }
+
+    public static string ParseCommand(this string source)
+    {
+        return source switch
+        {
+            "#" => "Comment",
+            "+" => "Add",
+            "-" => "Subtract",
+            "*" => "Multiply",
+            "/" => "Divide",
+            _ => source
+        };
+    }
 }
