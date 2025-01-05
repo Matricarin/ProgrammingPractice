@@ -36,7 +36,7 @@ internal static class Program
     {
         using ILoggerFactory factory = LoggerFactory.Create(f => f.AddConsole());
         _logger = factory.CreateLogger("Program");
-        _logger.LogInformation("***  Calculator  ***");
+        _logger.LogInformation(DateTime.Now.ToShortDateString());
     }
 
     private static Calculator CreateCalculatorInstance(CalculatorOutputOptions options)
