@@ -10,7 +10,7 @@ public sealed class CommandsFactory
     {
         try
         {
-            var stringCommand = executingCommand.SubStringBeforeFirstOne(StringConstants.WhiteSpace);
+            var stringCommand = executingCommand.SubStringBeforeFirstOne(StringConstants.WhiteSpace).ParseCommand();
             var stringParameters = executingCommand.SubStringAfterFirstOne(StringConstants.WhiteSpace);
             var type = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(t => t.Name.Contains(stringCommand));
             var instance = Activator.CreateInstance(type, stringParameters);
