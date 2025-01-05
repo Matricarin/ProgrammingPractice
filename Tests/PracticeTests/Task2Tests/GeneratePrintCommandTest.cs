@@ -1,7 +1,4 @@
-﻿using Common.TasksLibrary.Task2;
-using Common.TasksLibrary.Task2.Base;
-using Common.TasksLibrary.Task2.Commands;
-using Common.TasksLibrary.Task2.Output;
+﻿using Common.TasksLibrary.Task2.Output;
 
 namespace PracticeTests.Task2Tests;
 

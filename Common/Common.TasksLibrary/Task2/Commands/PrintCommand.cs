@@ -12,10 +12,6 @@ public class PrintCommand : CalculatorCommand
         }
     }
 
-    public PrintCommand()
-    {
-        
-    }
     public override void Process(Calculator calculator)
     {
         try

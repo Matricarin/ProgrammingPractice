@@ -21,7 +21,7 @@ public static class StringExtensions
             return string.Empty;
         }
         var index = source.IndexOf(separator, StringComparison.Ordinal);
-        return index == -1 ? source : source.Substring(index + separator.Length);
+        return index == -1 ? string.Empty : source.Substring(index + separator.Length);
     }
 
     public static string ParseCommand(this string source)
