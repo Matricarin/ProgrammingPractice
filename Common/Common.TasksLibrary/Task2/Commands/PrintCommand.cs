@@ -4,12 +4,11 @@ namespace Common.TasksLibrary.Task2.Commands;
 
 public class PrintCommand : CalculatorCommand
 {
-
     public PrintCommand(string parameters)
     {
         if (!string.IsNullOrEmpty(parameters))
         {
-            throw new Exception("Adding operation can't have command parameters");
+            throw new Exception("Print operation can't have command parameters");
         }
     }
 
