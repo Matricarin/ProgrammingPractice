@@ -1,6 +1,7 @@
 ﻿using Common.TasksLibrary.Task2;
 using Common.TasksLibrary.Task2.Base;
 using Common.TasksLibrary.Task2.Commands;
+using Common.TasksLibrary.Task2.Output;
 
 namespace PracticeTests.Task2Tests;
 
@@ -15,7 +16,11 @@ public static class CommandsTetsData
         calc.Execute(commands);
         return calc;
     }
-
+    public static double GetTopStackValue(Calculator calc)
+    {
+        var memory = (MemoryOutput)calc.OutputPort;
+        return memory.Value;
+    }
     public static object[] PrintCommandTestInput = new object[]
     {
         new object[]
@@ -23,7 +28,6 @@ public static class CommandsTetsData
             new[] { "Define a 5", "Push a" }, "Print", 5.0
         }
     };
-
     public static object[] AddCommandTestInput = new object[]
     {
         new object[]
