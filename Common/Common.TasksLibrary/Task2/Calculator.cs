@@ -5,8 +5,7 @@ namespace Common.TasksLibrary.Task2;
 public sealed class Calculator
 {
     internal CommandsFactory Factory { get; init; }
-    internal Dictionary<string, double> VariablesStorage { get; init; }
-    internal Stack<double> StackStorage { get; init; }
+    internal IExecutionContext ExecutionContext { get; init; }
     public IOutput OutputPort { get; init; }
     public static CalculatorBuilder CreateCalculatorBuilder()
     {

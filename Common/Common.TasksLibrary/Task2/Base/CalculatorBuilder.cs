@@ -12,8 +12,7 @@ public sealed class CalculatorBuilder
         {
             OutputPort = ConfigureOutput(),
             Factory = ConfigureFactory(),
-            VariablesStorage = new Dictionary<string, double>(),
-            StackStorage = new Stack<double>()
+            ExecutionContext = ConfigureContext()
         };
     }
 
@@ -22,12 +21,16 @@ public sealed class CalculatorBuilder
         return new CommandsFactory();
     }
 
+    private IExecutionContext ConfigureContext()
+    {
+        return new CalculatorExecutionContext();
+    }
+
     private IOutput ConfigureOutput()
     {
         return OutputOptions switch
         {
             CalculatorOutputOptions.Console => new ConsoleOutput(),
-            CalculatorOutputOptions.Memory => new MemoryOutput(),
             _ => throw new ArgumentOutOfRangeException(nameof(OutputOptions), OutputOptions, null)
         };
     }
