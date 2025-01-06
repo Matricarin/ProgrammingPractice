@@ -20,15 +20,15 @@ public static class CommandsTetsData
     {
         new object[]
         {
-            new[]
-            {
-                "Define a 5",
-                "Push a"
-            },
-            "Print", 
-            5.0
+            new[] { "Define a 5", "Push a" }, "Print", 5.0
         }
     };
-    
-    
+
+    public static object[] AddCommandTestInput = new object[]
+    {
+        new object[]
+        {
+            new [] {"Define a 5", "Define b 6", "Push a", "Push b"}, "+", 11.0 
+        }
+    };
 }
