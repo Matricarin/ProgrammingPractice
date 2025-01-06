@@ -24,11 +24,6 @@ public class PushCommand : CalculatorCommand
     {
         try
         {
-            var isGotValue = calculator.VariablesStorage.TryGetValue(_variableName, out var value);
-            if (isGotValue)
-            {
-                calculator.StackStorage.Push(value);
-            }
         }
         catch (Exception e)
         {

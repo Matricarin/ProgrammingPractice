@@ -18,8 +18,8 @@ public static class CommandsTetsData
     }
     public static double GetTopStackValue(Calculator calc)
     {
-        var memory = (MemoryOutput)calc.OutputPort;
-        return memory.Value;
+        // todo I deleted MemoryOutput. There will be new logic for top value output.
+        return 0;
     }
     public static object[] PrintCommandTestInput = new object[]
     {

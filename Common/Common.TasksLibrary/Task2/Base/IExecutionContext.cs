@@ -6,6 +6,6 @@ public interface IExecutionContext
 {
     double Peek();
     double Pop();
-    double Push(string variableName);
+    void Push(string variableName);
     void AddVariable();
 }

@@ -20,10 +20,6 @@ public class DivideCommand : CalculatorCommand
     {
         try
         {
-            var first = calculator.StackStorage.Pop();
-            var second = calculator.StackStorage.Pop();
-            var result = first / second;
-            calculator.StackStorage.Push(result);
         }
         catch (Exception e)
         {

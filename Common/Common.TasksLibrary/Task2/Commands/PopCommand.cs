@@ -24,8 +24,6 @@ public class PopCommand : CalculatorCommand
     {
         try
         {
-            var topValue = calculator.StackStorage.Pop();
-            calculator.VariablesStorage.TryAdd(_variableName, topValue);
         }
         catch (Exception e)
         {

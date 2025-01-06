@@ -16,8 +16,6 @@ public class PrintCommand : CalculatorCommand
     {
         try
         {
-            var value = calculator.StackStorage.Peek();
-            calculator.OutputPort.Post(value);
         }
         catch (Exception e)
         {

@@ -14,21 +14,15 @@ public sealed class CalculatorExecutionContext : IExecutionContext
     }
     public double Peek()
     {
-        throw new NotImplementedException();
+        return 0;
     }
 
     public double Pop()
     {
-        throw new NotImplementedException();
+        return 0;
     }
 
-    public double Push(string variableName)
-    {
-        throw new NotImplementedException();
-    }
+    public void Push(string variableName) { }
 
-    public void AddVariable()
-    {
-        throw new NotImplementedException();
-    }
+    public void AddVariable() { }
 }

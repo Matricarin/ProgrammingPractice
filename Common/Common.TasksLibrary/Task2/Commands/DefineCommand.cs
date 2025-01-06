@@ -23,10 +23,6 @@ public sealed class DefineCommand : CalculatorCommand
     }
     public override void Process(Calculator calculator)
     {
-        if (!calculator.VariablesStorage.TryAdd(_variableName, _variableValue))
-        {
-            throw new Exception($"Variable \"{_variableName}\" was defined earlier");
-        }
     }
 
     public override bool Equals(object? obj)
