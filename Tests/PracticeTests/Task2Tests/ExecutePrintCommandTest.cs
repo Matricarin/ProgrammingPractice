@@ -4,21 +4,17 @@ namespace PracticeTests.Task2Tests;
 
 [TestFixture]
 [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-public class GeneratePrintCommandTest
+public class ExecutePrintCommandTest
 {
-    [TestCaseSource(typeof(CommandsTetsData), nameof(CommandsTetsData.GeneratePrintCommand))]
-    public void Test_GeneratePrintCommand(string command)
+    [TestCaseSource(typeof(CommandsTetsData), nameof(CommandsTetsData.PrintCommandTestInput))]
+    public void Test_ExecutePrintCommand(string[] commands, string command, double expected)
     {
-        var expected = 5.0;
-        var commands = new string[]
-        {
-            "Define a 5",
-            "Push a"
-        };
         var calc = CommandsTetsData.GetCalculatorInstanceForCommandTest(commands);
         
         calc.Execute(command);
+        
         var memory = (MemoryOutput)calc.OutputPort;
+        
         var result = memory.Value;
         
         Assert.That(expected, Is.EqualTo(result));

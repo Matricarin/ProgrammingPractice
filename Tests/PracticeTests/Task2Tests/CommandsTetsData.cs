@@ -16,8 +16,19 @@ public static class CommandsTetsData
         return calc;
     }
 
-    public static object[] GeneratePrintCommand = new object[]
+    public static object[] PrintCommandTestInput = new object[]
     {
-        new object[] {"Print"},
+        new object[]
+        {
+            new[]
+            {
+                "Define a 5",
+                "Push a"
+            },
+            "Print", 
+            5.0
+        }
     };
+    
+    
 }
