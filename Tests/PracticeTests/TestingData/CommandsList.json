@@ -1,0 +1,12 @@
+﻿{
+   "DEFINE" : "Common.TasksLibrary.Task2.Commands.DefineCommand",     
+   "POP" : "Common.TasksLibrary.Task2.Commands.PopCommand",     
+   "PUSH" : "",    
+   "ADD" : "",     
+   "SUB" : "",     
+   "MULT" : "",    
+   "DEV" : "",     
+   "SQRT" : "",    
+   "PRINT" : "",   
+   "COMMENT" : "" 
+}

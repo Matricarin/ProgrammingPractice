@@ -5,7 +5,6 @@ namespace Common.TasksLibrary.Task2.Base;
 public sealed class CalculatorBuilder
 {
     public CalculatorOutputOptions OutputOptions { get; set; }
-    public CommandsList Commands { get; set; }
 
     public Calculator Build()
     {
@@ -20,7 +19,7 @@ public sealed class CalculatorBuilder
 
     private CommandsFactory ConfigureFactory()
     {
-        return new CommandsFactory(Commands);
+        return new CommandsFactory();
     }
 
     private IOutput ConfigureOutput()

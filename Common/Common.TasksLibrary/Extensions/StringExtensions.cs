@@ -11,7 +11,7 @@ public static class StringExtensions
             return string.Empty;
         }
         var index = source.IndexOf(separator, StringComparison.Ordinal);
-        return source.Substring(Zero, index);
+        return index == -1 ? source : source.Substring(Zero, index);
     }
 
     public static string SubStringAfterFirstOne(this string source, string separator)
@@ -21,6 +21,19 @@ public static class StringExtensions
             return string.Empty;
         }
         var index = source.IndexOf(separator, StringComparison.Ordinal);
-        return source.Substring(index + separator.Length);
+        return index == -1 ? string.Empty : source.Substring(index + separator.Length);
+    }
+
+    public static string ParseCommand(this string source)
+    {
+        return source switch
+        {
+            "#" => "Comment",
+            "+" => "Add",
+            "-" => "Subtract",
+            "*" => "Multiply",
+            "/" => "Divide",
+            _ => source
+        };
     }
 }

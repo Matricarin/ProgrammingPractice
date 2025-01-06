@@ -7,8 +7,7 @@ public sealed class Calculator
     internal CommandsFactory Factory { get; init; }
     internal Dictionary<string, double> VariablesStorage { get; init; }
     internal Stack<double> StackStorage { get; init; }
-    internal IOutput OutputPort { get; init; }
-
+    public IOutput OutputPort { get; init; }
     public static CalculatorBuilder CreateCalculatorBuilder()
     {
         return new CalculatorBuilder();
@@ -17,8 +16,12 @@ public sealed class Calculator
     {
         foreach (var command in commands)
         {
-            var executingCommand = Factory.GenerateCommand(command);
-            executingCommand.Process(this);
+            Execute(command);
         }
+    }
+    public void Execute(string command)
+    {
+        var executingCommand = Factory.GenerateCommand(command);
+        executingCommand.Process(this);
     }
 }
