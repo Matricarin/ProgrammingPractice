@@ -1,15 +1,23 @@
 ﻿using Common.TasksLibrary.Task2.Output;
+using Microsoft.Extensions.Logging;
 
 namespace Common.TasksLibrary.Task2.Base;
 
 public sealed class CalculatorBuilder
 {
+    private ILogger _logger;
+
+    public CalculatorBuilder(ILogger logger)
+    {
+        _logger = logger;
+    }
     public CalculatorOutputOptions OutputOptions { get; set; }
 
     public Calculator Build()
     {
         return new Calculator
         {
+            CalcLogger = _logger,
             OutputPort = ConfigureOutput(),
             Factory = ConfigureFactory(),
             ExecutionContext = ConfigureContext()

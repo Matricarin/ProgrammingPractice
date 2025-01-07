@@ -2,6 +2,7 @@
 using Common.TasksLibrary.Task2.Base;
 using Common.TasksLibrary.Task2.Commands;
 using Common.TasksLibrary.Task2.Output;
+using Microsoft.Extensions.Logging;
 
 namespace PracticeTests.Task2Tests;
 
@@ -9,7 +10,7 @@ public static class CommandsTetsData
 {
     public static Calculator GetCalculatorInstanceForCommandTest(string[] commands)
     {
-        var calc = new CalculatorBuilder()
+        var calc = new CalculatorBuilder(new Logger<Calculator>(new LoggerFactory()))
         {
             OutputOptions = CalculatorOutputOptions.Memory
         }.Build();

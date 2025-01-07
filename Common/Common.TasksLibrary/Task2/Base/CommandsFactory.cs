@@ -6,20 +6,23 @@ namespace Common.TasksLibrary.Task2.Base;
 
 public sealed class CommandsFactory
 {
-    public CalculatorCommand GenerateCommand(string executingCommand)
+    public CalculatorCommand? GenerateCommand(string executingCommand)
     {
         try
         {
+            // todo implement parsing tests
             var stringCommand = executingCommand.SubStringBeforeFirstOne(StringConstants.WhiteSpace).ParseCommand();
             var stringParameters = executingCommand.SubStringAfterFirstOne(StringConstants.WhiteSpace);
+        
             var type = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(t => t.Name.Contains(stringCommand));
             var instance = Activator.CreateInstance(type, stringParameters);
+        
             var command = (CalculatorCommand)instance;
             return command;
         }
         catch (Exception e)
         {
-            throw new Exception(e.Message);
+            throw new GenerateCommandException();
         }
     }
 }
