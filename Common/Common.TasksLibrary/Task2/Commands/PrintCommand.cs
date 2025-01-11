@@ -9,7 +9,8 @@ public class PrintCommand : CalculatorCommand
     {
         if (!string.IsNullOrEmpty(parameters))
         {
-            throw new Exception("Print operation can't have command parameters");
+            // todo implement more informative message
+            throw new GenerateCommandException("Print operation can't have command parameters");
         }
     }
 
@@ -17,10 +18,12 @@ public class PrintCommand : CalculatorCommand
     {
         try
         {
-            context.Print();
+            var value = context.Peek();
+            context.OutputPort.Post(value);
         }
         catch
         {
+            // todo implement more informative message
             throw new ProcessCommandException();
         }
     }

@@ -41,9 +41,4 @@ public sealed class CalculatorExecutionContext
     {
         // todo implement method for defining a variable
     }
-
-    public void Print()
-    {
-        // todo implement method for defining a variable
-    }
 }

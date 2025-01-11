@@ -6,7 +6,7 @@ namespace Common.TasksLibrary.Task2.Commands;
 
 public class PushCommand : CalculatorCommand
 {
-    private string _variableName;
+    private readonly string _variableName;
     
     public PushCommand(string parameters)
     {
