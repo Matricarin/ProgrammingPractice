@@ -21,7 +21,7 @@ public sealed class DefineCommand : CalculatorCommand
             throw new Exception("Unexpected value for command parameter");
         }
     }
-    public override void Process(Calculator calculator)
+    public override void Process(CalculatorExecutionContext context)
     {
     }
 

@@ -7,7 +7,7 @@ public sealed class Calculator
 {
     internal ILogger CalcLogger;
     internal CommandsFactory Factory { get; init; }
-    internal IExecutionContext ExecutionContext { get; init; }
+    internal CalculatorExecutionContext ExecutionContext { get; init; }
     public IOutput OutputPort { get; init; }
     public static CalculatorBuilder CreateCalculatorBuilder(ILogger logger)
     {
@@ -25,7 +25,7 @@ public sealed class Calculator
         try
         {
             var executingCommand = Factory.GenerateCommand(command);
-            executingCommand.Process(this);
+            executingCommand.Process(ExecutionContext);
         }
         catch (GenerateCommandException gce)
         {

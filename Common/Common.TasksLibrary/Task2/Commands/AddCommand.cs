@@ -8,15 +8,11 @@ public class AddCommand : CalculatorCommand
     {
         if (!string.IsNullOrEmpty(parameters))
         {
-            throw new Exception("Adding operation can't have command parameters");
+            // todo implement more informative message
+            throw new GenerateCommandException("Adding operation can't have command parameters");
         }
     }
-
-    public AddCommand()
-    {
-        
-    }
-    public override void Process(Calculator calculator)
+    public override void Process(CalculatorExecutionContext context)
     {
         try
         {
@@ -24,7 +20,7 @@ public class AddCommand : CalculatorCommand
         }
         catch (Exception e)
         {
-            throw new Exception(e.Message);
+            throw new ProcessCommandException();
         }
     }
 }

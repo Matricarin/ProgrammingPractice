@@ -16,7 +16,7 @@ public class DivideCommand : CalculatorCommand
     {
         
     }
-    public override void Process(Calculator calculator)
+    public override void Process(CalculatorExecutionContext context)
     {
         try
         {

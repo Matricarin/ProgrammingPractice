@@ -17,7 +17,7 @@ public class ExitCommand : CalculatorCommand
     {
         
     }
-    public override void Process(Calculator calculator)
+    public override void Process(CalculatorExecutionContext context)
     {
         Environment.Exit(Environment.ExitCode);
     }

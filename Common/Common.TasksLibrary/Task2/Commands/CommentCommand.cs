@@ -11,7 +11,7 @@ public class CommentCommand : CalculatorCommand
         _comment = parameters;
     }
     
-    public override void Process(Calculator calculator)
+    public override void Process(CalculatorExecutionContext context)
     {
         // what do I with comment?
     }

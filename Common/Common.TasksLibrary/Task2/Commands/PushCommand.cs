@@ -20,7 +20,7 @@ public class PushCommand : CalculatorCommand
         }
         _variableName = parameters;
     }
-    public override void Process(Calculator calculator)
+    public override void Process(CalculatorExecutionContext context)
     {
         try
         {

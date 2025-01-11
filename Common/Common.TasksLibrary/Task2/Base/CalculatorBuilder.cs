@@ -29,7 +29,7 @@ public sealed class CalculatorBuilder
         return new CommandsFactory();
     }
 
-    private IExecutionContext ConfigureContext()
+    private CalculatorExecutionContext ConfigureContext()
     {
         return new CalculatorExecutionContext();
     }
