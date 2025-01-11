@@ -1,6 +1,4 @@
-﻿using Common.TasksLibrary.Task2.Base;
-
-namespace Common.TasksLibrary.Task2;
+﻿namespace Common.TasksLibrary.Task2;
 
 public sealed class CalculatorExecutionContext
 {
@@ -24,12 +22,17 @@ public sealed class CalculatorExecutionContext
         return 0;
     }
 
-    public void Push(string variableName)
+    public void Push(double number)
     {
         // todo implement method for putting value on a stack
     }
 
-    public void AddVariable()
+    public void PushVariable(string variableName)
+    {
+        // todo implement method fot putting variable om a stack
+    }
+
+    public void DefineVariable(string variableName, double value)
     {
         // todo implement method for defining a variable
     }

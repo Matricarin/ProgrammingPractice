@@ -1,4 +1,5 @@
 ﻿using Common.TasksLibrary.Task2.Base;
+using Microsoft.Extensions.Logging;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
@@ -9,17 +10,21 @@ public class AddCommand : CalculatorCommand
         if (!string.IsNullOrEmpty(parameters))
         {
             // todo implement more informative message
-            throw new GenerateCommandException("Adding operation can't have command parameters");
+            throw new GenerateCommandException();
         }
     }
     public override void Process(CalculatorExecutionContext context)
     {
         try
         {
-            
+            var first = context.Pop();
+            var second = context.Pop();
+            var result = first + second;
+            context.Push(result);
         }
-        catch (Exception e)
+        catch
         {
+            // todo implement more informative message
             throw new ProcessCommandException();
         }
     }

@@ -5,33 +5,44 @@ namespace Common.TasksLibrary.Task2.Commands;
 
 public sealed class DefineCommand : CalculatorCommand
 {
-    private string _variableName;
-    private double _variableValue;
+    private readonly string _variableName;
+    private readonly double _variableValue;
     public DefineCommand(string parameters)
     {
         var values = parameters.Split(CharsConstants.WhiteSpace);
         if (values.Length != 2)
         {
-            throw new Exception("Unexpected amount of parameters for command");
+            // todo implement more informative message
+            throw new GenerateCommandException();
         }
 
         _variableName = values.First();
         if (!double.TryParse(values.Last(), out _variableValue))
         {
-            throw new Exception("Unexpected value for command parameter");
+            // todo implement more informative message
+            throw new GenerateCommandException();
         }
     }
     public override void Process(CalculatorExecutionContext context)
     {
+        try
+        {
+            context.DefineVariable(_variableName, _variableValue);
+        }
+        catch 
+        {
+            // todo implement more informative message
+            throw new ProcessCommandException();
+        }
     }
 
     public override bool Equals(object? obj)
     {
-        var other = (DefineCommand)obj;
-        if (other == null)
+        if (obj == null)
         {
             return false;
         }
+        var other = (DefineCommand)obj;
         return _variableName == other._variableName && _variableValue.Equals(other._variableValue);
     }
 

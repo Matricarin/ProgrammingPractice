@@ -11,12 +11,14 @@ public class PopCommand : CalculatorCommand
     {
         if (string.IsNullOrWhiteSpace(parameters))
         {
-            throw new Exception("Unexpected parameter value.");
+            // todo implement more informative message
+            throw new GenerateCommandException();
         }
         var values = parameters.Split(CharsConstants.WhiteSpace);
         if (values.Length > 1)
         {
-            throw new Exception("Unexpected amount of parameters for command.");
+            // todo implement more informative message
+            throw new GenerateCommandException();
         }
         _variableName = parameters;
     }
@@ -24,10 +26,12 @@ public class PopCommand : CalculatorCommand
     {
         try
         {
+            
         }
-        catch (Exception e)
+        catch
         {
-            throw new Exception(e.Message);
+            // todo implement more informative message
+            throw new ProcessCommandException();
         }
     }
 }

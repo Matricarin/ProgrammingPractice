@@ -16,7 +16,7 @@ public sealed class CommandsFactory
         
             var type = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(t => t.Name.Contains(stringCommand));
             var instance = Activator.CreateInstance(type, stringParameters);
-        
+                 
             var command = (CalculatorCommand)instance;
             return command;
         }

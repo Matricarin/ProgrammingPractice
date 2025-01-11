@@ -8,22 +8,22 @@ public class SubtractCommand : CalculatorCommand
     {
         if (!string.IsNullOrEmpty(parameters))
         {
-            throw new Exception("Subtract operation can't have command parameters");
+            // todo implement more informative message
+            throw new GenerateCommandException();
         }
-    }
-
-    public SubtractCommand()
-    {
-        
     }
     public override void Process(CalculatorExecutionContext context)
     {
         try
         {
+            var first = context.Pop();
+            var second = context.Pop();
+            
         }
-        catch (Exception e)
+        catch 
         {
-            throw new Exception(e.Message);
+            // todo implement more informative message
+            throw new ProcessCommandException();
         }
     }
 }
