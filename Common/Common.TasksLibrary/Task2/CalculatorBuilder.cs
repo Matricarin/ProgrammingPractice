@@ -6,41 +6,36 @@ namespace Common.TasksLibrary.Task2;
 
 public sealed class CalculatorBuilder
 {
-    private ILogger _logger;
+    private readonly ILogger _logger;
+    private readonly CalculatorOutputOptions _outputOptions;
 
-    public CalculatorBuilder(ILogger logger)
+    public CalculatorBuilder(ILogger logger, CalculatorOutputOptions options)
     {
         _logger = logger;
+        _outputOptions = options;
     }
-    public CalculatorOutputOptions OutputOptions { get; set; }
 
     public Calculator Build()
     {
         return new Calculator
         {
             CalcLogger = _logger,
-            OutputPort = ConfigureOutput(),
             Factory = ConfigureFactory(),
             ExecutionContext = ConfigureContext()
         };
     }
 
-    private CommandsFactory ConfigureFactory()
+    private static CommandsFactory ConfigureFactory()
     {
         return new CommandsFactory();
     }
 
     private CalculatorExecutionContext ConfigureContext()
     {
-        return new CalculatorExecutionContext();
-    }
-
-    private IOutput ConfigureOutput()
-    {
-        return OutputOptions switch
+        return _outputOptions switch
         {
-            CalculatorOutputOptions.Console => new ConsoleOutput(),
-            _ => throw new ArgumentOutOfRangeException(nameof(OutputOptions), OutputOptions, null)
+            CalculatorOutputOptions.Console => new CalculatorExecutionContext(new ConsoleOutput()),
+            _ => throw new ArgumentException()
         };
     }
 }

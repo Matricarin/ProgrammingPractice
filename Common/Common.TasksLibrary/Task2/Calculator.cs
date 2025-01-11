@@ -1,5 +1,6 @@
 ﻿using Common.TasksLibrary.Task2.Base;
 using Common.TasksLibrary.Task2.Exceptions;
+using Common.TasksLibrary.Task2.Output;
 using Microsoft.Extensions.Logging;
 
 namespace Common.TasksLibrary.Task2;
@@ -9,10 +10,9 @@ public sealed class Calculator
     internal ILogger CalcLogger;
     internal CommandsFactory Factory { get; init; }
     internal CalculatorExecutionContext ExecutionContext { get; init; }
-    public IOutput OutputPort { get; init; }
-    public static CalculatorBuilder CreateCalculatorBuilder(ILogger logger)
+    public static CalculatorBuilder CreateCalculatorBuilder(ILogger logger, CalculatorOutputOptions options)
     {
-        return new CalculatorBuilder(logger);
+        return new CalculatorBuilder(logger, options);
     }
     public void Execute(IEnumerable<string> commands)
     {

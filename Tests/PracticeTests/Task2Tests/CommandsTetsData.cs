@@ -8,32 +8,27 @@ namespace PracticeTests.Task2Tests;
 
 public static class CommandsTetsData
 {
-    public static Calculator GetCalculatorInstanceForCommandTest(string[] commands)
-    {
-        var calc = new CalculatorBuilder(new Logger<Calculator>(new LoggerFactory()))
-        {
-            OutputOptions = CalculatorOutputOptions.Memory
-        }.Build();
-        calc.Execute(commands);
-        return calc;
-    }
-    public static double GetTopStackValue(Calculator calc)
-    {
-        // todo I deleted MemoryOutput. There will be new logic for top value output.
-        return 0;
-    }
-    public static object[] PrintCommandTestInput = new object[]
-    {
-        new object[]
-        {
-            new[] { "Define a 5", "Push a" }, "Print", 5.0
-        }
-    };
-    public static object[] AddCommandTestInput = new object[]
-    {
-        new object[]
-        {
-            new [] {"Define a 5", "Define b 6", "Push a", "Push b"}, "+", 11.0 
-        }
-    };
+    // public static Calculator GetCalculatorInstanceForCommandTest(string[] commands)
+    // {
+    //     
+    // }
+    // public static double GetTopStackValue(Calculator calc)
+    // {
+    //     // todo I deleted MemoryOutput. There will be new logic for top value output.
+    //     return 0;
+    // }
+    // public static object[] PrintCommandTestInput = new object[]
+    // {
+    //     new object[]
+    //     {
+    //         new[] { "Define a 5", "Push a" }, "Print", 5.0
+    //     }
+    // };
+    // public static object[] AddCommandTestInput = new object[]
+    // {
+    //     new object[]
+    //     {
+    //         new [] {"Define a 5", "Define b 6", "Push a", "Push b"}, "+", 11.0 
+    //     }
+    //};
 }

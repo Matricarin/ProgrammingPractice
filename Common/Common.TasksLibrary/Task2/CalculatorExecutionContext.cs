@@ -1,14 +1,19 @@
-﻿namespace Common.TasksLibrary.Task2;
+﻿using Common.TasksLibrary.Task2.Base;
+using Common.TasksLibrary.Task2.Output;
+
+namespace Common.TasksLibrary.Task2;
 
 public sealed class CalculatorExecutionContext
 {
     private Dictionary<string, double> _variableStorage;
     private Stack<double> _stack;
+    public IOutput OutputPort { get; set; }
 
-    public CalculatorExecutionContext()
+    public CalculatorExecutionContext(IOutput output)
     {
         _variableStorage = new Dictionary<string, double>();
         _stack = new Stack<double>();
+        OutputPort = output;
     }
     public double Peek()
     {
@@ -33,6 +38,11 @@ public sealed class CalculatorExecutionContext
     }
 
     public void DefineVariable(string variableName, double value)
+    {
+        // todo implement method for defining a variable
+    }
+
+    public void Print()
     {
         // todo implement method for defining a variable
     }
