@@ -3,24 +3,26 @@ using Common.TasksLibrary.Task2.Exceptions;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
-public class PrintCommand : CalculatorCommand
+public class SqrtCommand : CalculatorCommand
 {
-    public PrintCommand(string parameters)
+    public SqrtCommand(string parameters)
     {
         if (!string.IsNullOrEmpty(parameters))
         {
-            throw new Exception("Print operation can't have command parameters");
+            // todo implement more informative message
+            throw new GenerateCommandException();
         }
     }
-
     public override void Process(CalculatorExecutionContext context)
     {
         try
         {
-            context.Print();
+            var data = context.Pop();
+            context.Push(Math.Sqrt(data));
         }
         catch
         {
+            // todo implement more informative message
             throw new ProcessCommandException();
         }
     }

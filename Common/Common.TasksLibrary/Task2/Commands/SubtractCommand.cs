@@ -19,7 +19,8 @@ public class SubtractCommand : CalculatorCommand
         {
             var first = context.Pop();
             var second = context.Pop();
-            
+            var result = first - second;
+            context.Push(result);
         }
         catch 
         {
