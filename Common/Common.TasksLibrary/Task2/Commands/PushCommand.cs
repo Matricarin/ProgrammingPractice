@@ -1,5 +1,6 @@
 ﻿using Common.TasksLibrary.Constants;
 using Common.TasksLibrary.Task2.Base;
+using Common.TasksLibrary.Task2.Exceptions;
 
 namespace Common.TasksLibrary.Task2.Commands;
 

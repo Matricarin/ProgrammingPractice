@@ -1,4 +1,5 @@
 ﻿using Common.TasksLibrary.Task2.Base;
+using Common.TasksLibrary.Task2.Exceptions;
 using Microsoft.Extensions.Logging;
 
 namespace Common.TasksLibrary.Task2;

@@ -1,4 +1,4 @@
-﻿namespace Common.TasksLibrary.Task2.Base;
+﻿namespace Common.TasksLibrary.Task2.Exceptions;
 
 public class GenerateCommandException : Exception
 {

@@ -1,7 +1,8 @@
-﻿using Common.TasksLibrary.Task2.Output;
+﻿using Common.TasksLibrary.Task2.Base;
+using Common.TasksLibrary.Task2.Output;
 using Microsoft.Extensions.Logging;
 
-namespace Common.TasksLibrary.Task2.Base;
+namespace Common.TasksLibrary.Task2;
 
 public sealed class CalculatorBuilder
 {
