@@ -1,44 +1,47 @@
 ﻿using Common.TasksLibrary.Task2.Base;
-using Common.TasksLibrary.Task2.Output;
+using Common.TasksLibrary.Task2.Exceptions;
 
 namespace Common.TasksLibrary.Task2;
 
 public sealed class CalculatorExecutionContext
 {
-    private Dictionary<string, double> _variableStorage;
-    private Stack<double> _stack;
+    private BaseContainer Container { get; }
     public IOutput OutputPort { get; set; }
 
-    public CalculatorExecutionContext(IOutput output)
+    public CalculatorExecutionContext(IOutput output, BaseContainer conteiner)
     {
-        _variableStorage = new Dictionary<string, double>();
-        _stack = new Stack<double>();
+        Container = conteiner;
         OutputPort = output;
     }
-    public double Peek()
-    {
-        // todo implement method for getting top stack value
-        return 0;
-    }
 
-    public double Pop()
-    {
-        // todo implement method for taking top stack value
-        return 0;
-    }
+    public double Peek() => Container.Stack.Peek();
 
-    public void Push(double number)
-    {
-        // todo implement method for putting value on a stack
-    }
+    public double Pop() => Container.Stack.Pop();
+
+    public void Push(double number) => Container.Stack.Push(number);
 
     public void PushVariable(string variableName)
     {
-        // todo implement method fot putting variable om a stack
+        try
+        {
+            var value = Container.VariableStorage[variableName];
+            Container.Stack.Push(value);
+        }
+        catch (Exception e)
+        {
+            throw new ExecutionContextException();
+        }
     }
 
     public void DefineVariable(string variableName, double value)
     {
-        // todo implement method for defining a variable
+        try
+        {
+            Container.VariableStorage.Add(variableName, value);
+        }
+        catch (Exception e)
+        {
+            throw new ExecutionContextException();
+        }
     }
 }

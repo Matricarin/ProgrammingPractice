@@ -7,21 +7,21 @@ namespace PracticeTests.ExtensionsTests;
 public class JsonExtensionsTest
 {
     [TestCaseSource(typeof(JsonTestData), nameof(JsonTestData.FromStringTestData))]
-    public void Test_FromJsonString(string jsonText, UserTest expected)
+    public void FromJsonString(string jsonText, UserTest expected)
     {
         var obj = jsonText.FromJsonString<UserTest>();
         Assert.That(obj, Is.EqualTo(expected));
     }
 
     [TestCaseSource(typeof(JsonTestData), nameof(JsonTestData.ToJsonData))]
-    public void Test_ToJson(UserTest obj, string expected)
+    public void ToJson(UserTest obj, string expected)
     {
         var result = obj.ToJson();
         Assert.That(result, Is.EqualTo(expected));
     }
 
     [Test]
-    public void Test_FromJsonFile()
+    public void FromJsonFile()
     {
         var info = new FileInfo(Path.Combine(Environment.CurrentDirectory, "TestingData",
             "JsonExtensionTest_UserTest.json"));

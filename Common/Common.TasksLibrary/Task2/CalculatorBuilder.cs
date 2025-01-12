@@ -34,7 +34,7 @@ public sealed class CalculatorBuilder
     {
         return _outputOptions switch
         {
-            CalculatorOutputOptions.Console => new CalculatorExecutionContext(new ConsoleOutput()),
+            CalculatorOutputOptions.Console => new CalculatorExecutionContext(new ConsoleOutput(), new CalculatorContainer()),
             _ => throw new ArgumentException()
         };
     }

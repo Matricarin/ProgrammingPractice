@@ -38,5 +38,10 @@ public sealed class Calculator
             // todo implement more informative message
             CalcLogger.LogError("process command exception");
         }
+        catch (ExecutionContextException ece)
+        {
+            // todo implement more informative message
+            CalcLogger.LogError("execution context exception");
+        }
     }
 }

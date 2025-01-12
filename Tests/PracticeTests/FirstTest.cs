@@ -4,7 +4,7 @@ namespace PracticeTests
     internal class FirstTest
     {
         [Test]
-        public void Test_CheckNUnit()
+        public void CheckNUnit()
         {
             Assert.True(true);
         }
