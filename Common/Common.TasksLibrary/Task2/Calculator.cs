@@ -7,13 +7,9 @@ namespace Common.TasksLibrary.Task2;
 
 public sealed class Calculator
 {
-    internal ILogger CalcLogger;
-    internal CommandsFactory Factory { get; init; }
-    internal CalculatorExecutionContext ExecutionContext { get; init; }
-    public static CalculatorBuilder CreateCalculatorBuilder(ILogger logger, CalculatorOutputOptions options)
-    {
-        return new CalculatorBuilder(logger, options);
-    }
+    internal ILogger calcLogger;
+    internal CommandsFactory factory;
+    internal CalculatorExecutionContext executionContext;
     public void Execute(IEnumerable<string> commands)
     {
         foreach (var command in commands)
@@ -25,23 +21,23 @@ public sealed class Calculator
     {
         try
         {
-            var executingCommand = Factory.GenerateCommand(command);
-            executingCommand.Process(ExecutionContext);
+            var executingCommand = factory.GenerateCommand(command);
+            executingCommand.Process(executionContext);
         }
         catch (GenerateCommandException gce)
         {
             // todo implement more informative message 
-            CalcLogger.LogError("generate command exception");
+            calcLogger.LogError("generate command exception");
         }
         catch (ProcessCommandException pce)
         {
             // todo implement more informative message
-            CalcLogger.LogError("process command exception");
+            calcLogger.LogError("process command exception");
         }
         catch (ExecutionContextException ece)
         {
             // todo implement more informative message
-            CalcLogger.LogError("execution context exception");
+            calcLogger.LogError("execution context exception");
         }
     }
 }

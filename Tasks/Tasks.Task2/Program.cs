@@ -7,12 +7,14 @@ namespace Tasks.Task2;
 internal static class Program
 {
     private static ILogger _logger;
+
     private static void Main(string[] args)
     {
         CreateConsoleLogger();
 
-        var calculator = CreateCalculatorInstance(CalculatorOutputOptions.Console);
-        
+        var calculator = CalculatorBuilder.Create().LogBy(_logger).OutBy(CalculatorOutputOptions.Console)
+            .StoreBy(new CalculatorContainer()).Build();
+
         try
         {
             if (!IsProgramParametersEmpty(args))
@@ -37,11 +39,6 @@ internal static class Program
         using ILoggerFactory factory = LoggerFactory.Create(f => f.AddConsole());
         _logger = factory.CreateLogger("Program");
         _logger.LogInformation(DateTime.Now.ToShortDateString());
-    }
-    
-    private static Calculator CreateCalculatorInstance(CalculatorOutputOptions options)
-    {
-        return new CalculatorBuilder(_logger, CalculatorOutputOptions.Console).Build();
     }
     
     private static bool IsProgramParametersEmpty(string[] args)

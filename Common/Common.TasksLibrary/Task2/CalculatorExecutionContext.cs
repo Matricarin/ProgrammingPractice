@@ -8,9 +8,9 @@ public sealed class CalculatorExecutionContext
     private BaseContainer Container { get; }
     public IOutput OutputPort { get; set; }
 
-    public CalculatorExecutionContext(IOutput output, BaseContainer conteiner)
+    public CalculatorExecutionContext(IOutput output, BaseContainer container)
     {
-        Container = conteiner;
+        Container = container;
         OutputPort = output;
     }
 

@@ -4,38 +4,44 @@ using Microsoft.Extensions.Logging;
 
 namespace Common.TasksLibrary.Task2;
 
-public sealed class CalculatorBuilder
+public abstract class CalculatorBuilder
 {
-    private readonly ILogger _logger;
-    private readonly CalculatorOutputOptions _outputOptions;
-
-    public CalculatorBuilder(ILogger logger, CalculatorOutputOptions options)
+    public static ISpecifyLogger Create()
     {
-        _logger = logger;
-        _outputOptions = options;
+        return new BuildHandler();
     }
-
-    public Calculator Build()
+    private class BuildHandler : ISpecifyOutput, ISpecifyLogger, ISpecifyStorage, IBuildCalculator
     {
-        return new Calculator
+        private Calculator calc = new Calculator();
+        private IOutput _output;
+        private BaseContainer _container;
+        public ISpecifyStorage OutBy(CalculatorOutputOptions options)
         {
-            CalcLogger = _logger,
-            Factory = ConfigureFactory(),
-            ExecutionContext = ConfigureContext()
-        };
-    }
+            _output = options switch
+            {
+                CalculatorOutputOptions.Console => new ConsoleOutput(),
+                _ => throw new ArgumentException()
+            };
+            return this;
+        }
 
-    private static CommandsFactory ConfigureFactory()
-    {
-        return new CommandsFactory();
-    }
-
-    private CalculatorExecutionContext ConfigureContext()
-    {
-        return _outputOptions switch
+        public ISpecifyOutput LogBy(ILogger logger)
         {
-            CalculatorOutputOptions.Console => new CalculatorExecutionContext(new ConsoleOutput(), new CalculatorContainer()),
-            _ => throw new ArgumentException()
-        };
+            calc.calcLogger = logger;
+            return this;
+        }
+
+        public IBuildCalculator StoreBy(BaseContainer container)
+        {
+            _container = container;
+            return this;
+        }
+
+        public Calculator Build()
+        {
+            calc.factory = new CommandsFactory();
+            calc.executionContext = new CalculatorExecutionContext(_output, _container);
+            return calc;
+        }
     }
 }
