@@ -38,7 +38,7 @@ namespace Common.TasksLibrary {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Common.TasksLibrary.StringResources", typeof(StringResources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Common.TasksLibrary.Resources.StringResources", typeof(StringResources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -56,6 +56,24 @@ namespace Common.TasksLibrary {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add shouldn&apos;t need parameters.
+        /// </summary>
+        internal static string Exception_GenerateAddCommand {
+            get {
+                return ResourceManager.GetString("Exception_GenerateAddCommand", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add shouldn&apos;t need parameters.
+        /// </summary>
+        internal static string Exception_ProcessAddCommand {
+            get {
+                return ResourceManager.GetString("Exception_ProcessAddCommand", resourceCulture);
             }
         }
     }
