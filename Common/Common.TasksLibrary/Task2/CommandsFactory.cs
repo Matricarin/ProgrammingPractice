@@ -12,7 +12,6 @@ public sealed class CommandsFactory
     {
         try
         {
-            // todo implement parsing tests
             var stringCommand = executingCommand.SubStringBeforeFirstOne(StringConstants.WhiteSpace).ParseCommand();
             var stringParameters = executingCommand.SubStringAfterFirstOne(StringConstants.WhiteSpace);
         

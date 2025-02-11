@@ -13,6 +13,7 @@ public class StringExtensionsTest
     {
         Assert.That(source.SubStringBeforeFirstOne(separator), Is.EqualTo(expected));
     }
+    
     [TestCase("SubStringAfterThat", "After", "That")]
     [TestCase("SubStringAfterThatAfterThat", "After", "ThatAfterThat")]
     [TestCase("SubStringAfterThat", "That", "")]
@@ -20,5 +21,24 @@ public class StringExtensionsTest
     public void Test_SubStringAfterThat(string source, string separator, string expected)
     {
         Assert.That(source.SubStringAfterFirstOne(separator), Is.EqualTo(expected));
+    }
+    
+    [TestCase("#", "Comment")]
+    [TestCase("+", "Add")]
+    [TestCase("-", "Subtract")]
+    [TestCase("*", "Multiply")]
+    [TestCase("/", "Divide")]
+    [TestCase("=", "=")]
+    public void Test_ParseCommand(string source, string expected)
+    {
+        Assert.That(source.ParseCommand(), Is.EqualTo(expected));
+    }
+    
+    [TestCase("line", "Line")]
+    [TestCase("", "")]
+    [TestCase("+", "+")]
+    public void Test_LineWithFirstUpperCharacter(string source, string expected)
+    {
+        Assert.That(source.LineWithFirstUpperCharacter(), Is.EqualTo(expected));
     }
 }

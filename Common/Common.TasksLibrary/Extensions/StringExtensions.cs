@@ -26,7 +26,7 @@ public static class StringExtensions
 
     public static string ParseCommand(this string source)
     {
-        return source switch
+        return source.LineWithFirstUpperCharacter() switch
         {
             "#" => "Comment",
             "+" => "Add",
@@ -35,5 +35,14 @@ public static class StringExtensions
             "/" => "Divide",
             _ => source
         };
+    }
+    
+    public static string LineWithFirstUpperCharacter(this string source)
+    {
+        if (string.IsNullOrEmpty(source))
+        {
+            return string.Empty;
+        }
+        return char.ToUpper(source[Zero]) + source.Substring(1);
     }
 }
