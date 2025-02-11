@@ -1,5 +1,4 @@
 ﻿using Common.TasksLibrary.Task2;
-using Common.TasksLibrary.Task2.Base;
 using Common.TasksLibrary.Task2.Output;
 
 namespace PracticeTests.Task2Tests;
@@ -65,16 +64,4 @@ public class CalculatorExecutionContextTests
             Assert.That(_container.Stack.Peek(), Is.EqualTo(ValueOfVariable));
         });
     }
-}
-
-public class MockContainer : BaseContainer
-{
-    public MockContainer()
-    {
-        VariableStorage = new Dictionary<string, double>();
-        Stack = new Stack<double>();
-    }
-
-    public override Dictionary<string, double> VariableStorage { get; set; }
-    public override Stack<double> Stack { get; set; }
 }
