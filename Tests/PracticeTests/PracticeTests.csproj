@@ -56,6 +56,10 @@
     <Content Include="TestingData\Task2_CalculatorTest_Answer1.txt">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <None Remove="TestingData\Task2_CalculatorTest_Example1.txt" />
+    <Content Include="TestingData\Task2_CalculatorTest_Example1.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
 </Project>
