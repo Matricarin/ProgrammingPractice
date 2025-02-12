@@ -1,6 +1,4 @@
-﻿using Common.TasksLibrary.Task2.Base;
-using Common.TasksLibrary.Task2.Exceptions;
-using Common.TasksLibrary.Task2.Output;
+﻿using Common.TasksLibrary.Task2.Exceptions;
 using Microsoft.Extensions.Logging;
 
 namespace Common.TasksLibrary.Task2;
@@ -26,8 +24,7 @@ public sealed class Calculator
         }
         catch (GenerateCommandException gce)
         {
-            // todo implement more informative message 
-            calcLogger.LogError("generate command exception");
+            calcLogger.LogError(gce.Message);
         }
         catch (ProcessCommandException pce)
         {
@@ -35,8 +32,7 @@ public sealed class Calculator
         }
         catch (ExecutionContextException ece)
         {
-            // todo implement more informative message
-            calcLogger.LogError("execution context exception");
+            calcLogger.LogError(ece.Message);
         }
     }
 }

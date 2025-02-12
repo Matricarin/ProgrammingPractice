@@ -23,7 +23,7 @@ public sealed class CommandsFactory
         }
         catch (Exception e)
         {
-            throw new GenerateCommandException();
+            throw new GenerateCommandException(e.Message);
         }
     }
 }
