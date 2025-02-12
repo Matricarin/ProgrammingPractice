@@ -76,5 +76,14 @@ namespace Common.TasksLibrary {
                 return ResourceManager.GetString("Exception_ProcessAddCommand", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stack is empty.
+        /// </summary>
+        internal static string Exception_StackIsEmpty {
+            get {
+                return ResourceManager.GetString("Exception_StackIsEmpty", resourceCulture);
+            }
+        }
     }
 }

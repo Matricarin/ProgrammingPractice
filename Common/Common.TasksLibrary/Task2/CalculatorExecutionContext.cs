@@ -14,9 +14,30 @@ public sealed class CalculatorExecutionContext
         OutputPort = output;
     }
 
-    public double Peek() => Container.Stack.Peek();
+    public double Peek()
+    {
+        try
+        {
+            return Container.Stack.Peek();
+        }
+        catch 
+        {
+            throw new ExecutionContextException(StringResources.Exception_StackIsEmpty);
+        }
+    }
 
-    public double Pop() => Container.Stack.Pop();
+    public double Pop()
+    {
+        try
+        {
+
+            return Container.Stack.Pop();
+        }
+        catch 
+        { 
+            throw new ExecutionContextException(StringResources.Exception_StackIsEmpty);
+        }
+    }
 
     public void Push(double number) => Container.Stack.Push(number);
 
@@ -29,7 +50,7 @@ public sealed class CalculatorExecutionContext
         }
         catch (Exception e)
         {
-            throw new ExecutionContextException();
+            throw new ExecutionContextException(e.Message);
         }
     }
 
@@ -41,7 +62,7 @@ public sealed class CalculatorExecutionContext
         }
         catch (Exception e)
         {
-            throw new ExecutionContextException();
+            throw new ExecutionContextException(e.Message);
         }
     }
 }

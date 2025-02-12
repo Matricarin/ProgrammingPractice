@@ -24,4 +24,7 @@
     <data name="Exception_ProcessAddCommand" xml:space="preserve">
         <value>Add shouldn't need parameters</value>
     </data>
+    <data name="Exception_StackIsEmpty" xml:space="preserve">
+        <value>Stack is empty</value>
+    </data>
 </root>
