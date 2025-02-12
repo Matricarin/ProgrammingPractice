@@ -21,9 +21,9 @@ public class DivideCommand : CalculatorCommand
             var result = first / second;
             context.Push(result);
         }
-        catch
+        catch (Exception e)
         {
-            throw new ProcessCommandException(nameof(DivideCommand));
+            throw new ProcessCommandException(e.Message);
         }
     }
 }

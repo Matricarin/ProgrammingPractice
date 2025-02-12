@@ -21,9 +21,9 @@ public class SubtractCommand : CalculatorCommand
             var result = first - second;
             context.Push(result);
         }
-        catch 
+        catch (Exception e)
         {
-            throw new ProcessCommandException(nameof(SubtractCommand));
+            throw new ProcessCommandException(e.Message);
         }
     }
 }

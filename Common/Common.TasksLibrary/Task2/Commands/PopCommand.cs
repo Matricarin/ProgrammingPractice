@@ -1,5 +1,4 @@
-﻿using Common.TasksLibrary.Constants;
-using Common.TasksLibrary.Task2.Base;
+﻿using Common.TasksLibrary.Task2.Base;
 using Common.TasksLibrary.Task2.Exceptions;
 
 namespace Common.TasksLibrary.Task2.Commands;
@@ -19,9 +18,9 @@ public class PopCommand : CalculatorCommand
         {
             context.Pop();
         }
-        catch
+        catch(Exception e)
         {
-            throw new ProcessCommandException(nameof(PopCommand));
+            throw new ProcessCommandException(e.Message);
         }
     }
 }

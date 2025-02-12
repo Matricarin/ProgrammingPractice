@@ -28,9 +28,9 @@ public sealed class DefineCommand : CalculatorCommand
         {
             context.DefineVariable(_variableName, _variableValue);
         }
-        catch 
+        catch (Exception e)
         {
-            throw new ProcessCommandException(nameof(DefineCommand));
+            throw new ProcessCommandException(e.Message);
         }
     }
 

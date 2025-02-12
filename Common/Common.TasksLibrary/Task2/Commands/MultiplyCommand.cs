@@ -21,9 +21,9 @@ public class MultiplyCommand : CalculatorCommand
             var result = first * second;
             context.Push(result);
         }
-        catch 
+        catch (Exception e)
         {
-            throw new ProcessCommandException(nameof(MultiplyCommand));
+            throw new ProcessCommandException(e.Message);
         }
     }
 }

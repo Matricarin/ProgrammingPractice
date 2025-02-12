@@ -21,9 +21,9 @@ public class AddCommand : CalculatorCommand
             var result = first + second;
             context.Push(result);
         }
-        catch
+        catch(Exception e)
         {
-            throw new ProcessCommandException(nameof(AddCommand));
+            throw new ProcessCommandException(e.Message);
         }
     }
 }

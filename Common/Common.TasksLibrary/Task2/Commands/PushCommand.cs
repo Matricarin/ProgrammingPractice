@@ -27,9 +27,9 @@ public class PushCommand : CalculatorCommand
         {
             context.PushVariable(_variableName);
         }
-        catch
+        catch (Exception e)
         {
-            throw new ProcessCommandException(nameof(PushCommand));
+            throw new ProcessCommandException(e.Message);
         }
     }
 }

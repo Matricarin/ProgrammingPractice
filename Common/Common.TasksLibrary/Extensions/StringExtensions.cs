@@ -26,14 +26,15 @@ public static class StringExtensions
 
     public static string ParseCommand(this string source)
     {
-        return source.LineWithFirstUpperCharacter() switch
+        var command = source.LineWithFirstUpperCharacter();
+        return command switch
         {
             "#" => "Comment",
             "+" => "Add",
             "-" => "Subtract",
             "*" => "Multiply",
             "/" => "Divide",
-            _ => source
+            _ => command
         };
     }
     

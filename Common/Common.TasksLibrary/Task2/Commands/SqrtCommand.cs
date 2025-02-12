@@ -19,9 +19,9 @@ public class SqrtCommand : CalculatorCommand
             var data = context.Pop();
             context.Push(Math.Sqrt(data));
         }
-        catch
+        catch(Exception e)
         {
-            throw new ProcessCommandException(nameof(SqrtCommand));
+            throw new ProcessCommandException(e.Message);
         }
     }
 }

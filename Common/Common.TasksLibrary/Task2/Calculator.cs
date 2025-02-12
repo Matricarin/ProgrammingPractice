@@ -28,7 +28,7 @@ public sealed class Calculator
         }
         catch (ProcessCommandException pce)
         {
-            calcLogger.LogError($"process {pce.Message} exception");
+            calcLogger.LogError(pce.Message);
         }
         catch (ExecutionContextException ece)
         {

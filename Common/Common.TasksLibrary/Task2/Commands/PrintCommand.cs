@@ -20,9 +20,9 @@ public class PrintCommand : CalculatorCommand
             var value = context.Peek();
             context.OutputPort.Post(value);
         }
-        catch
+        catch(Exception e)
         {
-            throw new ProcessCommandException(nameof(SubtractCommand));
+            throw new ProcessCommandException(e.Message);
         }
     }
 }
