@@ -30,7 +30,6 @@ public sealed class CalculatorExecutionContext
     {
         try
         {
-
             return Container.Stack.Pop();
         }
         catch 

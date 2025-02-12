@@ -8,6 +8,12 @@ public sealed class Calculator
     internal ILogger calcLogger;
     internal CommandsFactory factory;
     internal CalculatorExecutionContext executionContext;
+    
+    public void ExecuteFromFile(FileInfo info)
+    {
+        var commands = File.ReadAllLines(info.FullName);
+        Execute(commands);
+    }
     public void Execute(IEnumerable<string> commands)
     {
         foreach (var command in commands)

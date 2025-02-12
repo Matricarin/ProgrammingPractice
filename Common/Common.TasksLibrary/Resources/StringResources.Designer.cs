@@ -21,7 +21,7 @@ namespace Common.TasksLibrary {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    internal class StringResources {
+    public class StringResources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -96,6 +96,15 @@ namespace Common.TasksLibrary {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Execution from file was interrupted.
+        /// </summary>
+        public static string Exception_ExecutionWasInterrupted {
+            get {
+                return ResourceManager.GetString("Exception_ExecutionWasInterrupted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The Define command should contain two parameters.
         /// </summary>
         internal static string Exception_IncorrectAmountForDefineCommand {
@@ -110,6 +119,15 @@ namespace Common.TasksLibrary {
         internal static string Exception_StackIsEmpty {
             get {
                 return ResourceManager.GetString("Exception_StackIsEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File path was not specified.
+        /// </summary>
+        public static string Warning_FilePathWasNotSpecified {
+            get {
+                return ResourceManager.GetString("Warning_FilePathWasNotSpecified", resourceCulture);
             }
         }
     }

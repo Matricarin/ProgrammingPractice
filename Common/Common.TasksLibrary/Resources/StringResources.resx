@@ -36,4 +36,10 @@
     <data name="Exception_CommandPushOnStackOnlyOne" xml:space="preserve">
         <value>The command push on stack only one value</value>
     </data>
+    <data name="Warning_FilePathWasNotSpecified" xml:space="preserve">
+        <value>File path was not specified</value>
+    </data>
+    <data name="Exception_ExecutionWasInterrupted" xml:space="preserve">
+        <value>Execution from file was interrupted</value>
+    </data>
 </root>

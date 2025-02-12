@@ -1,4 +1,5 @@
-﻿using Common.TasksLibrary.Task2;
+﻿using Common.TasksLibrary;
+using Common.TasksLibrary.Task2;
 using Common.TasksLibrary.Task2.Output;
 using Microsoft.Extensions.Logging;
 
@@ -20,12 +21,12 @@ internal static class Program
             if (!IsProgramParametersEmpty(args))
             {
                 var fileInfo = new FileInfo(args.First());
-                ExecuteCommandsFromFile(fileInfo, calculator);
+                calculator.ExecuteFromFile(fileInfo);
             }
         }
         catch (Exception e)
         {
-            _logger.LogError(e, "Execution from file was interrupted.");
+            _logger.LogError(e, StringResources.Exception_ExecutionWasInterrupted);
         }
         finally
         {
@@ -37,7 +38,7 @@ internal static class Program
     private static void CreateConsoleLogger()
     {
         using ILoggerFactory factory = LoggerFactory.Create(f => f.AddConsole());
-        _logger = factory.CreateLogger("Program");
+        _logger = factory.CreateLogger(nameof(Program));
         _logger.LogInformation(DateTime.Now.ToShortDateString());
     }
     
@@ -45,18 +46,11 @@ internal static class Program
     {
         if (args.Length == 0)
         {
-            _logger.LogWarning("Input parameters were empty");
+            _logger.LogWarning(StringResources.Warning_FilePathWasNotSpecified);
             return true;
         }
     
         return false;
-    }
-    
-    private static void ExecuteCommandsFromFile(FileInfo fileInfo, Calculator calculator)
-    {
-        var commands = File.ReadAllLines(fileInfo.FullName);
-        
-        calculator.Execute(commands);
     }
     
     private static void ExecuteCommandsFromConsoleInput(Calculator calculator)
