@@ -9,7 +9,7 @@ public class AddCommand : CalculatorCommand
     {
         if (!string.IsNullOrEmpty(parameters))
         {
-            throw new GenerateCommandException(StringResources.Exception_GenerateAddCommand);
+            throw new GenerateCommandException(StringResources.Exception_CommandShouldntHaveParameters);
         }
     }
     public override void Process(CalculatorExecutionContext context)

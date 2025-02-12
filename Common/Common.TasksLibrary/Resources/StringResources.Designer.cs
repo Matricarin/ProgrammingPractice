@@ -60,20 +60,47 @@ namespace Common.TasksLibrary {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add shouldn&apos;t need parameters.
+        ///   Looks up a localized string similar to The command push on stack only one value.
         /// </summary>
-        internal static string Exception_GenerateAddCommand {
+        internal static string Exception_CommandPushOnStackOnlyOne {
             get {
-                return ResourceManager.GetString("Exception_GenerateAddCommand", resourceCulture);
+                return ResourceManager.GetString("Exception_CommandPushOnStackOnlyOne", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add shouldn&apos;t need parameters.
+        ///   Looks up a localized string similar to The command should have parameter.
         /// </summary>
-        internal static string Exception_ProcessAddCommand {
+        internal static string Exception_CommandShouldHaveParameter {
             get {
-                return ResourceManager.GetString("Exception_ProcessAddCommand", resourceCulture);
+                return ResourceManager.GetString("Exception_CommandShouldHaveParameter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The command shouldn&apos;t have parameters.
+        /// </summary>
+        internal static string Exception_CommandShouldntHaveParameters {
+            get {
+                return ResourceManager.GetString("Exception_CommandShouldntHaveParameters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Define command contains an incorrect parameter.
+        /// </summary>
+        internal static string Exception_DefineCantParseValue {
+            get {
+                return ResourceManager.GetString("Exception_DefineCantParseValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Define command should contain two parameters.
+        /// </summary>
+        internal static string Exception_IncorrectAmountForDefineCommand {
+            get {
+                return ResourceManager.GetString("Exception_IncorrectAmountForDefineCommand", resourceCulture);
             }
         }
         

@@ -13,15 +13,13 @@ public sealed class DefineCommand : CalculatorCommand
         var values = parameters.Split(CharsConstants.WhiteSpace);
         if (values.Length != 2)
         {
-            // todo implement more informative message
-            throw new GenerateCommandException();
+            throw new GenerateCommandException(StringResources.Exception_IncorrectAmountForDefineCommand);
         }
 
         _variableName = values.First();
         if (!double.TryParse(values.Last(), out _variableValue))
         {
-            // todo implement more informative message
-            throw new GenerateCommandException();
+            throw new GenerateCommandException(StringResources.Exception_DefineCantParseValue);
         }
     }
     public override void Process(CalculatorExecutionContext context)

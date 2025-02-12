@@ -18,13 +18,22 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-    <data name="Exception_GenerateAddCommand" xml:space="preserve">
-        <value>Add shouldn't need parameters</value>
-    </data>
-    <data name="Exception_ProcessAddCommand" xml:space="preserve">
-        <value>Add shouldn't need parameters</value>
-    </data>
     <data name="Exception_StackIsEmpty" xml:space="preserve">
         <value>Stack is empty</value>
+    </data>
+    <data name="Exception_IncorrectAmountForDefineCommand" xml:space="preserve">
+        <value>The Define command should contain two parameters</value>
+    </data>
+    <data name="Exception_DefineCantParseValue" xml:space="preserve">
+        <value>The Define command contains an incorrect parameter</value>
+    </data>
+    <data name="Exception_CommandShouldntHaveParameters" xml:space="preserve">
+        <value>The command shouldn't have parameters</value>
+    </data>
+    <data name="Exception_CommandShouldHaveParameter" xml:space="preserve">
+        <value>The command should have parameter</value>
+    </data>
+    <data name="Exception_CommandPushOnStackOnlyOne" xml:space="preserve">
+        <value>The command push on stack only one value</value>
     </data>
 </root>

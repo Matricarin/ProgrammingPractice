@@ -10,8 +10,7 @@ public class PopCommand : CalculatorCommand
     {
         if (!string.IsNullOrWhiteSpace(parameters))
         {
-            // todo implement more informative message
-            throw new GenerateCommandException();
+            throw new GenerateCommandException(StringResources.Exception_CommandShouldntHaveParameters);
         }
     }
     public override void Process(CalculatorExecutionContext context)

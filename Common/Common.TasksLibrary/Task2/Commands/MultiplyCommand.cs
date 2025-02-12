@@ -9,8 +9,7 @@ public class MultiplyCommand : CalculatorCommand
     {
         if (!string.IsNullOrEmpty(parameters))
         {
-            // todo implement more informative message
-            throw new GenerateCommandException();
+            throw new GenerateCommandException(StringResources.Exception_CommandShouldntHaveParameters);
         }
     }
     public override void Process(CalculatorExecutionContext context)

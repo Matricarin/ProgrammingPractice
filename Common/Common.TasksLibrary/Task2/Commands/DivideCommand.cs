@@ -9,8 +9,7 @@ public class DivideCommand : CalculatorCommand
     {
         if (!string.IsNullOrEmpty(parameters))
         {
-            // todo implement more informative message
-            throw new GenerateCommandException();
+            throw new GenerateCommandException(StringResources.Exception_CommandShouldntHaveParameters);
         }
     }
     public override void Process(CalculatorExecutionContext context)
@@ -24,7 +23,6 @@ public class DivideCommand : CalculatorCommand
         }
         catch
         {
-            // todo implement more informative message
             throw new ProcessCommandException(nameof(DivideCommand));
         }
     }

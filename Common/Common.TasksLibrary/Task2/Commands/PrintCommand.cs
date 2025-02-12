@@ -9,8 +9,7 @@ public class PrintCommand : CalculatorCommand
     {
         if (!string.IsNullOrEmpty(parameters))
         {
-            // todo implement more informative message
-            throw new GenerateCommandException("Print operation can't have command parameters");
+            throw new GenerateCommandException(StringResources.Exception_CommandShouldntHaveParameters);
         }
     }
 

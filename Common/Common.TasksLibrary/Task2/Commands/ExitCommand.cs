@@ -9,8 +9,7 @@ public class ExitCommand : CalculatorCommand
     {
         if (!string.IsNullOrEmpty(parameters))
         {
-            // todo implement more informative message
-            throw new GenerateCommandException();
+            throw new GenerateCommandException(StringResources.Exception_CommandShouldntHaveParameters);
         }
     }
     

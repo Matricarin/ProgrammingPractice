@@ -9,8 +9,7 @@ public class SqrtCommand : CalculatorCommand
     {
         if (!string.IsNullOrEmpty(parameters))
         {
-            // todo implement more informative message
-            throw new GenerateCommandException();
+            throw new GenerateCommandException(StringResources.Exception_CommandShouldntHaveParameters);
         }
     }
     public override void Process(CalculatorExecutionContext context)
@@ -22,7 +21,7 @@ public class SqrtCommand : CalculatorCommand
         }
         catch
         {
-            throw new ProcessCommandException(nameof(SubtractCommand));
+            throw new ProcessCommandException(nameof(SqrtCommand));
         }
     }
 }

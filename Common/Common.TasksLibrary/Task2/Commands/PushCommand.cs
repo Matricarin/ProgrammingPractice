@@ -12,14 +12,12 @@ public class PushCommand : CalculatorCommand
     {
         if (string.IsNullOrWhiteSpace(parameters))
         {
-            // todo implement more informative message
-            throw new GenerateCommandException();
+            throw new GenerateCommandException(StringResources.Exception_CommandShouldHaveParameter);
         }
         var values = parameters.Split(CharsConstants.WhiteSpace);
         if (values.Length > 1)
         {
-            // todo implement more informative message
-            throw new GenerateCommandException();
+            throw new GenerateCommandException(StringResources.Exception_CommandPushOnStackOnlyOne);
         }
         _variableName = parameters;
     }
