@@ -24,8 +24,7 @@ public class SubtractCommand : CalculatorCommand
         }
         catch 
         {
-            // todo implement more informative message
-            throw new ProcessCommandException();
+            throw new ProcessCommandException(nameof(SubtractCommand));
         }
     }
 }
