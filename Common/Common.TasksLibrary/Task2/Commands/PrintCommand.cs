@@ -1,4 +1,5 @@
 ﻿using Common.TasksLibrary.Task2.Base;
+using Common.TasksLibrary.Task2.Exceptions;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
@@ -8,20 +9,20 @@ public class PrintCommand : CalculatorCommand
     {
         if (!string.IsNullOrEmpty(parameters))
         {
-            throw new Exception("Print operation can't have command parameters");
+            throw new GenerateCommandException(StringResources.Exception_CommandShouldntHaveParameters);
         }
     }
 
-    public override void Process(Calculator calculator)
+    public override void Process(CalculatorExecutionContext context)
     {
         try
         {
-            var value = calculator.StackStorage.Peek();
-            calculator.OutputPort.Post(value);
+            var value = context.Peek();
+            context.OutputPort.Post(value);
         }
-        catch (Exception e)
+        catch(Exception e)
         {
-            throw new Exception(e.Message);
+            throw new ProcessCommandException(e.Message);
         }
     }
 }

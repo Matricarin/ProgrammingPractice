@@ -1,35 +1,26 @@
-﻿using Common.TasksLibrary.Constants;
-using Common.TasksLibrary.Task2.Base;
+﻿using Common.TasksLibrary.Task2.Base;
+using Common.TasksLibrary.Task2.Exceptions;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
 public class PopCommand : CalculatorCommand
 {
-    private string _variableName;
-
     public PopCommand(string parameters)
     {
-        if (string.IsNullOrWhiteSpace(parameters))
+        if (!string.IsNullOrWhiteSpace(parameters))
         {
-            throw new Exception("Unexpected parameter value.");
+            throw new GenerateCommandException(StringResources.Exception_CommandShouldntHaveParameters);
         }
-        var values = parameters.Split(CharsConstants.WhiteSpace);
-        if (values.Length > 1)
-        {
-            throw new Exception("Unexpected amount of parameters for command.");
-        }
-        _variableName = parameters;
     }
-    public override void Process(Calculator calculator)
+    public override void Process(CalculatorExecutionContext context)
     {
         try
         {
-            var topValue = calculator.StackStorage.Pop();
-            calculator.VariablesStorage.TryAdd(_variableName, topValue);
+            context.Pop();
         }
-        catch (Exception e)
+        catch(Exception e)
         {
-            throw new Exception(e.Message);
+            throw new ProcessCommandException(e.Message);
         }
     }
 }

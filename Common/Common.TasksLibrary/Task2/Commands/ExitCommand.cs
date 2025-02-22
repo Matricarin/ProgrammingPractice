@@ -1,5 +1,5 @@
-﻿using System.Reflection;
-using Common.TasksLibrary.Task2.Base;
+﻿using Common.TasksLibrary.Task2.Base;
+using Common.TasksLibrary.Task2.Exceptions;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
@@ -9,15 +9,11 @@ public class ExitCommand : CalculatorCommand
     {
         if (!string.IsNullOrEmpty(parameters))
         {
-            throw new Exception("Exit operation can't have command parameters");
+            throw new GenerateCommandException(StringResources.Exception_CommandShouldntHaveParameters);
         }
     }
-
-    public ExitCommand()
-    {
-        
-    }
-    public override void Process(Calculator calculator)
+    
+    public override void Process(CalculatorExecutionContext context)
     {
         Environment.Exit(Environment.ExitCode);
     }

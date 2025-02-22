@@ -2,5 +2,5 @@
 
 public abstract class CalculatorCommand
 {
-    public abstract void Process(Calculator calculator);
+    public abstract void Process(CalculatorExecutionContext context);
 }

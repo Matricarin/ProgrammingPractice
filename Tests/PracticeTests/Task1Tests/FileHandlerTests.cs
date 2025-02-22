@@ -25,14 +25,14 @@ public class FileHandlerTests
    }
 
    [Test]
-   public void OpenAndReadFileMethod_Test()
+   public void OpenAndReadFile()
    {
       var result = FileHandler.OpenAndReadFile(_testFile);
       Assert.That(result, Is.EqualTo(_readContentInFile));
    }
 
    [Test]
-   public void CreateAndWriteCSVFileMethod_Test()
+   public void CreateAndWriteCsvFile()
    {
       FileHandler.CreateAndWriteResultsInCsvFile(_testWords);
       var content = File.ReadAllText(StringConstants.ResultCsvFileName);

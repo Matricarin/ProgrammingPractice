@@ -3,9 +3,9 @@ using Common.TasksLibrary.Task2.Exceptions;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
-public class MultiplyCommand : CalculatorCommand
+public class SqrtCommand : CalculatorCommand
 {
-    public MultiplyCommand(string parameters)
+    public SqrtCommand(string parameters)
     {
         if (!string.IsNullOrEmpty(parameters))
         {
@@ -16,12 +16,10 @@ public class MultiplyCommand : CalculatorCommand
     {
         try
         {
-            var first = context.Pop();
-            var second = context.Pop();
-            var result = first * second;
-            context.Push(result);
+            var data = context.Pop();
+            context.Push(Math.Sqrt(data));
         }
-        catch (Exception e)
+        catch(Exception e)
         {
             throw new ProcessCommandException(e.Message);
         }

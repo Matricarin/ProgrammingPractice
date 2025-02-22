@@ -1,41 +1,46 @@
 ﻿using Common.TasksLibrary.Constants;
 using Common.TasksLibrary.Task2.Base;
+using Common.TasksLibrary.Task2.Exceptions;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
 public sealed class DefineCommand : CalculatorCommand
 {
-    private string _variableName;
-    private double _variableValue;
+    private readonly string _variableName;
+    private readonly double _variableValue;
     public DefineCommand(string parameters)
     {
         var values = parameters.Split(CharsConstants.WhiteSpace);
         if (values.Length != 2)
         {
-            throw new Exception("Unexpected amount of parameters for command");
+            throw new GenerateCommandException(StringResources.Exception_IncorrectAmountForDefineCommand);
         }
 
         _variableName = values.First();
         if (!double.TryParse(values.Last(), out _variableValue))
         {
-            throw new Exception("Unexpected value for command parameter");
+            throw new GenerateCommandException(StringResources.Exception_DefineCantParseValue);
         }
     }
-    public override void Process(Calculator calculator)
+    public override void Process(CalculatorExecutionContext context)
     {
-        if (!calculator.VariablesStorage.TryAdd(_variableName, _variableValue))
+        try
         {
-            throw new Exception($"Variable \"{_variableName}\" was defined earlier");
+            context.DefineVariable(_variableName, _variableValue);
+        }
+        catch (Exception e)
+        {
+            throw new ProcessCommandException(e.Message);
         }
     }
 
     public override bool Equals(object? obj)
     {
-        var other = (DefineCommand)obj;
-        if (other == null)
+        if (obj == null)
         {
             return false;
         }
+        var other = (DefineCommand)obj;
         return _variableName == other._variableName && _variableValue.Equals(other._variableValue);
     }
 

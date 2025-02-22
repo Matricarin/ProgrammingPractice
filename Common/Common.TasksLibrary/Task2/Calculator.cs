@@ -1,16 +1,18 @@
-﻿using Common.TasksLibrary.Task2.Base;
+﻿using Common.TasksLibrary.Task2.Exceptions;
+using Microsoft.Extensions.Logging;
 
 namespace Common.TasksLibrary.Task2;
 
 public sealed class Calculator
 {
-    internal CommandsFactory Factory { get; init; }
-    internal Dictionary<string, double> VariablesStorage { get; init; }
-    internal Stack<double> StackStorage { get; init; }
-    public IOutput OutputPort { get; init; }
-    public static CalculatorBuilder CreateCalculatorBuilder()
+    internal ILogger calcLogger;
+    internal CommandsFactory factory;
+    internal CalculatorExecutionContext executionContext;
+    
+    public void ExecuteFromFile(FileInfo info)
     {
-        return new CalculatorBuilder();
+        var commands = File.ReadAllLines(info.FullName);
+        Execute(commands);
     }
     public void Execute(IEnumerable<string> commands)
     {
@@ -21,7 +23,22 @@ public sealed class Calculator
     }
     public void Execute(string command)
     {
-        var executingCommand = Factory.GenerateCommand(command);
-        executingCommand.Process(this);
+        try
+        {
+            var executingCommand = factory.GenerateCommand(command);
+            executingCommand.Process(executionContext);
+        }
+        catch (GenerateCommandException gce)
+        {
+            calcLogger.LogError(gce.Message);
+        }
+        catch (ProcessCommandException pce)
+        {
+            calcLogger.LogError(pce.Message);
+        }
+        catch (ExecutionContextException ece)
+        {
+            calcLogger.LogError(ece.Message);
+        }
     }
 }

@@ -118,4 +118,10 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Task2_TestingDataPath_Example1" xml:space="preserve">
+    <value>/TestingData/Task2_CalculatorTest_Example1.txt</value>
+  </data>
+  <data name="Task2_TestingDataPath_Answer1" xml:space="preserve">
+    <value>/TestingData/Task2_CalculatorTest_Answer1.txt</value>
+  </data>
 </root>

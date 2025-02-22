@@ -5,7 +5,7 @@ namespace PracticeTests.Task1Tests;
 public class WordFrequencyAnalyzerTest
 {
     [TestCaseSource(typeof(WordFrequencyTestData), nameof(WordFrequencyTestData.TestData))]
-    public void GetAnalyzeSourceTextResultsMethod_Test(string text, IEnumerable<WordWithPercent> expected)
+    public void GetAnalyzeSourceTextResults(string text, IEnumerable<WordWithPercent> expected)
     {
         var result = WordFrequencyAnalyzer.GetAnalyzeSourceTextResults(text).ToList();
         var expectedList = expected.ToList();
@@ -13,7 +13,7 @@ public class WordFrequencyAnalyzerTest
     }
     
     [TestCaseSource(typeof(WordFrequencyTestData), nameof(WordFrequencyTestData.ExceptionTestData))]
-    public void GetExceptionFromAnalyzingSourceTextResultsMethod_Test(string text, Exception expected)
+    public void GetExceptionFromAnalyzingSourceTextResults(string text, Exception expected)
     {
         try
         {

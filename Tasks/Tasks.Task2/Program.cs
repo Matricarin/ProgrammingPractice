@@ -1,29 +1,32 @@
-﻿using Common.TasksLibrary.Task2;
-using Common.TasksLibrary.Task2.Base;
+﻿using Common.TasksLibrary;
+using Common.TasksLibrary.Task2;
+using Common.TasksLibrary.Task2.Output;
 using Microsoft.Extensions.Logging;
 
 namespace Tasks.Task2;
 
 internal static class Program
 {
-    private static ILogger? _logger;
+    private static ILogger _logger;
+
     private static void Main(string[] args)
     {
         CreateConsoleLogger();
 
-        var calculator = CreateCalculatorInstance(CalculatorOutputOptions.Console);
+        var calculator = CalculatorBuilder.Create().LogBy(_logger).OutBy(CalculatorOutputOptions.Console)
+            .StoreBy(new CalculatorContainer()).Build();
 
         try
         {
             if (!IsProgramParametersEmpty(args))
             {
                 var fileInfo = new FileInfo(args.First());
-                ExecuteCommandsFromFile(fileInfo, calculator);
+                calculator.ExecuteFromFile(fileInfo);
             }
         }
         catch (Exception e)
         {
-            _logger.LogError(e, "Execution from file was interrupted.");
+            _logger.LogError(e, StringResources.Exception_ExecutionWasInterrupted);
         }
         finally
         {
@@ -35,36 +38,21 @@ internal static class Program
     private static void CreateConsoleLogger()
     {
         using ILoggerFactory factory = LoggerFactory.Create(f => f.AddConsole());
-        _logger = factory.CreateLogger("Program");
+        _logger = factory.CreateLogger(nameof(Program));
         _logger.LogInformation(DateTime.Now.ToShortDateString());
     }
-
-    private static Calculator CreateCalculatorInstance(CalculatorOutputOptions options)
-    {
-        return new CalculatorBuilder()
-        {
-            OutputOptions = options
-        }.Build();
-    }
-
+    
     private static bool IsProgramParametersEmpty(string[] args)
     {
         if (args.Length == 0)
         {
-            _logger.LogWarning("Input parameters were empty");
+            _logger.LogWarning(StringResources.Warning_FilePathWasNotSpecified);
             return true;
         }
-
+    
         return false;
     }
-
-    private static void ExecuteCommandsFromFile(FileInfo fileInfo, Calculator calculator)
-    {
-        var commands = File.ReadAllLines(fileInfo.FullName);
-        
-        calculator.Execute(commands);
-    }
-
+    
     private static void ExecuteCommandsFromConsoleInput(Calculator calculator)
     {
         while (true)
