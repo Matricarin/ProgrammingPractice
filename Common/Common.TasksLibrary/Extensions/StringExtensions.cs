@@ -44,6 +44,7 @@ public static class StringExtensions
         {
             return string.Empty;
         }
-        return char.ToUpper(source[Zero]) + source.Substring(1);
+        var str = source.ToLower();
+        return char.ToUpper(str[Zero]) + str.Substring(1);
     }
 }

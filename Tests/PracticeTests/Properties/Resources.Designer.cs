@@ -60,7 +60,7 @@ namespace PracticeTests.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  /TestingData/Task2_CalculatorTest_Answer1.txt.
+        ///   Looks up a localized string similar to /TestingData/Task2_CalculatorTest_Answer1.txt.
         /// </summary>
         public static string Task2_TestingDataPath_Answer1 {
             get {
@@ -69,7 +69,7 @@ namespace PracticeTests.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  /TestingData/Task2_CalculatorTest_Example1.txt.
+        ///   Looks up a localized string similar to /TestingData/Task2_CalculatorTest_Example1.txt.
         /// </summary>
         public static string Task2_TestingDataPath_Example1 {
             get {
