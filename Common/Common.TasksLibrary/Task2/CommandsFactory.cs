@@ -21,9 +21,9 @@ public sealed class CommandsFactory
             var command = (CalculatorCommand)instance;
             return command;
         }
-        catch (Exception e)
+        catch (GenerateCommandException gce)
         {
-            throw new GenerateCommandException(e.Message);
+            throw new GenerateCommandException(gce.Message);
         }
     }
 }
