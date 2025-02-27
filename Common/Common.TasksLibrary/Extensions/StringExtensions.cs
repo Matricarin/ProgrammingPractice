@@ -11,7 +11,7 @@ public static class StringExtensions
             return string.Empty;
         }
         var index = source.IndexOf(separator, StringComparison.Ordinal);
-        return index == -1 ? source : source.Substring(Zero, index);
+        return index == -1 ? source : source.Substring(0, index);
     }
 
     public static string SubStringAfterFirstOne(this string source, string separator)
@@ -45,6 +45,6 @@ public static class StringExtensions
             return string.Empty;
         }
         var str = source.ToLower();
-        return char.ToUpper(str[Zero]) + str.Substring(1);
+        return char.ToUpper(str[0]) + str.Substring(1);
     }
 }

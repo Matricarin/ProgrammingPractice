@@ -78,11 +78,11 @@ public static class WordFrequencyAnalyzer
         foreach (var word in dictionary)
         {
             var frequency = Math.Round(word.Value / (double)dictionary.GetAmountOfWords(), 
-                IntegersConstants.Two);
+                FractionalDigits.Two);
 
             result.Add(new WordWithPercent(word.Key, 
                 frequency, 
-                frequency * IntegersConstants.OneHundred));
+                frequency * IntegersConstants.MaxPercent));
         }
 
         return result.OrderByDescending(w => w.Frequency);
