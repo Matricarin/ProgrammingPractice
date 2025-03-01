@@ -2,7 +2,7 @@
 
 namespace Common.TasksLibrary.Task1
 {
-    public class WordWithPercent
+    public class WordWithPercent : IComparable<WordWithPercent>
     {
         private string Word { get; }
         private double Frequency { get; }
@@ -15,6 +15,16 @@ namespace Common.TasksLibrary.Task1
             Percent = frequency * IntegersConstants.MaxPercent;
         }
 
+        public int CompareTo(WordWithPercent other)
+        {
+            if (other == null)
+            {
+                return 1;
+            }
+
+            return this.Frequency.CompareTo(other.Frequency);
+        }
+
         public override bool Equals(object obj)
         {
             var other = obj as WordWithPercent;
@@ -24,8 +34,8 @@ namespace Common.TasksLibrary.Task1
                 return false;
             }
 
-            return Math.Abs(this.Frequency - other.Frequency) < Constants.DoublesConstants.Tolerance
-                   && Math.Abs(this.Percent - other.Percent) < Constants.DoublesConstants.Tolerance
+            return Math.Abs(this.Frequency - other.Frequency) < DoublesConstants.Tolerance
+                   && Math.Abs(this.Percent - other.Percent) < DoublesConstants.Tolerance
                    && Word.Equals(other.Word);
         }
         
