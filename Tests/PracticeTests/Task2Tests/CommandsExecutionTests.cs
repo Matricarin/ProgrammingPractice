@@ -7,7 +7,7 @@ namespace PracticeTests.Task2Tests;
 
 [TestFixture]
 [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-public class CommandsExecutionTests
+public sealed class CommandsExecutionTests
 {
     private MockContainer _container;
     private CalculatorExecutionContext _context;

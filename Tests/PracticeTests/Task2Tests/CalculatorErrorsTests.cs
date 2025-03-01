@@ -3,8 +3,8 @@ using Common.TasksLibrary.Task2.Output;
 
 namespace PracticeTests.Task2Tests;
 
-[TestFixture]
-public class CalculatorErrorsTests
+[TestFixture, FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+public sealed class CalculatorErrorsTests
 {
     [Test]
     public void Test_ExecutingCommandWithEmptyStackLogsProcessError()

@@ -2,7 +2,7 @@
 
 namespace PracticeTests.Task2Tests;
 
-public class MockContainer : BaseContainer
+public sealed class MockContainer : BaseContainer
 {
     public MockContainer()
     {

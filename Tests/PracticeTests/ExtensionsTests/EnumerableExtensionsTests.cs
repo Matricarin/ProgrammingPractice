@@ -5,7 +5,7 @@ using Common.TasksLibrary.Task1;
 namespace PracticeTests.ExtensionsTests;
 
 [TestFixture, FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-public class EnumerableExtensionsTests
+public sealed class EnumerableExtensionsTests
 {
     [Test]
     public void CreateAndWriteCsvFile()

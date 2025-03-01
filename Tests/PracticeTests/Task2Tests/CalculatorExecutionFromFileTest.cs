@@ -10,7 +10,7 @@ namespace PracticeTests.Task2Tests;
 
 [TestFixture]
 [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-public class CalculatorExecutionFromFileTest
+public sealed class CalculatorExecutionFromFileTest
 {
     [Test]
     public void Test_ExecuteCorrectCommands()

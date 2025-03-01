@@ -4,7 +4,7 @@ namespace PracticeTests.ExtensionsTests;
 
 [TestFixture]
 [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-public class JsonExtensionsTest
+public sealed class JsonExtensionsTest
 {
     [TestCaseSource(typeof(JsonTestData), nameof(JsonTestData.FromStringTestData))]
     public void FromJsonString(string jsonText, UserTest expected)

@@ -5,7 +5,7 @@ namespace PracticeTests.Task2Tests;
 
 [TestFixture]
 [FixtureLifeCycle(LifeCycle.SingleInstance)]
-public class CalculatorExecutionContextTests
+public sealed class CalculatorExecutionContextTests
 {
     private CalculatorExecutionContext _context;
     private MockContainer _container;

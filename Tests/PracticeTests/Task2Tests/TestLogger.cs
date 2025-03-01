@@ -2,7 +2,7 @@
 
 namespace PracticeTests.Task2Tests;
 
-public class TestLogger : ILogger
+public sealed class TestLogger : ILogger
 {
     public List<string> LoggedMessages { get; } = new List<string>();
 

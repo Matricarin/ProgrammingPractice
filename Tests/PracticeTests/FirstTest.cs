@@ -1,7 +1,7 @@
 namespace PracticeTests
 {
     [TestFixture]
-    internal class FirstTest
+    public sealed class FirstTest
     {
         [Test]
         public void CheckNUnit()

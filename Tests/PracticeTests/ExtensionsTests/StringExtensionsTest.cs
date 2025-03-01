@@ -2,8 +2,8 @@
 
 namespace PracticeTests.ExtensionsTests;
 
-[TestFixture]
-public class StringExtensionsTest
+[TestFixture, FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
+public sealed class StringExtensionsTest
 {
     [TestCase("SubStringBeforeTo", "Before", "SubString")]
     [TestCase("SubStringBeforeToBeforeTo", "Before", "SubString")]
