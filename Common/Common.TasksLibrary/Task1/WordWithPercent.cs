@@ -1,12 +1,14 @@
-﻿namespace Common.TasksLibrary.Task1
+﻿using Common.TasksLibrary.Constants;
+
+namespace Common.TasksLibrary.Task1
 {
     public sealed class WordWithPercent
     {
-        public WordWithPercent(string word, double frequency, double percent)
+        public WordWithPercent(string word, double frequency)
         {
             Word = word;
             Frequency = frequency;
-            Percent = percent;
+            Percent = frequency * IntegersConstants.MaxPercent;
         }
 
         public string Word { get; }
