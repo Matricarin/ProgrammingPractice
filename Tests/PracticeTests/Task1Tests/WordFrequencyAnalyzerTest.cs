@@ -1,13 +1,14 @@
 ﻿using Common.TasksLibrary.Task1;
 
 namespace PracticeTests.Task1Tests;
-[TestFixture]
+[TestFixture, FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
 public class WordFrequencyAnalyzerTest
 {
     [TestCaseSource(typeof(WordFrequencyTestData), nameof(WordFrequencyTestData.TestData))]
     public void GetAnalyzeSourceTextResults(string text, IEnumerable<WordWithPercent> expected)
     {
-        var result = WordFrequencyAnalyzer.GetAnalyzeSourceTextResults(text).ToList();
+        var analyzer = new WordFrequencyAnalyzer(text);
+        var result = analyzer.GetWordsFrequency();
         var expectedList = expected.ToList();
         CollectionAssert.AreEqual(result, expectedList);
     }
@@ -17,7 +18,8 @@ public class WordFrequencyAnalyzerTest
     {
         try
         {
-            var result = WordFrequencyAnalyzer.GetAnalyzeSourceTextResults(text);
+            var analyzer = new WordFrequencyAnalyzer(text);
+            analyzer.GetWordsFrequency();
         }
         catch (Exception e)
         {
@@ -32,11 +34,11 @@ public class WordFrequencyTestData
     {
         new object[]{"Hello, file, file, file", new List<WordWithPercent>()
         {
-            new WordWithPercent("file", 0.75, 75),
-            new WordWithPercent("Hello", 0.25, 25)
+            new WordWithPercent("file", 0.75),
+            new WordWithPercent("Hello", 0.25)
         }}
     };
-
+    
     public static object[] ExceptionTestData = new[]
     {
         new object[]{string.Empty, new Exception("WordFrequencyAnalyzer received an empty string or null.")}
