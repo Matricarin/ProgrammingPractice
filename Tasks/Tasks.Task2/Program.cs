@@ -1,4 +1,5 @@
 ﻿using Common.TasksLibrary;
+using Common.TasksLibrary.Extensions;
 using Common.TasksLibrary.Task2;
 using Common.TasksLibrary.Task2.Output;
 using Microsoft.Extensions.Logging;
@@ -54,8 +55,10 @@ internal static class Program
         while (true)
         {
             var command = Console.ReadLine();
-            
-            calculator.Execute(command);
+            if (!command.IsNull())
+            {
+                calculator.Execute(command);
+            }
         }
     }
 }

@@ -9,8 +9,6 @@ namespace PracticeTests.Task2Tests;
 [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
 public sealed class CommandsExecutionTests
 {
-    private MockContainer _container;
-    private CalculatorExecutionContext _context;
     private const double FirstNumber = 10.1;
     private const double SecondNumber = 20.2;
     private const double AdditionResult = 30.3;
@@ -20,75 +18,75 @@ public sealed class CommandsExecutionTests
     private const double SqrtResult = 3.17804971641414;
 
     [Test]
-    public void Test_AddCommandExecution()
+    public void AddCommandExecution()
     {
-        _container = new MockContainer();
-        _context = new CalculatorExecutionContext(new ConsoleOutput(), _container);
-        _context.Push(FirstNumber);
-        _context.Push(SecondNumber);
+        var container = new MockContainer();
+        var context = new CalculatorExecutionContext(new ConsoleOutput(), container);
+        context.Push(FirstNumber);
+        context.Push(SecondNumber);
 
         var command = new AddCommand(string.Empty);
-        command.Process(_context);
-        var result = _context.Pop();
+        command.Process(context);
+        var result = context.Pop();
 
         Assert.That(Math.Abs(result - AdditionResult), Is.LessThan(DoublesConstants.Tolerance));
     }
 
     [Test]
-    public void Test_SubtractCommandExecution()
+    public void SubtractCommandExecution()
     {
-        _container = new MockContainer();
-        _context = new CalculatorExecutionContext(new ConsoleOutput(), _container);
-        _context.Push(FirstNumber);
-        _context.Push(SecondNumber);
+        var container = new MockContainer();
+        var context = new CalculatorExecutionContext(new ConsoleOutput(), container);
+        context.Push(FirstNumber);
+        context.Push(SecondNumber);
 
         var command = new SubtractCommand(string.Empty);
-        command.Process(_context);
-        var result = _context.Pop();
+        command.Process(context);
+        var result = context.Pop();
 
         Assert.That(Math.Abs(result - SubtractionResult), Is.LessThan(DoublesConstants.Tolerance));
     }
 
     [Test]
-    public void Test_MultiplyCommandExecution()
+    public void MultiplyCommandExecution()
     {
-        _container = new MockContainer();
-        _context = new CalculatorExecutionContext(new ConsoleOutput(), _container);
-        _context.Push(FirstNumber);
-        _context.Push(SecondNumber);
+        var container = new MockContainer();
+        var context = new CalculatorExecutionContext(new ConsoleOutput(), container);
+        context.Push(FirstNumber);
+        context.Push(SecondNumber);
 
         var command = new MultiplyCommand(string.Empty);
-        command.Process(_context);
-        var result = _context.Pop();
+        command.Process(context);
+        var result = context.Pop();
 
         Assert.That(Math.Abs(result - MultiplicationResult), Is.LessThan(DoublesConstants.Tolerance));
     }
-    
+
     [Test]
-    public void Test_DivideCommandExecution()
+    public void DivideCommandExecution()
     {
-        _container = new MockContainer();
-        _context = new CalculatorExecutionContext(new ConsoleOutput(), _container);
-        _context.Push(FirstNumber);
-        _context.Push(SecondNumber);
+        var container = new MockContainer();
+        var context = new CalculatorExecutionContext(new ConsoleOutput(), container);
+        context.Push(FirstNumber);
+        context.Push(SecondNumber);
 
         var command = new DivideCommand(string.Empty);
-        command.Process(_context);
-        var result = _context.Pop();
+        command.Process(context);
+        var result = context.Pop();
 
         Assert.That(Math.Abs(result - DivisionResult), Is.LessThan(DoublesConstants.Tolerance));
     }
-    
+
     [Test]
-    public void Test_SqrtCommandExecution()
+    public void SqrtCommandExecution()
     {
-        _container = new MockContainer();
-        _context = new CalculatorExecutionContext(new ConsoleOutput(), _container);
-        _context.Push(FirstNumber);
+        var container = new MockContainer();
+        var context = new CalculatorExecutionContext(new ConsoleOutput(), container);
+        context.Push(FirstNumber);
 
         var command = new SqrtCommand(string.Empty);
-        command.Process(_context);
-        var result = _context.Pop();
+        command.Process(context);
+        var result = context.Pop();
 
         Assert.That(Math.Abs(result - SqrtResult), Is.LessThan(DoublesConstants.Tolerance));
     }

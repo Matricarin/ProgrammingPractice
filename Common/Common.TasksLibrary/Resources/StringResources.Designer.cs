@@ -60,6 +60,15 @@ namespace Common.TasksLibrary {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Execution context was not created.
+        /// </summary>
+        internal static string Exception_CantCreateExecutionContext {
+            get {
+                return ResourceManager.GetString("Exception_CantCreateExecutionContext", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The command push on stack only one value.
         /// </summary>
         internal static string Exception_CommandPushOnStackOnlyOne {

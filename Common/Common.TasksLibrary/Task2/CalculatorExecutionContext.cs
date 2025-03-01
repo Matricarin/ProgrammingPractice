@@ -10,8 +10,10 @@ public sealed class CalculatorExecutionContext
 
     public CalculatorExecutionContext(IOutput output, BaseContainer container)
     {
-        Container = container;
-        OutputPort = output;
+        Container = container ?? throw new ExecutionContextException
+            (StringResources.Exception_CantCreateExecutionContext + "| Cant define container");
+        OutputPort = output ?? throw new ExecutionContextException
+            (StringResources.Exception_CantCreateExecutionContext + "| Cant define output port");
     }
 
     public double Peek()

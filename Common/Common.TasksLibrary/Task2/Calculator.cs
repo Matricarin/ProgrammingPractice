@@ -1,4 +1,5 @@
-﻿using Common.TasksLibrary.Task2.Exceptions;
+﻿using System.Diagnostics;
+using Common.TasksLibrary.Task2.Exceptions;
 using Microsoft.Extensions.Logging;
 
 namespace Common.TasksLibrary.Task2;
@@ -32,7 +33,11 @@ public sealed class Calculator
         try
         {
             var executingCommand = _factory.GenerateCommand(command);
-            executingCommand.Process(_executionContext);
+            
+            if (executingCommand != null)
+            {
+                executingCommand.Process(_executionContext);
+            }
         }
         catch (GenerateCommandException gce)
         {

@@ -25,7 +25,7 @@ public sealed class FileHandlerTests
       var expected = new Exception("Please provide a file.");
       try
       {
-         var handler = new FileHandler(null);
+         var handler = new FileHandler(null!);
       }
       catch (Exception e)
       {

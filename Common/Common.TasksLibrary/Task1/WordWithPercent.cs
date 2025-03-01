@@ -1,53 +1,58 @@
-﻿using Common.TasksLibrary.Constants;
+﻿using System.Diagnostics;
+using Common.TasksLibrary.Constants;
+using Common.TasksLibrary.Extensions;
 
-namespace Common.TasksLibrary.Task1
+namespace Common.TasksLibrary.Task1;
+
+public sealed class WordWithPercent : IComparable<WordWithPercent>
 {
-    public sealed class WordWithPercent : IComparable<WordWithPercent>
+    private string Word { get; }
+    private double Frequency { get; }
+    private double Percent { get; }
+
+    public WordWithPercent(string word, double frequency)
     {
-        private string Word { get; }
-        private double Frequency { get; }
-        private double Percent { get; }
+        Debug.Assert(string.IsNullOrEmpty(word), $"Parameter word {nameof(WordWithPercent)} is null or empty");
+        Debug.Assert(Math.Abs(0 - frequency) < DoublesConstants.Tolerance,
+            "Parameter frequency cant be less than zero");
 
-        public WordWithPercent(string word, double frequency)
+        Word = word;
+        Frequency = frequency;
+        Percent = frequency * IntegersConstants.MaxPercent;
+    }
+
+    public int CompareTo(WordWithPercent? other)
+    {
+        if (other.IsNull())
         {
-            Word = word;
-            Frequency = frequency;
-            Percent = frequency * IntegersConstants.MaxPercent;
+            return 1;
         }
 
-        public int CompareTo(WordWithPercent other)
-        {
-            if (other == null)
-            {
-                return 1;
-            }
+        return Frequency.CompareTo(other.Frequency);
+    }
 
-            return this.Frequency.CompareTo(other.Frequency);
+    public override bool Equals(object? obj)
+    {
+        var other = obj as WordWithPercent;
+
+        if (other.IsNull())
+        {
+            return false;
         }
 
-        public override bool Equals(object obj)
-        {
-            var other = obj as WordWithPercent;
-            
-            if(other == null)
-            {
-                return false;
-            }
+        return Math.Abs(Frequency - other.Frequency) < DoublesConstants.Tolerance
+               && Math.Abs(Percent - other.Percent) < DoublesConstants.Tolerance
+               && Word.Equals(other.Word);
+    }
 
-            return Math.Abs(this.Frequency - other.Frequency) < DoublesConstants.Tolerance
-                   && Math.Abs(this.Percent - other.Percent) < DoublesConstants.Tolerance
-                   && Word.Equals(other.Word);
-        }
-        
 
-        public override int GetHashCode()
-        {
-            return HashCode.Combine(Word, Frequency, Percent);
-        }
+    public override int GetHashCode()
+    {
+        return HashCode.Combine(Word, Frequency, Percent);
+    }
 
-        public override string ToString()
-        {
-            return FormattableString.Invariant($"{this.Word}, {this.Frequency}, {this.Percent}");
-        }
+    public override string ToString()
+    {
+        return FormattableString.Invariant($"{Word}, {Frequency}, {Percent}");
     }
 }

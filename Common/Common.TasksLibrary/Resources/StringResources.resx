@@ -42,4 +42,7 @@
     <data name="Exception_ExecutionWasInterrupted" xml:space="preserve">
         <value>Execution from file was interrupted</value>
     </data>
+    <data name="Exception_CantCreateExecutionContext" xml:space="preserve">
+        <value>Execution context was not created</value>
+    </data>
 </root>

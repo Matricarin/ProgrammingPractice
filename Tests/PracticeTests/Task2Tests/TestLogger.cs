@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Common.TasksLibrary.Extensions;
+using Microsoft.Extensions.Logging;
 
 namespace PracticeTests.Task2Tests;
 
@@ -8,12 +9,15 @@ public sealed class TestLogger : ILogger
 
     public IDisposable BeginScope<TState>(TState state) => NullScope.Instance;
 
-    public bool IsEnabled(LogLevel logLevel) => true;
-
-    public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception exception, Func<TState, Exception, string> formatter)
+    public void Log<TState>(LogLevel logLevel, EventId eventId, TState state, Exception? exception, Func<TState, Exception, string> formatter)
     {
-        LoggedMessages.Add(formatter(state, exception));
+        if(!exception.IsNull())
+        {
+            LoggedMessages.Add(formatter(state, exception));
+        }
     }
+
+    public bool IsEnabled(LogLevel logLevel) => true;
 
     private class NullScope : IDisposable
     {

@@ -1,4 +1,5 @@
-﻿using Common.TasksLibrary.Extensions;
+﻿using System.Diagnostics.CodeAnalysis;
+using Common.TasksLibrary.Extensions;
 
 namespace PracticeTests.ExtensionsTests;
 
@@ -46,16 +47,18 @@ public static class JsonTestData
 
 public sealed class UserTest
 {
-    public string Name { get; set; }
-    public int Age { get; set; }
+    public required string Name { get; init; }
+    public int Age { get; init; }
     
     public override bool Equals(object? obj)
     {
-        var other = (UserTest)obj;
-        if (other == null)
+        var other = obj as UserTest;
+        
+        if (other.IsNull())
         {
             return false;
         }
+        
         return this.Name == other.Name && this.Age == other.Age;
     }
 
