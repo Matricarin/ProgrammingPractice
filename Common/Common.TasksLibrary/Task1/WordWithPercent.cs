@@ -2,8 +2,12 @@
 
 namespace Common.TasksLibrary.Task1
 {
-    public sealed class WordWithPercent
+    public class WordWithPercent
     {
+        private string Word { get; }
+        private double Frequency { get; }
+        private double Percent { get; }
+
         public WordWithPercent(string word, double frequency)
         {
             Word = word;
@@ -11,30 +15,29 @@ namespace Common.TasksLibrary.Task1
             Percent = frequency * IntegersConstants.MaxPercent;
         }
 
-        public string Word { get; }
-        public double Frequency { get; }
-        public double Percent { get; }
+        public override bool Equals(object obj)
+        {
+            var other = obj as WordWithPercent;
+            
+            if(other == null)
+            {
+                return false;
+            }
+
+            return Math.Abs(this.Frequency - other.Frequency) < Constants.DoublesConstants.Tolerance
+                   && Math.Abs(this.Percent - other.Percent) < Constants.DoublesConstants.Tolerance
+                   && Word.Equals(other.Word);
+        }
+        
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Word, Frequency, Percent);
+        }
 
         public override string ToString()
         {
             return FormattableString.Invariant($"{this.Word}, {this.Frequency}, {this.Percent}");
-        }
-
-        public override bool Equals(object? obj)
-        {
-            if (obj == null)
-                return false;
-            var other = (WordWithPercent)obj;
-            return Math.Abs(this.Frequency - other.Frequency) < Constants.DoublesConstants.Tolerance
-                   && Math.Abs(this.Percent - other.Percent) < Constants.DoublesConstants.Tolerance
-                   && this.Word == other.Word;
-        }
-
-        public override int GetHashCode()
-        {
-            return this.Frequency.GetHashCode() 
-                   + this.Percent.GetHashCode() 
-                   + this.Word.GetHashCode();
         }
     }
 }
