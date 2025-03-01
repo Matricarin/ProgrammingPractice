@@ -1,11 +1,12 @@
-﻿using System.Text;
+﻿using System.Diagnostics.Contracts;
+using System.Text;
 using Common.TasksLibrary.Constants;
 
 namespace Common.TasksLibrary.Task1;
 
 public sealed class WordFrequencyAnalyzer
 {
-    private Dictionary<string, int> _dictionaryOfWordsWithQuantity;
+    private readonly Dictionary<string, int> _dictionaryOfWordsWithQuantity;
     
     public WordFrequencyAnalyzer(string text)
     {
@@ -60,6 +61,7 @@ public sealed class WordFrequencyAnalyzer
         }
     }
 
+    [Pure]
     public IEnumerable<WordWithPercent> GetWordsFrequency()
     {
         var result = new List<WordWithPercent>();

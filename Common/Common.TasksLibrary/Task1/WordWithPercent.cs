@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Diagnostics.Contracts;
 using Common.TasksLibrary.Constants;
 using Common.TasksLibrary.Extensions;
 
@@ -6,9 +7,9 @@ namespace Common.TasksLibrary.Task1;
 
 public sealed class WordWithPercent : IComparable<WordWithPercent>
 {
-    private string Word { get; }
-    private double Frequency { get; }
-    private double Percent { get; }
+    private readonly string _word;
+    private readonly double _frequency;
+    private readonly double _percent;
 
     public WordWithPercent(string word, double frequency)
     {
@@ -16,11 +17,12 @@ public sealed class WordWithPercent : IComparable<WordWithPercent>
         Debug.Assert(Math.Abs(0 - frequency) < DoublesConstants.Tolerance,
             "Parameter frequency cant be less than zero");
 
-        Word = word;
-        Frequency = frequency;
-        Percent = frequency * IntegersConstants.MaxPercent;
+        _word = word;
+        _frequency = frequency;
+        _percent = frequency * IntegersConstants.MaxPercent;
     }
-
+    
+    [Pure]
     public int CompareTo(WordWithPercent? other)
     {
         if (other.IsNull())
@@ -28,7 +30,7 @@ public sealed class WordWithPercent : IComparable<WordWithPercent>
             return 1;
         }
 
-        return Frequency.CompareTo(other.Frequency);
+        return _frequency.CompareTo(other._frequency);
     }
 
     public override bool Equals(object? obj)
@@ -40,19 +42,19 @@ public sealed class WordWithPercent : IComparable<WordWithPercent>
             return false;
         }
 
-        return Math.Abs(Frequency - other.Frequency) < DoublesConstants.Tolerance
-               && Math.Abs(Percent - other.Percent) < DoublesConstants.Tolerance
-               && Word.Equals(other.Word);
+        return Math.Abs(_frequency - other._frequency) < DoublesConstants.Tolerance
+               && Math.Abs(_percent - other._percent) < DoublesConstants.Tolerance
+               && _word.Equals(other._word);
     }
 
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(Word, Frequency, Percent);
+        return HashCode.Combine(_word, _frequency, _percent);
     }
 
     public override string ToString()
     {
-        return FormattableString.Invariant($"{Word}, {Frequency}, {Percent}");
+        return FormattableString.Invariant($"{_word}, {_frequency}, {_percent}");
     }
 }
