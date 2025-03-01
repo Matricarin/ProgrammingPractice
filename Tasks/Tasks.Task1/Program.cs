@@ -1,4 +1,5 @@
-﻿using Common.TasksLibrary.Task1;
+﻿using Common.TasksLibrary.Extensions;
+using Common.TasksLibrary.Task1;
 
 namespace Tasks.Task1
 {
@@ -7,17 +8,19 @@ namespace Tasks.Task1
         private static void Main(string[] args)
         {
             var fileInfo = new FileInfo(args.First());
-
+            
             try
             {
-                var text = FileHandler.OpenAndReadFile(fileInfo);
+                var handler = new FileHandler(fileInfo);
+
+                var text = handler.OpenAndReadFile();
                 
                 var analayzer = new WordFrequencyAnalyzer(text);
-
+            
                 var resultAnalysis = analayzer.GetWordsFrequency();
-
-                FileHandler.CreateAndWriteResultsInCsvFile(resultAnalysis);
-
+            
+                resultAnalysis.CreateAndWriteResultsInCsvFile();
+            
                 Console.WriteLine("Complete.");
             }
             catch (Exception e)
