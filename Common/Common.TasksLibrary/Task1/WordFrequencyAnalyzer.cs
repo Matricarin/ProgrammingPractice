@@ -65,16 +65,15 @@ public class WordFrequencyAnalyzer
         var result = new List<WordWithPercent>();
         
         var amountOfWords = _dictionaryOfWordsWithQuantity.Sum(w => w.Value);
+        
         foreach (var word in _dictionaryOfWordsWithQuantity)
         {
             var frequency = Math.Round(word.Value / (double)amountOfWords, 
                 FractionalDigits.Two);
 
-            result.Add(new WordWithPercent(word.Key, 
-                frequency, 
-                frequency * IntegersConstants.MaxPercent));
+            result.Add(new WordWithPercent(word.Key, frequency));
         }
 
-        return result.OrderByDescending(w => w.Frequency);
+        return result.OrderByDescending(w => w);
     }
 }
