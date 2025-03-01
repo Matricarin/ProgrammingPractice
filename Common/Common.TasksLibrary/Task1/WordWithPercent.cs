@@ -2,7 +2,7 @@
 
 namespace Common.TasksLibrary.Task1
 {
-    public class WordWithPercent : IComparable<WordWithPercent>
+    public sealed class WordWithPercent : IComparable<WordWithPercent>
     {
         private string Word { get; }
         private double Frequency { get; }

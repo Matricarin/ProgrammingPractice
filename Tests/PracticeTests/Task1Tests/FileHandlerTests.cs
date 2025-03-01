@@ -2,7 +2,7 @@
 
 namespace PracticeTests.Task1Tests;
 [TestFixture, FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-public class FileHandlerTests
+public sealed class FileHandlerTests
 {
    [Test]
    public void OpenAndReadFile()

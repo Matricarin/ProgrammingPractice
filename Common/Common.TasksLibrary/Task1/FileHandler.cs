@@ -1,6 +1,6 @@
 ﻿namespace Common.TasksLibrary.Task1
 {
-    public class FileHandler
+    public sealed class FileHandler
     {
         private FileInfo _fileInfo;
         public FileHandler(FileInfo fileInfo)

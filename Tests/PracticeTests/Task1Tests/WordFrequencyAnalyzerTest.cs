@@ -2,7 +2,7 @@
 
 namespace PracticeTests.Task1Tests;
 [TestFixture, FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-public class WordFrequencyAnalyzerTest
+public sealed class WordFrequencyAnalyzerTest
 {
     [TestCaseSource(typeof(WordFrequencyTestData), nameof(WordFrequencyTestData.TestData))]
     public void GetAnalyzeSourceTextResults(string text, IEnumerable<WordWithPercent> expected)

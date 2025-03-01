@@ -3,7 +3,7 @@ using Common.TasksLibrary.Constants;
 
 namespace Common.TasksLibrary.Task1;
 
-public class WordFrequencyAnalyzer
+public sealed class WordFrequencyAnalyzer
 {
     private Dictionary<string, int> _dictionaryOfWordsWithQuantity;
     

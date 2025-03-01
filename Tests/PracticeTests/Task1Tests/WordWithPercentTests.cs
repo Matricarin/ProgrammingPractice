@@ -3,7 +3,7 @@
 namespace PracticeTests.Task1Tests;
 
 [TestFixture, FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-public class WordWithPercentTests
+public sealed class WordWithPercentTests
 {
     [Test]
     public void EqualsShouldReturnTrue()
