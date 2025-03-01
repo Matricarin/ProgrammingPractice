@@ -13,8 +13,9 @@ internal static class Program
     {
         CreateConsoleLogger();
 
-        var calculator = CalculatorBuilder.Create().LogBy(_logger).OutBy(CalculatorOutputOptions.Console)
-            .StoreBy(new CalculatorContainer()).Build();
+        var calculator = new Calculator(_logger, 
+            new CommandsFactory(), 
+            new CalculatorExecutionContext(new ConsoleOutput(), new CalculatorContainer()));
 
         try
         {

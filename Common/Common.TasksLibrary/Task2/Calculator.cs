@@ -5,9 +5,13 @@ namespace Common.TasksLibrary.Task2;
 
 public sealed class Calculator
 {
-    internal ILogger calcLogger;
-    internal CommandsFactory factory;
-    internal CalculatorExecutionContext executionContext;
+    private ILogger calcLogger;
+    private CommandsFactory factory;
+    private CalculatorExecutionContext executionContext;
+    public Calculator(ILogger logger, CommandsFactory factory, CalculatorExecutionContext context)
+    {
+        calcLogger = logger;
+    }
     
     public void ExecuteFromFile(FileInfo info)
     {

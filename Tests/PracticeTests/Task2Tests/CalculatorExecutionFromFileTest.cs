@@ -23,8 +23,8 @@ public class CalculatorExecutionFromFileTest
         using var factory = LoggerFactory.Create(f => f.AddConsole());
         var logger = factory.CreateLogger(nameof(CalculatorExecutionFromFileTest));
         var container = new MockContainer();
-        var calculator = CalculatorBuilder.Create().LogBy(logger).OutBy(CalculatorOutputOptions.Console)
-            .StoreBy(container).Build();
+        var calculator = new Calculator(logger, new CommandsFactory(), 
+            new CalculatorExecutionContext(new ConsoleOutput(), container));
         var commandListPath = Path.Combine(Environment.CurrentDirectory + Resources.Task2_TestingDataPath_Example1);
         calculator.ExecuteFromFile(new FileInfo(commandListPath));
         var result = container.Stack.Peek();

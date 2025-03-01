@@ -11,11 +11,8 @@ public class CalculatorErrorsTests
     {
         var logger = new TestLogger();
         var container = new CalculatorContainer();
-        var calculator = CalculatorBuilder.Create()
-            .LogBy(logger)
-            .OutBy(CalculatorOutputOptions.Console)
-            .StoreBy(container)
-            .Build();
+        var calculator = new Calculator(logger, new CommandsFactory(), 
+            new CalculatorExecutionContext(new ConsoleOutput(), container));
 
         calculator.Execute("Add");
 
