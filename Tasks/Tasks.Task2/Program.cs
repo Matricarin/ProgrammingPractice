@@ -7,19 +7,21 @@ namespace Tasks.Task2;
 
 internal static class Program
 {
-    private static ILogger _logger;
-
     private static void Main(string[] args)
     {
-        CreateConsoleLogger();
+        using ILoggerFactory factory = LoggerFactory.Create(f => f.AddConsole());
+        
+        var logger = factory.CreateLogger(nameof(Program));
+        
+        logger.LogInformation(DateTime.Now.ToShortDateString());
 
-        var calculator = new Calculator(_logger, 
+        var calculator = new Calculator(logger, 
             new CommandsFactory(), 
             new CalculatorExecutionContext(new ConsoleOutput(), new CalculatorContainer()));
 
         try
         {
-            if (!IsProgramParametersEmpty(args))
+            if (!IsProgramParametersEmpty(args, logger))
             {
                 var fileInfo = new FileInfo(args.First());
                 calculator.ExecuteFromFile(fileInfo);
@@ -27,7 +29,7 @@ internal static class Program
         }
         catch (Exception e)
         {
-            _logger.LogError(e, StringResources.Exception_ExecutionWasInterrupted);
+            logger.LogError(e, StringResources.Exception_ExecutionWasInterrupted);
         }
         finally
         {
@@ -35,19 +37,12 @@ internal static class Program
         }
         
     }
-
-    private static void CreateConsoleLogger()
-    {
-        using ILoggerFactory factory = LoggerFactory.Create(f => f.AddConsole());
-        _logger = factory.CreateLogger(nameof(Program));
-        _logger.LogInformation(DateTime.Now.ToShortDateString());
-    }
     
-    private static bool IsProgramParametersEmpty(string[] args)
+    private static bool IsProgramParametersEmpty(string[] args, ILogger logger)
     {
         if (args.Length == 0)
         {
-            _logger.LogWarning(StringResources.Warning_FilePathWasNotSpecified);
+            logger.LogWarning(StringResources.Warning_FilePathWasNotSpecified);
             return true;
         }
     
