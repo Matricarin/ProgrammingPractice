@@ -5,12 +5,14 @@ namespace Common.TasksLibrary.Task2;
 
 public sealed class Calculator
 {
-    private ILogger calcLogger;
-    private CommandsFactory factory;
-    private CalculatorExecutionContext executionContext;
+    private ILogger _calcLogger;
+    private CommandsFactory _factory;
+    private CalculatorExecutionContext _executionContext;
     public Calculator(ILogger logger, CommandsFactory factory, CalculatorExecutionContext context)
     {
-        calcLogger = logger;
+        _calcLogger = logger;
+        _factory = factory;
+        _executionContext = context;
     }
     
     public void ExecuteFromFile(FileInfo info)
@@ -29,20 +31,20 @@ public sealed class Calculator
     {
         try
         {
-            var executingCommand = factory.GenerateCommand(command);
-            executingCommand.Process(executionContext);
+            var executingCommand = _factory.GenerateCommand(command);
+            executingCommand.Process(_executionContext);
         }
         catch (GenerateCommandException gce)
         {
-            calcLogger.LogError(gce.Message);
+            _calcLogger.LogError(gce.Message);
         }
         catch (ProcessCommandException pce)
         {
-            calcLogger.LogError(pce.Message);
+            _calcLogger.LogError(pce.Message);
         }
         catch (ExecutionContextException ece)
         {
-            calcLogger.LogError(ece.Message);
+            _calcLogger.LogError(ece.Message);
         }
     }
 }
