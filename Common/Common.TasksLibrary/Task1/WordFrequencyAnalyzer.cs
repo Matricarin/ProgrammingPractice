@@ -3,42 +3,20 @@ using Common.TasksLibrary.Constants;
 
 namespace Common.TasksLibrary.Task1;
 
-public static class WordFrequencyAnalyzer
+public class WordFrequencyAnalyzer
 {
-    public static IEnumerable<WordWithPercent> GetAnalyzeSourceTextResults(string text)
+    private Dictionary<string, int> _dictionaryOfWordsWithQuantity;
+    
+    public WordFrequencyAnalyzer(string text)
     {
         if (string.IsNullOrEmpty(text))
         {
             throw new Exception("WordFrequencyAnalyzer received an empty string or null.");
         }
-
-        var dictionaryOfWordsWithQuantity = GetWordsIntoAnalyzerFromText(text);
-
-        return GetWordsFrequency(dictionaryOfWordsWithQuantity);
-    }
-
-    private static int GetAmountOfWords(this IDictionary<string,int> dictionary)
-    {
-        return dictionary.Sum(w => w.Value);
-    }
-
-    private static void AddWord(this IDictionary<string, int> dictionary, string word)
-    {
-        if (!dictionary.ContainsKey(word))
-        {
-            dictionary.Add(word, 1);
-        }
-        else
-        {
-            dictionary[word]++;
-        }
-    }
-
-    private static IDictionary<string, int> GetWordsIntoAnalyzerFromText(string text)
-    {
+        
         var stringBuilder = new StringBuilder();
 
-        var dictionaryOfWordsWithQuantity = new Dictionary<string, int>();
+        _dictionaryOfWordsWithQuantity = new Dictionary<string, int>();
 
         foreach (var ch in text)
         {
@@ -57,7 +35,7 @@ public static class WordFrequencyAnalyzer
                     continue;
                 }
 
-                dictionaryOfWordsWithQuantity.AddWord(stringBuilder.ToString());
+                AddWord(stringBuilder.ToString());
 
                 stringBuilder.Clear();
             }
@@ -65,19 +43,31 @@ public static class WordFrequencyAnalyzer
 
         if (stringBuilder.ToString() != string.Empty)
         {
-            dictionaryOfWordsWithQuantity.AddWord(stringBuilder.ToString());
+            AddWord(stringBuilder.ToString());
         }
 
-        return dictionaryOfWordsWithQuantity;
     }
 
-    private static IEnumerable<WordWithPercent> GetWordsFrequency(IDictionary<string, int> dictionary)
+    private void AddWord(string word)
+    {
+        if (!_dictionaryOfWordsWithQuantity.ContainsKey(word))
+        {
+            _dictionaryOfWordsWithQuantity.Add(word, 1);
+        }
+        else
+        {
+            _dictionaryOfWordsWithQuantity[word]++;
+        }
+    }
+
+    public IEnumerable<WordWithPercent> GetWordsFrequency()
     {
         var result = new List<WordWithPercent>();
-
-        foreach (var word in dictionary)
+        
+        var amountOfWords = _dictionaryOfWordsWithQuantity.Sum(w => w.Value);
+        foreach (var word in _dictionaryOfWordsWithQuantity)
         {
-            var frequency = Math.Round(word.Value / (double)dictionary.GetAmountOfWords(), 
+            var frequency = Math.Round(word.Value / (double)amountOfWords, 
                 FractionalDigits.Two);
 
             result.Add(new WordWithPercent(word.Key, 
