@@ -13,8 +13,8 @@ public sealed class WordWithPercent : IComparable<WordWithPercent>
 
     public WordWithPercent(string word, double frequency)
     {
-        Debug.Assert(string.IsNullOrEmpty(word), $"Parameter word {nameof(WordWithPercent)} is null or empty");
-        Debug.Assert(Math.Abs(0 - frequency) < DoublesConstants.Tolerance,
+        Debug.Assert(!string.IsNullOrEmpty(word), $"Parameter word {nameof(WordWithPercent)} is null or empty");
+        Debug.Assert(!(Math.Abs(0 - frequency) < DoublesConstants.Tolerance),
             "Parameter frequency cant be less than zero");
 
         _word = word;
