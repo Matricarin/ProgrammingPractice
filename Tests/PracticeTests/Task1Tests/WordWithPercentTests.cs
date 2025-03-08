@@ -33,4 +33,15 @@ public sealed class WordWithPercentTests
         
         Assert.That(firstWord, Is.Not.EqualTo(secondWord));
     }
+
+    [Test]
+    public void EqualsShouldReturnTrue_DoubleCheck()
+    {
+        const double firstFrequency = 0.03;
+        const double secondFrequency = 0.03 * 0.01 / 0.01;
+        var firstWord = new WordWithPercent("first", firstFrequency);
+        var secondWord = new WordWithPercent("second", secondFrequency);
+        
+        Assert.That(firstWord, Is.EqualTo(secondWord));
+    }
 }
