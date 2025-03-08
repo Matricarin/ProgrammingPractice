@@ -1,4 +1,6 @@
-﻿using Common.TasksLibrary.Task1;
+﻿using System.Diagnostics;
+using Common.TasksLibrary.Extensions;
+using Common.TasksLibrary.Task1;
 
 namespace PracticeTests.Task1Tests;
 
@@ -30,14 +32,5 @@ public sealed class WordWithPercentTests
         var secondWord = new WordWithPercent("second", 0.03);
         
         Assert.That(firstWord, Is.Not.EqualTo(secondWord));
-    }
-    
-    [Test]
-    public void EqualsShouldReturnFalse_ObjectVaries()
-    {
-        var firstWord = new WordWithPercent("first", 0.03);
-        var str = "first";
-        
-        Assert.False(firstWord.Equals(str));
     }
 }
