@@ -2,7 +2,7 @@
 
 namespace Common.TasksLibrary.Task2.Commands;
 
-public class CommentCommand : CalculatorCommand
+public class CommentCommand : ICalculatorCommand
 {
     private string? _comment;
     

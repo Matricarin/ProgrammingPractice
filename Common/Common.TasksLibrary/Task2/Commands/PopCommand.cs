@@ -3,7 +3,7 @@ using Common.TasksLibrary.Task2.Exceptions;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
-public class PopCommand : CalculatorCommand
+public class PopCommand : ICalculatorCommand
 {
     public PopCommand(string parameters)
     {

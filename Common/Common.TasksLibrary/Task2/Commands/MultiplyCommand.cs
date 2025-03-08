@@ -3,7 +3,7 @@ using Common.TasksLibrary.Task2.Exceptions;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
-public class MultiplyCommand : CalculatorCommand
+public class MultiplyCommand : ICalculatorCommand
 {
     public MultiplyCommand(string parameters)
     {

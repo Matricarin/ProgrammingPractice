@@ -3,7 +3,7 @@ using Common.TasksLibrary.Task2.Exceptions;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
-public class ExitCommand : CalculatorCommand
+public class ExitCommand : ICalculatorCommand
 {
     public ExitCommand(string parameters)
     {

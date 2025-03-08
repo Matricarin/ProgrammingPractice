@@ -9,7 +9,7 @@ namespace Common.TasksLibrary.Task2;
 
 public sealed class CommandsFactory
 {
-    public CalculatorCommand? GenerateCommand(string executingCommand)
+    public ICalculatorCommand? GenerateCommand(string executingCommand)
     {
         try
         {
@@ -18,7 +18,7 @@ public sealed class CommandsFactory
             var type = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(t => t.Name.Contains(stringCommand));
             var instance = Activator.CreateInstance(type ?? throw new GenerateCommandException("Cant find a command"),
                 stringParameters);
-            var command = (CalculatorCommand)instance!;
+            var command = (ICalculatorCommand)instance!;
             return command;
         }
         catch (GenerateCommandException gce)

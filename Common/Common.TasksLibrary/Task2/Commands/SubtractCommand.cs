@@ -3,7 +3,7 @@ using Common.TasksLibrary.Task2.Exceptions;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
-public class SubtractCommand : CalculatorCommand
+public class SubtractCommand : ICalculatorCommand
 {
     public SubtractCommand(string parameters)
     {

@@ -4,7 +4,7 @@ using Common.TasksLibrary.Task2.Exceptions;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
-public sealed class DefineCommand : CalculatorCommand
+public sealed class DefineCommand : ICalculatorCommand
 {
     private readonly string _variableName;
     private readonly double _variableValue;

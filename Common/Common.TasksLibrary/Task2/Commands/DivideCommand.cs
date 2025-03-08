@@ -3,7 +3,7 @@ using Common.TasksLibrary.Task2.Exceptions;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
-public class DivideCommand : CalculatorCommand
+public class DivideCommand : ICalculatorCommand
 {
     public DivideCommand(string parameters)
     {

@@ -3,7 +3,7 @@ using Common.TasksLibrary.Task2.Exceptions;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
-public class SqrtCommand : CalculatorCommand
+public class SqrtCommand : ICalculatorCommand
 {
     public SqrtCommand(string parameters)
     {
