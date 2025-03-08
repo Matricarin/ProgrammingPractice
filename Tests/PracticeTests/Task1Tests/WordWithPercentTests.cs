@@ -1,6 +1,4 @@
-﻿using System.Diagnostics;
-using Common.TasksLibrary.Extensions;
-using Common.TasksLibrary.Task1;
+﻿using Common.TasksLibrary.Task1;
 
 namespace PracticeTests.Task1Tests;
 
@@ -40,8 +38,8 @@ public sealed class WordWithPercentTests
         const double firstFrequency = 0.03;
         const double secondFrequency = 0.03 * 0.01 / 0.01;
         var firstWord = new WordWithPercent("first", firstFrequency);
-        var secondWord = new WordWithPercent("second", secondFrequency);
+        var firstWordWithAlmostSameFrequency = new WordWithPercent("first", secondFrequency);
         
-        Assert.That(firstWord, Is.EqualTo(secondWord));
+        Assert.That(firstWord, Is.EqualTo(firstWordWithAlmostSameFrequency));
     }
 }
