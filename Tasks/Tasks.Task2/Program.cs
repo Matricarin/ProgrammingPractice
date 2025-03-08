@@ -52,12 +52,13 @@ internal static class Program
     
     private static void ExecuteCommandsFromConsoleInput(Calculator calculator)
     {
-        while (true)
+        var isExecuting = true;
+        while (isExecuting)
         {
             var command = Console.ReadLine();
             if (!command.IsNull())
             {
-                calculator.Execute(command);
+                isExecuting = command.Execute(command);
             }
         }
     }
