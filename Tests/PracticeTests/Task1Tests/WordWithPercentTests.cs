@@ -42,4 +42,15 @@ public sealed class WordWithPercentTests
         
         Assert.That(firstWord, Is.EqualTo(firstWordWithAlmostSameFrequency));
     }
+
+    [Test]
+    public void CheckHashCodesForWordsWithPercent()
+    {
+        var firstWord = new WordWithPercent("first", 0.03);
+        var almostFirstWord = new WordWithPercent("first", 0.03);
+        
+        var firstHash = firstWord.GetHashCode();
+        var almostFirstHash = almostFirstWord.GetHashCode();
+        Assert.That(firstHash, Is.EqualTo(almostFirstHash));
+    }
 }
