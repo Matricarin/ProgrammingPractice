@@ -1,4 +1,5 @@
-﻿using Common.TasksLibrary;
+﻿using System.Diagnostics.Contracts;
+using Common.TasksLibrary;
 using Common.TasksLibrary.Extensions;
 using Common.TasksLibrary.Task2;
 using Common.TasksLibrary.Task2.Output;
@@ -20,12 +21,14 @@ internal static class Program
             new CommandsFactory(), 
             new CalculatorExecutionContext(new ConsoleOutput(), new CalculatorContainer()));
 
+        var isContinueAfterCommandsListExecution = true;
+
         try
         {
             if (!IsProgramParametersEmpty(args, logger))
             {
                 var fileInfo = new FileInfo(args.First());
-                calculator.ExecuteFromFile(fileInfo);
+                isContinueAfterCommandsListExecution = calculator.ExecuteFromFile(fileInfo);
             }
         }
         catch (Exception e)
@@ -34,11 +37,15 @@ internal static class Program
         }
         finally
         {
-            ExecuteCommandsFromConsoleInput(calculator);
+            if (isContinueAfterCommandsListExecution)
+            {
+                ExecuteCommandsFromConsoleInput(calculator);
+            }
         }
         
     }
     
+    [Pure]
     private static bool IsProgramParametersEmpty(string[] args, ILogger logger)
     {
         if (args.Length == 0)
