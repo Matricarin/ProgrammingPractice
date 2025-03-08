@@ -50,7 +50,9 @@ public sealed class WordWithPercent : IComparable<WordWithPercent>
 
     public override int GetHashCode()
     {
-        return HashCode.Combine(_word, _frequency, _percent);
+        int frequencyHash = Math.Round(_frequency / DoublesConstants.Tolerance).GetHashCode();
+        int percentHash = Math.Round(_percent / DoublesConstants.Tolerance).GetHashCode();
+        return HashCode.Combine(_word, frequencyHash, percentHash);
     }
 
     public override string ToString()
