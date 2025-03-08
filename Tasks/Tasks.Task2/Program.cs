@@ -58,7 +58,7 @@ internal static class Program
             var command = Console.ReadLine();
             if (!command.IsNull())
             {
-                isExecuting = command.Execute(command);
+                isExecuting = calculator.Execute(command);
             }
         }
     }
