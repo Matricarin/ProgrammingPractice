@@ -13,7 +13,8 @@ public sealed class WordWithPercent : IComparable<WordWithPercent>
 
     public WordWithPercent(string word, double frequency)
     {
-        Debug.Assert(!string.IsNullOrEmpty(word), $"Parameter word {nameof(WordWithPercent)} is null or empty");
+        Debug.Assert(!string.IsNullOrEmpty(word), 
+            $"Parameter word {nameof(WordWithPercent)} is null or empty");
         Debug.Assert(!(Math.Abs(0 - frequency) < DoublesConstants.Tolerance),
             "Parameter frequency cant be less than zero");
 
@@ -50,8 +51,8 @@ public sealed class WordWithPercent : IComparable<WordWithPercent>
 
     public override int GetHashCode()
     {
-        int frequencyHash = Math.Round(_frequency / DoublesConstants.Tolerance).GetHashCode();
-        int percentHash = Math.Round(_percent / DoublesConstants.Tolerance).GetHashCode();
+        var frequencyHash = Math.Round(_frequency / DoublesConstants.Tolerance).GetHashCode();
+        var percentHash = Math.Round(_percent / DoublesConstants.Tolerance).GetHashCode();
         return HashCode.Combine(_word, frequencyHash, percentHash);
     }
 
