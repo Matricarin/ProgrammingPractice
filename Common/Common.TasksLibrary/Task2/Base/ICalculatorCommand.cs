@@ -2,5 +2,5 @@
 
 public interface ICalculatorCommand
 {
-    public void Process(CalculatorExecutionContext context);
+    public bool Process(CalculatorExecutionContext context);
 }

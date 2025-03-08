@@ -21,7 +21,7 @@ public class PushCommand : ICalculatorCommand
         }
         _variableName = parameters;
     }
-    public void Process(CalculatorExecutionContext context)
+    public bool Process(CalculatorExecutionContext context)
     {
         try
         {

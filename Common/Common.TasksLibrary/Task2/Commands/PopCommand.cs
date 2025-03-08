@@ -12,7 +12,7 @@ public class PopCommand : ICalculatorCommand
             throw new GenerateCommandException(StringResources.Exception_CommandShouldntHaveParameters);
         }
     }
-    public void Process(CalculatorExecutionContext context)
+    public bool Process(CalculatorExecutionContext context)
     {
         try
         {
