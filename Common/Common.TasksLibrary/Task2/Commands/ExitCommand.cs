@@ -13,8 +13,5 @@ public class ExitCommand : ICalculatorCommand
         }
     }
     
-    public bool Process(CalculatorExecutionContext context)
-    {
-        Environment.Exit(Environment.ExitCode);
-    }
+    public bool Process(CalculatorExecutionContext context) => false;
 }

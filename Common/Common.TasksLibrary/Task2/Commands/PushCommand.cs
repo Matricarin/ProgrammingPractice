@@ -31,5 +31,6 @@ public class PushCommand : ICalculatorCommand
         {
             throw new ProcessCommandException(e.Message);
         }
+        return true;
     }
 }

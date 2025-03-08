@@ -23,5 +23,6 @@ public class SqrtCommand : ICalculatorCommand
         {
             throw new ProcessCommandException(e.Message);
         }
+        return true;
     }
 }

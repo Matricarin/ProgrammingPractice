@@ -25,5 +25,7 @@ public class SubtractCommand : ICalculatorCommand
         {
             throw new ProcessCommandException(e.Message);
         }
+
+        return true;
     }
 }

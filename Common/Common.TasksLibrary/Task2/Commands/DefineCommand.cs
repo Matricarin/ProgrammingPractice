@@ -32,6 +32,7 @@ public sealed class DefineCommand : ICalculatorCommand
         {
             throw new ProcessCommandException(e.Message);
         }
+        return true;
     }
 
     public override bool Equals(object? obj)
@@ -40,8 +41,10 @@ public sealed class DefineCommand : ICalculatorCommand
         {
             return false;
         }
+        
         var other = (DefineCommand)obj;
-        return _variableName == other._variableName && _variableValue.Equals(other._variableValue);
+        
+        return _variableName == other._variableName && _variableValue.Equals(other._variableValue); //todo implement correct comparison
     }
 
     public override int GetHashCode()

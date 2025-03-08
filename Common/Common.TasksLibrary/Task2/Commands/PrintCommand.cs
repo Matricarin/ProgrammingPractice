@@ -32,5 +32,6 @@ public class PrintCommand : ICalculatorCommand
         {
             throw new Exception(e.Message);
         }
+        return true;
     }
 }

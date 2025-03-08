@@ -11,5 +11,5 @@ public class CommentCommand : ICalculatorCommand
         _comment = parameters;
     }
 
-    public bool Process(CalculatorExecutionContext context) { }
+    public bool Process(CalculatorExecutionContext context) => true;
 }

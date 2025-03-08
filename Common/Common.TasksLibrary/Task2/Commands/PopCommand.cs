@@ -22,5 +22,6 @@ public class PopCommand : ICalculatorCommand
         {
             throw new ProcessCommandException(e.Message);
         }
+        return true;
     }
 }

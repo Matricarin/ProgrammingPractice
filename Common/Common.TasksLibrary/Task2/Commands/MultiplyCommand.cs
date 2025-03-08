@@ -25,5 +25,6 @@ public class MultiplyCommand : ICalculatorCommand
         {
             throw new ProcessCommandException(e.Message);
         }
+        return true;
     }
 }

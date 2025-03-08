@@ -25,5 +25,6 @@ public class DivideCommand : ICalculatorCommand
         {
             throw new ProcessCommandException(e.Message);
         }
+        return true;
     }
 }
