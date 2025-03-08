@@ -16,4 +16,16 @@ public sealed class SimpleTests
     {
         Assert.Fail("Should be failed");
     }
+
+    [Test]
+    public void IsInconclusiveTest()
+    {
+        Assert.Inconclusive("Should be inconclusive");
+    }
+
+    [Test]
+    public void IsWarningTest()
+    {
+        Assert.Warn("Should be warning");
+    }
 }
