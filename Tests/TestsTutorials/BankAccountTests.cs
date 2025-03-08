@@ -6,16 +6,29 @@ namespace TestsTutorials;
 [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
 public sealed class BankAccountTests
 {
-    private BankAccount bankAccount = new BankAccount(new ConsoleLog())
-    {
-        Balance = 100
-    };
 
     [Test]
-    public void DepositIntergrationTest()
+    public void DepositIntegrationTest()
     {
+        var bankAccount = new BankAccount(new ConsoleLog())
+        {
+            Balance = 100
+        };
+        
         bankAccount.Deposit(100);
         
+        Assert.That(bankAccount.Balance, Is.EqualTo(200));
+    }
+
+    [Test]
+    public void DepositFakeIntegrationTest()
+    {
+        var log = new NullLog();
+        var bankAccount = new BankAccount(log)
+        {
+            Balance = 100
+        };
+        bankAccount.Deposit(100);
         Assert.That(bankAccount.Balance, Is.EqualTo(200));
     }
 }
