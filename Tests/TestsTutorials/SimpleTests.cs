@@ -2,7 +2,7 @@
 
 [TestFixture]
 [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-public class SimpleTests
+public sealed class SimpleTests
 {
     [Test]
     public void TwoPlusTwoEqualsFour()

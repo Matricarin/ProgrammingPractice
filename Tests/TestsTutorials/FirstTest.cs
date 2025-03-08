@@ -2,7 +2,7 @@
 
 [TestFixture]
 [FixtureLifeCycle(LifeCycle.InstancePerTestCase)]
-public class FirstTest
+public sealed class FirstTest
 {
     [Test]
     public void FirstTestReturnTrue()
