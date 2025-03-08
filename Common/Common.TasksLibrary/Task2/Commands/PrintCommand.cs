@@ -13,7 +13,7 @@ public class PrintCommand : ICalculatorCommand
         }
     }
 
-    public override void Process(CalculatorExecutionContext context)
+    public void Process(CalculatorExecutionContext context)
     {
         try
         {

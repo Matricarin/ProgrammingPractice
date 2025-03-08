@@ -13,7 +13,7 @@ public class ExitCommand : ICalculatorCommand
         }
     }
     
-    public override void Process(CalculatorExecutionContext context)
+    public void Process(CalculatorExecutionContext context)
     {
         Environment.Exit(Environment.ExitCode);
     }

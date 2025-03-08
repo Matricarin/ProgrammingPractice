@@ -22,7 +22,7 @@ public sealed class DefineCommand : ICalculatorCommand
             throw new GenerateCommandException(StringResources.Exception_DefineCantParseValue);
         }
     }
-    public override void Process(CalculatorExecutionContext context)
+    public void Process(CalculatorExecutionContext context)
     {
         try
         {

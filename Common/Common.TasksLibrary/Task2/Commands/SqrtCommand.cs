@@ -12,7 +12,7 @@ public class SqrtCommand : ICalculatorCommand
             throw new GenerateCommandException(StringResources.Exception_CommandShouldntHaveParameters);
         }
     }
-    public override void Process(CalculatorExecutionContext context)
+    public void Process(CalculatorExecutionContext context)
     {
         try
         {

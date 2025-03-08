@@ -21,7 +21,7 @@ public class PushCommand : ICalculatorCommand
         }
         _variableName = parameters;
     }
-    public override void Process(CalculatorExecutionContext context)
+    public void Process(CalculatorExecutionContext context)
     {
         try
         {

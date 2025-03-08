@@ -11,5 +11,5 @@ public class CommentCommand : ICalculatorCommand
         _comment = parameters;
     }
 
-    public override void Process(CalculatorExecutionContext context) { }
+    public void Process(CalculatorExecutionContext context) { }
 }
