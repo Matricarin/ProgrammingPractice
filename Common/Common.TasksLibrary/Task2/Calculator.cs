@@ -1,14 +1,13 @@
-﻿using System.Diagnostics;
-using Common.TasksLibrary.Task2.Exceptions;
+﻿using Common.TasksLibrary.Task2.Exceptions;
 using Microsoft.Extensions.Logging;
 
 namespace Common.TasksLibrary.Task2;
 
 public sealed class Calculator
 {
-    private ILogger _calcLogger;
-    private CommandsFactory _factory;
-    private CalculatorExecutionContext _executionContext;
+    private readonly ILogger _calcLogger;
+    private readonly CommandsFactory _factory;
+    private readonly CalculatorExecutionContext _executionContext;
     public Calculator(ILogger logger, CommandsFactory factory, CalculatorExecutionContext context)
     {
         _calcLogger = logger;
@@ -21,22 +20,25 @@ public sealed class Calculator
         var commands = File.ReadAllLines(info.FullName);
         Execute(commands);
     }
-    public void Execute(IEnumerable<string> commands)
+
+    private void Execute(IEnumerable<string> commands)
     {
         foreach (var command in commands)
         {
             Execute(command);
         }
     }
-    public void Execute(string command)
+    public bool Execute(string command)
     {
+        var isContinueExecution = true;
+        
         try
         {
             var executingCommand = _factory.GenerateCommand(command);
             
             if (executingCommand != null)
             {
-                executingCommand.Process(_executionContext);
+                isContinueExecution = executingCommand.Process(_executionContext);
             }
         }
         catch (GenerateCommandException gce)
@@ -51,5 +53,7 @@ public sealed class Calculator
         {
             _calcLogger.LogError(ece.Message);
         }
+        
+        return isContinueExecution;
     }
 }
