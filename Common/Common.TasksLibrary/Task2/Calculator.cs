@@ -15,18 +15,24 @@ public sealed class Calculator
         _executionContext = context;
     }
     
-    public void ExecuteFromFile(FileInfo info)
+    public bool ExecuteFromFile(FileInfo info)
     {
         var commands = File.ReadAllLines(info.FullName);
-        Execute(commands);
+        
+        foreach (var isExecuting in Execute(commands))
+        {
+            if (!isExecuting)
+            {
+                return false;
+            }
+        }
+        
+        return true;
     }
 
-    private void Execute(IEnumerable<string> commands)
+    private IEnumerable<bool> Execute(IEnumerable<string> commands)
     {
-        foreach (var command in commands)
-        {
-            Execute(command);
-        }
+        return commands.Select(command => Execute(command));
     }
     public bool Execute(string command)
     {
