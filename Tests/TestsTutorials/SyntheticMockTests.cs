@@ -20,4 +20,13 @@ public sealed class SyntheticMockTests
             Assert.IsFalse(foo.Object.IsCorrectString("crap"));
         });
     }
+
+    [Test]
+    public void CorrectIntTest()
+    {
+        var foo =  new Mock<IFoo>();
+        foo.Setup(f => f.IsCorrectInt(It.Is<int>(x => x  % 5 == 0))).Returns(true);
+        
+        Assert.IsTrue(foo.Object.IsCorrectInt(55));
+    }
 }
