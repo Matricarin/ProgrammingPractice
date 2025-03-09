@@ -1,4 +1,4 @@
-﻿namespace TestsTutorials.Models;
+﻿namespace TestsTutorials.Models.NUnitScenarios;
 
 /// <summary>
 /// Stub object for tests

@@ -1,4 +1,4 @@
-﻿namespace TestsTutorials.Models;
+﻿namespace TestsTutorials.Models.NUnitScenarios;
 
 public sealed class LogMock :ILog
 {

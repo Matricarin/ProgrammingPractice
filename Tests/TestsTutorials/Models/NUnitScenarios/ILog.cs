@@ -1,4 +1,4 @@
-﻿namespace TestsTutorials.Models;
+﻿namespace TestsTutorials.Models.NUnitScenarios;
 
 public interface ILog
 {

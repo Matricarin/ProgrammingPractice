@@ -1,4 +1,4 @@
-﻿namespace TestsTutorials.Models;
+﻿namespace TestsTutorials.Models.NUnitScenarios;
 
 /// <summary>
 /// Fake object for tests

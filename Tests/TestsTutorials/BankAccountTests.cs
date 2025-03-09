@@ -1,4 +1,4 @@
-﻿using TestsTutorials.Models;
+﻿using TestsTutorials.Models.NUnitScenarios;
 
 namespace TestsTutorials;
 
