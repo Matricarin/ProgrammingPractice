@@ -18,26 +18,12 @@ public sealed class CalculatorExecutionContext
 
     public double Peek()
     {
-        try
-        {
-            return Container.Stack.Peek();
-        }
-        catch 
-        {
-            throw new ExecutionContextException(StringResources.Exception_StackIsEmpty);
-        }
+        return Container.Stack.Peek();
     }
 
     public double Pop()
     {
-        try
-        {
-            return Container.Stack.Pop();
-        }
-        catch 
-        { 
-            throw new ExecutionContextException(StringResources.Exception_StackIsEmpty);
-        }
+        return Container.Stack.Pop();
     }
 
     public void Push(double number) => Container.Stack.Push(number);
