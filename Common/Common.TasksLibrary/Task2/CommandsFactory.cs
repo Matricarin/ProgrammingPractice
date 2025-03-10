@@ -16,20 +16,16 @@ public sealed class CommandsFactory
 
         var type = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(t => t.Name.Contains(stringCommand));
         
-        if (type.IsNull())
-        {
-            //todo when does CreateInstance been return null? 
-            throw new NullReferenceException();
-        }
-
+        //todo when does CreateInstance been return null? 
+        ArgumentNullException.ThrowIfNull(type);
+        
         var instance = Activator.CreateInstance(type, stringParameters);
         
+        ArgumentNullException.ThrowIfNull(instance);
+
         var command = instance as ICalculatorCommand;
         
-        if (command.IsNull())
-        {
-            throw new NullReferenceException();
-        }
+        ArgumentNullException.ThrowIfNull(command);
 
         return command;
     }
