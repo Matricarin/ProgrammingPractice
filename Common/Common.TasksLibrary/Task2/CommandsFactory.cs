@@ -2,27 +2,35 @@
 using Common.TasksLibrary.Constants;
 using Common.TasksLibrary.Extensions;
 using Common.TasksLibrary.Task2.Base;
-using Common.TasksLibrary.Task2.Exceptions;
 
 namespace Common.TasksLibrary.Task2;
 
 public sealed class CommandsFactory
 {
-    public ICalculatorCommand? GenerateCommand(string executingCommand)
+    public ICalculatorCommand GenerateCommand(string executingCommand)
     {
-        try
+        //todo remade command parsing
+
+        var stringCommand = executingCommand.SubStringBeforeFirstOne(StringConstants.WhiteSpace).ParseCommand();
+        var stringParameters = executingCommand.SubStringAfterFirstOne(StringConstants.WhiteSpace);
+
+        var type = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(t => t.Name.Contains(stringCommand));
+        
+        if (type.IsNull())
         {
-            var stringCommand = executingCommand.SubStringBeforeFirstOne(StringConstants.WhiteSpace).ParseCommand();
-            var stringParameters = executingCommand.SubStringAfterFirstOne(StringConstants.WhiteSpace);
-            var type = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(t => t.Name.Contains(stringCommand));
-            var instance = Activator.CreateInstance(type ?? throw new GenerateCommandException("Cant find a command"),
-                stringParameters);
-            var command = (ICalculatorCommand)instance!;
-            return command;
+            //todo when does CreateInstance been return null? 
+            throw new NullReferenceException();
         }
-        catch (GenerateCommandException gce)
+
+        var instance = Activator.CreateInstance(type, stringParameters);
+        
+        var command = instance as ICalculatorCommand;
+        
+        if (command.IsNull())
         {
-            throw new GenerateCommandException(gce.Message);
+            throw new NullReferenceException();
         }
+
+        return command;
     }
 }
