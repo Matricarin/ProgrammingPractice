@@ -1,41 +1,67 @@
-﻿using Common.TasksLibrary.Task2.Base;
+﻿using Common.TasksLibrary.Extensions;
+using Common.TasksLibrary.Task2.Base;
 using Common.TasksLibrary.Task2.Exceptions;
+using static Common.TasksLibrary.StringResources;
 
 namespace Common.TasksLibrary.Task2;
 
 public sealed class CalculatorExecutionContext
 {
-    private BaseContainer Container { get; }
-    public IOutput OutputPort { get; set; }
+    private readonly BaseContainer _container;
+    private IOutput _port;
+    public IOutput OutputPort
+    {
+        get => _port;
+        set
+        {
+            if (value.IsNull())
+            {
+                throw new ExecutionContextException
+                    (Exception_CantCreateExecutionContext + "| Cant define output port");
+            }
+
+            _port = value;
+        }
+    }
 
     public CalculatorExecutionContext(IOutput output, BaseContainer container)
     {
-        Container = container ?? throw new ExecutionContextException
-            (StringResources.Exception_CantCreateExecutionContext + "| Cant define container");
-        OutputPort = output ?? throw new ExecutionContextException
-            (StringResources.Exception_CantCreateExecutionContext + "| Cant define output port");
+        if (output.IsNull())
+        {
+            throw new ExecutionContextException
+                (Exception_CantCreateExecutionContext + "| Cant define output port");
+        }
+
+        if (container.IsNull())
+        {
+            throw new ExecutionContextException
+                (Exception_CantCreateExecutionContext + "| Cant define container");
+        }
+
+        _container = container;
+        _port = output;
     }
 
     public double Peek()
     {
-        return Container.Stack.Peek();
+        return _container.Stack.Peek();
     }
 
     public double Pop()
     {
-        return Container.Stack.Pop();
+        return _container.Stack.Pop();
     }
 
-    public void Push(double number) => Container.Stack.Push(number);
+    public void Push(double number) => _container.Stack.Push(number);
 
     public void PushVariable(string variableName)
     {
-        var value = Container.VariableStorage[variableName];
-        Container.Stack.Push(value);
+        var value = _container.VariableStorage[variableName];
+        _container.Stack.Push(value);
     }
 
     public void DefineVariable(string variableName, double value)
     {
-        Container.VariableStorage.Add(variableName, value);
+        _container.VariableStorage.Add(variableName, value);
     }
 }
