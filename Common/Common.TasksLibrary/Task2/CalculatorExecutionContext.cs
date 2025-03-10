@@ -30,26 +30,12 @@ public sealed class CalculatorExecutionContext
 
     public void PushVariable(string variableName)
     {
-        try
-        {
-            var value = Container.VariableStorage[variableName];
-            Container.Stack.Push(value);
-        }
-        catch (Exception e)
-        {
-            throw new ExecutionContextException(e.Message);
-        }
+        var value = Container.VariableStorage[variableName];
+        Container.Stack.Push(value);
     }
 
     public void DefineVariable(string variableName, double value)
     {
-        try
-        {
-            Container.VariableStorage.Add(variableName, value);
-        }
-        catch (Exception e)
-        {
-            throw new ExecutionContextException(e.Message);
-        }
+        Container.VariableStorage.Add(variableName, value);
     }
 }
