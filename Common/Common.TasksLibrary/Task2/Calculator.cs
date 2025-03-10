@@ -8,6 +8,7 @@ public sealed class Calculator
     private readonly ILogger _calcLogger;
     private readonly CommandsFactory _factory;
     private readonly CalculatorExecutionContext _executionContext;
+    
     public Calculator(ILogger logger, CommandsFactory factory, CalculatorExecutionContext context)
     {
         _calcLogger = logger;
@@ -34,6 +35,7 @@ public sealed class Calculator
     {
         return commands.Select(command => Execute(command));
     }
+    
     public bool Execute(string command)
     {
         var isContinueExecution = true;
@@ -42,10 +44,10 @@ public sealed class Calculator
         {
             var executingCommand = _factory.GenerateCommand(command);
             
-            if (executingCommand != null)
-            {
-                isContinueExecution = executingCommand.Process(_executionContext);
-            }
+            ArgumentNullException.ThrowIfNull(executingCommand);
+            
+            isContinueExecution = executingCommand.Process(_executionContext);
+            
         }
         catch (GenerateCommandException gce)
         {
