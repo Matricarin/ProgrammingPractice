@@ -1,8 +1,10 @@
-﻿using Common.TasksLibrary.Task2.Base;
+﻿using Common.TasksLibrary.Task2.Attributes;
+using Common.TasksLibrary.Task2.Base;
 using Common.TasksLibrary.Task2.Handlers;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
+[CommandSignedAs("#")]
 public class CommentCommand : ICalculatorCommand
 {
     private string? _comment;
