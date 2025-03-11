@@ -3,7 +3,7 @@ using Common.TasksLibrary.Constants;
 using Common.TasksLibrary.Extensions;
 using Common.TasksLibrary.Task2.Base;
 
-namespace Common.TasksLibrary.Task2;
+namespace Common.TasksLibrary.Task2.Factories;
 
 public sealed class CommandsFactory
 {

@@ -3,7 +3,7 @@ using Common.TasksLibrary.Task2.Base;
 using Common.TasksLibrary.Task2.Exceptions;
 using static Common.TasksLibrary.StringResources;
 
-namespace Common.TasksLibrary.Task2;
+namespace Common.TasksLibrary.Task2.Handlers;
 
 public sealed class CalculatorExecutionContext
 {

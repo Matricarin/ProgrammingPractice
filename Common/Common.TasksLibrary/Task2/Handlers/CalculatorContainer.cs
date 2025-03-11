@@ -1,6 +1,6 @@
 ﻿using Common.TasksLibrary.Task2.Base;
 
-namespace Common.TasksLibrary.Task2.Output;
+namespace Common.TasksLibrary.Task2.Handlers;
 
 public sealed class CalculatorContainer : BaseContainer
 {
