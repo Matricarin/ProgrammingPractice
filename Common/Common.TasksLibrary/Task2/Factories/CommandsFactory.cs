@@ -2,6 +2,7 @@
 using Common.TasksLibrary.Constants;
 using Common.TasksLibrary.Extensions;
 using Common.TasksLibrary.Task2.Base;
+using Common.TasksLibrary.Task2.Handlers;
 
 namespace Common.TasksLibrary.Task2.Factories;
 
@@ -9,17 +10,14 @@ public sealed class CommandsFactory
 {
     public ICalculatorCommand GenerateCommand(string executingCommand)
     {
-        //todo remade command parsing
-
-        var stringCommand = executingCommand.SubStringBeforeFirstOne(StringConstants.WhiteSpace).ParseCommand();
-        var stringParameters = executingCommand.SubStringAfterFirstOne(StringConstants.WhiteSpace);
-
-        var type = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(t => t.Name.Contains(stringCommand));
+        var commandParser = new CommandParser(executingCommand);
+        
+        var type = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(t => t.Name.Contains(commandParser.Command));
         
         //todo when does CreateInstance been return null? 
         ArgumentNullException.ThrowIfNull(type);
         
-        var instance = Activator.CreateInstance(type, stringParameters);
+        var instance = Activator.CreateInstance(type, commandParser.Arguments);
         
         ArgumentNullException.ThrowIfNull(instance);
 
