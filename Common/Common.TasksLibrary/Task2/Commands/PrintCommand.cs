@@ -1,9 +1,11 @@
-﻿using Common.TasksLibrary.Task2.Base;
+﻿using Common.TasksLibrary.Task2.Attributes;
+using Common.TasksLibrary.Task2.Base;
 using Common.TasksLibrary.Task2.Exceptions;
 using Common.TasksLibrary.Task2.Handlers;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
+[CommandSignedAs("PRINT")]
 public class PrintCommand : ICalculatorCommand
 {
     public PrintCommand(string parameters)

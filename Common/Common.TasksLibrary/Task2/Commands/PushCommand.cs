@@ -1,10 +1,12 @@
 ﻿using Common.TasksLibrary.Constants;
+using Common.TasksLibrary.Task2.Attributes;
 using Common.TasksLibrary.Task2.Base;
 using Common.TasksLibrary.Task2.Exceptions;
 using Common.TasksLibrary.Task2.Handlers;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
+[CommandSignedAs("PUSH")]
 public class PushCommand : ICalculatorCommand
 {
     private readonly string _variableName;

@@ -8,13 +8,19 @@ namespace Common.TasksLibrary.Task2.Commands;
 [CommandSignedAs("+")]
 public class AddCommand : ICalculatorCommand
 {
-    public AddCommand(string parameters)
+    private AddCommand(string parameters)
     {
         if (!string.IsNullOrEmpty(parameters))
         {
             throw new GenerateCommandException(StringResources.Exception_CommandShouldntHaveParameters);
         }
     }
+    
+    public static ICalculatorCommand Create(string parameters)
+    {
+        return new AddCommand(parameters);
+    }
+    
     public bool Process(CalculatorExecutionContext context)
     {
         try
