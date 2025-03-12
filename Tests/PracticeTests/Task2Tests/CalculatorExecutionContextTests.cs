@@ -1,5 +1,4 @@
-﻿using Common.TasksLibrary.Task2;
-using Common.TasksLibrary.Task2.Handlers;
+﻿using Common.TasksLibrary.Task2.Handlers;
 using Common.TasksLibrary.Task2.Output;
 
 namespace PracticeTests.Task2Tests;
