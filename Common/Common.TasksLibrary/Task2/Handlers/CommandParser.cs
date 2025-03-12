@@ -9,7 +9,7 @@ public sealed class CommandParser
     {
         if (string.IsNullOrWhiteSpace(command))
         {
-            throw new ArgumentException("Command cannot be empty.", nameof(command));
+            throw new ArgumentException(StringResources.Exception_Command_cannot_be_empty, nameof(command));
         }
 
         var spannedCommand = command.AsSpan();
@@ -17,24 +17,13 @@ public sealed class CommandParser
 
         if (whiteSpaceIndex == -1)
         {
-            Command = GetLineWithFirstUpperCharacter(spannedCommand);
+            Command = spannedCommand.ToString();
             Arguments = string.Empty;
         }
         else
         {
-            Command = GetLineWithFirstUpperCharacter(spannedCommand.Slice(0, whiteSpaceIndex));
+            Command = spannedCommand.Slice(0, whiteSpaceIndex).ToString();
             Arguments = spannedCommand.Slice(whiteSpaceIndex + 1).ToString();
         }
-    }
-
-    private string GetLineWithFirstUpperCharacter(ReadOnlySpan<char> input)
-    {
-        if (input.Length > 1)
-        {
-            return input.Slice(0, 1).ToString()
-                   + input.Slice(1, input.Length - 1).ToString().ToLower();
-        }
-
-        return input.ToString();
     }
 }

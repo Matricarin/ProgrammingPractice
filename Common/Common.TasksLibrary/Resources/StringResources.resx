@@ -45,4 +45,7 @@
     <data name="Exception_CantCreateExecutionContext" xml:space="preserve">
         <value>Execution context was not created</value>
     </data>
+    <data name="Exception_Command_cannot_be_empty" xml:space="preserve">
+        <value>Command cannot be empty.</value>
+    </data>
 </root>

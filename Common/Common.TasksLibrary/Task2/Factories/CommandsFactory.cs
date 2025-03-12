@@ -16,12 +16,17 @@ public sealed class CommandsFactory
         var commandType = GetCommandType(commandParser);
         
         ArgumentNullException.ThrowIfNull(commandType);
+        
+        var methodInstance = 
+            commandType.GetMethod(nameof(ICalculatorCommand.Create),BindingFlags.Static | BindingFlags.Public);
+        
+        ArgumentNullException.ThrowIfNull(methodInstance);
 
-        var instance = Activator.CreateInstance(commandType, commandParser.Arguments);
+        var instance = methodInstance.Invoke(null, new[] { commandParser.Arguments });
         
         ArgumentNullException.ThrowIfNull(instance);
         
-        var command = (ICalculatorCommand)instance;
+        var command = instance as ICalculatorCommand;
         
         ArgumentNullException.ThrowIfNull(command);
         

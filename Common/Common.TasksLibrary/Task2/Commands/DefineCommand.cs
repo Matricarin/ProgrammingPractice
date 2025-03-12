@@ -1,4 +1,5 @@
 ﻿using Common.TasksLibrary.Constants;
+using Common.TasksLibrary.Extensions;
 using Common.TasksLibrary.Task2.Attributes;
 using Common.TasksLibrary.Task2.Base;
 using Common.TasksLibrary.Task2.Exceptions;
@@ -50,8 +51,14 @@ public sealed class DefineCommand : ICalculatorCommand
         }
         
         var other = (DefineCommand)obj;
+
+        if (other.IsNull())
+        {
+            return false;
+        }
         
-        return _variableName == other._variableName && _variableValue.Equals(other._variableValue); //todo implement correct comparison
+        return _variableName == other._variableName 
+               && _variableValue.Equals(other._variableValue); 
     }
 
     public override int GetHashCode()
