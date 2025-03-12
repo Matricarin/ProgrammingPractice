@@ -8,7 +8,7 @@ namespace Common.TasksLibrary.Task2.Commands;
 [CommandSignedAs("EXIT")]
 public class ExitCommand : ICalculatorCommand
 {
-    public ExitCommand(string parameters)
+    private ExitCommand(string parameters)
     {
         if (!string.IsNullOrEmpty(parameters))
         {
@@ -17,4 +17,8 @@ public class ExitCommand : ICalculatorCommand
     }
     
     public bool Process(CalculatorExecutionContext context) => false;
+    public static ICalculatorCommand Create(string parameters)
+    {
+        return new ExitCommand(parameters);
+    }
 }

@@ -8,7 +8,7 @@ namespace Common.TasksLibrary.Task2.Commands;
 [CommandSignedAs("/")]
 public class DivideCommand : ICalculatorCommand
 {
-    public DivideCommand(string parameters)
+    private DivideCommand(string parameters)
     {
         if (!string.IsNullOrEmpty(parameters))
         {
@@ -29,5 +29,10 @@ public class DivideCommand : ICalculatorCommand
             throw new ProcessCommandException(e.Message);
         }
         return true;
+    }
+
+    public static ICalculatorCommand Create(string parameters)
+    {
+        return new SubtractCommand(parameters);
     }
 }

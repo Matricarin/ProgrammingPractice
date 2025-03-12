@@ -3,7 +3,6 @@ using System.Reflection;
 using Common.TasksLibrary.Extensions;
 using Common.TasksLibrary.Task2.Attributes;
 using Common.TasksLibrary.Task2.Base;
-using Common.TasksLibrary.Task2.Commands;
 using Common.TasksLibrary.Task2.Handlers;
 
 namespace Common.TasksLibrary.Task2.Factories;
@@ -17,27 +16,16 @@ public sealed class CommandsFactory
         var commandType = GetCommandType(commandParser);
         
         ArgumentNullException.ThrowIfNull(commandType);
+
+        var instance = Activator.CreateInstance(commandType, commandParser.Arguments);
         
+        ArgumentNullException.ThrowIfNull(instance);
         
-            
-            
-            // .Select(t =>
-            // t.CustomAttributes.Where(ca => ca.AttributeType.Name == nameof(CommandSignedAsAttribute)));
-        // var type = Assembly.GetExecutingAssembly().GetTypes().FirstOrDefault(t => t.Name.Contains(commandParser.Command));
-        //
-        // //todo when does CreateInstance been return null? 
-        // ArgumentNullException.ThrowIfNull(type);
-        //
-        // var instance = Activator.CreateInstance(type, commandParser.Arguments);
-        //
-        // ArgumentNullException.ThrowIfNull(instance);
-        //
-        // var command = instance as ICalculatorCommand;
-        //
-        // ArgumentNullException.ThrowIfNull(command);
-        //
-        // return command;
-        return new AddCommand("");
+        var command = (ICalculatorCommand)instance;
+        
+        ArgumentNullException.ThrowIfNull(command);
+        
+        return command;
     }
 
     [Pure]

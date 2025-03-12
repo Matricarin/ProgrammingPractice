@@ -36,4 +36,9 @@ public class PushCommand : ICalculatorCommand
         }
         return true;
     }
+
+    public static ICalculatorCommand Create(string parameters)
+    {
+        return new PushCommand(parameters);
+    }
 }

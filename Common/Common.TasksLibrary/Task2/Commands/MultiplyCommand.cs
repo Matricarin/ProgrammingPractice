@@ -8,7 +8,7 @@ namespace Common.TasksLibrary.Task2.Commands;
 [CommandSignedAs("*")]
 public class MultiplyCommand : ICalculatorCommand
 {
-    public MultiplyCommand(string parameters)
+    private MultiplyCommand(string parameters)
     {
         if (!string.IsNullOrEmpty(parameters))
         {
@@ -29,5 +29,10 @@ public class MultiplyCommand : ICalculatorCommand
             throw new ProcessCommandException(e.Message);
         }
         return true;
+    }
+
+    public static ICalculatorCommand Create(string parameters)
+    {
+        return new MultiplyCommand(parameters);
     }
 }

@@ -37,4 +37,9 @@ public class PrintCommand : ICalculatorCommand
         }
         return true;
     }
+
+    public static ICalculatorCommand Create(string parameters)
+    {
+        return new PrintCommand(parameters);
+    }
 }

@@ -31,4 +31,9 @@ public class SubtractCommand : ICalculatorCommand
 
         return true;
     }
+
+    public static ICalculatorCommand Create(string parameters)
+    {
+        return new SubtractCommand(parameters);
+    }
 }
