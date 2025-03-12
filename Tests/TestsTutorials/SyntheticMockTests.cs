@@ -29,4 +29,30 @@ public sealed class SyntheticMockTests
         
         Assert.IsTrue(foo.Object.IsCorrectInt(55));
     }
+
+    [Test]
+    public void TryParseIntTest()
+    {
+        var foo = new Mock<IFoo>();
+        var requiredInt = 1999;
+        foo.Setup(f => f.TryParseInt("1999", out requiredInt)).Returns(true);
+
+        int result;
+        Assert.Multiple(() => 
+        {
+            Assert.IsTrue(foo.Object.TryParseInt("1999", out result));
+            Assert.That(result, Is.EqualTo(requiredInt));
+        });
+    }
+
+    [Test]
+    public void SubmitTest()
+    {
+        var goo = new Goo();
+        var foo = new Mock<IFoo>();
+        foo.Setup(f => f.Submit(ref goo)).Returns(true);
+        var otherGoo = new Goo();
+        Assert.IsFalse(foo.Object.Submit(ref otherGoo));
+        
+    }
 }
