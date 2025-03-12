@@ -55,4 +55,42 @@ public sealed class SyntheticMockTests
         Assert.IsFalse(foo.Object.Submit(ref otherGoo));
         
     }
+
+    [Test]
+    public void ProcessingNumberTest()
+    {
+        var foo = new Mock<IFoo>();
+        foo.Setup(f => f.ProcessingNumber(It.IsAny<int>()))
+            .Returns((int i) => i * i * i);
+        
+        Assert.That(foo.Object.ProcessingNumber(3), Is.EqualTo(27));
+    }
+
+    [Test]
+    public void CallsCountSayHelloTest()
+    {
+        var foo = new Mock<IFoo>();
+        var counter = 0;
+        
+        foo.Setup(f => f.SayHello())
+            .Returns("hello")
+            .Callback(() => counter++);
+
+        for (int i = 0; i < 10; i++)
+        {
+            foo.Object.SayHello();
+        }
+        
+        Assert.That(counter, Is.EqualTo(10));
+    }
+
+    [Test]
+    public void ExceptionCorrectStringTest()
+    {
+        var foo = new Mock<IFoo>();
+        foo.Setup(f => f.IsCorrectString(It.IsAny<string>()))
+            .Throws<FormatException>();
+        
+        Assert.Throws<FormatException>(() => foo.Object.IsCorrectString("Exception"));
+    }
 }

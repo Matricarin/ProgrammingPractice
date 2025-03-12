@@ -6,4 +6,6 @@ public interface IFoo
     bool IsCorrectInt(int i);
     bool TryParseInt(string str, out int i);
     bool Submit(ref Goo goo);
+    int ProcessingNumber(int i);
+    string SayHello();
 }
