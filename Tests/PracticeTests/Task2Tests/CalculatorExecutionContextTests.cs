@@ -1,5 +1,6 @@
-﻿using Common.TasksLibrary.Task2.Handlers;
-using Common.TasksLibrary.Task2.Output;
+﻿using Moq;
+using Common.TasksLibrary.Task2.Handlers;
+using Common.TasksLibrary.Task2.Base;
 
 namespace PracticeTests.Task2Tests;
 
@@ -9,6 +10,7 @@ public sealed class CalculatorExecutionContextTests
 {
     private CalculatorExecutionContext _context;
     private MockContainer _container;
+    private Mock<IOutput> _output;
     private const string VariableName = "a";
     private const double ValueOfVariable = 128;
     private const double Number = 256;
@@ -16,8 +18,9 @@ public sealed class CalculatorExecutionContextTests
     [OneTimeSetUp]
     public void Setup()
     {
+        _output = new Mock<IOutput>();
         _container = new MockContainer();
-        _context = new CalculatorExecutionContext(new ConsoleOutput(), _container);
+        _context = new CalculatorExecutionContext(_output.Object, _container);
     }
 
     [Test]

@@ -12,11 +12,13 @@ public sealed class CalculatorErrorsTests
     public void Test_ExecutingCommandWithEmptyStackLogsProcessError()
     {
         var logger = new TestLogger();
+        
         var container = new CalculatorContainer();
+        
         var calculator = new Calculator(logger, new CommandsFactory(), 
             new CalculatorExecutionContext(new ConsoleOutput(), container));
 
-        calculator.Execute("Add");
+        calculator.Execute("+");
 
         Assert.IsTrue(logger.LoggedMessages.Count > 0);
         StringAssert.Contains("Stack is empty", logger.LoggedMessages[0]);
