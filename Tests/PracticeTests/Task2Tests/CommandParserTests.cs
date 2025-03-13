@@ -12,8 +12,8 @@ public sealed class CommandParserTests
     [TestCase("-", "-", "")]
     [TestCase("*", "*", "")]
     [TestCase("/", "/", "")]
-    [TestCase("DEFINE a 5", "Define", "a 5")]
-    [TestCase("PRINT", "Print", "")]
+    [TestCase("DEFINE a 5", "DEFINE", "a 5")]
+    [TestCase("PRINT", "PRINT", "")]
     public void ParseCommandTest(string input, string command, string arguments)
     {
         Parser = new CommandParser(input);
