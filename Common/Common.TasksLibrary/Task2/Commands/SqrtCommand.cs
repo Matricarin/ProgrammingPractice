@@ -8,7 +8,7 @@ namespace Common.TasksLibrary.Task2.Commands;
 [CommandSignedAs("SQRT")]
 public class SqrtCommand : ICalculatorCommand
 {
-    public SqrtCommand(string parameters)
+    private SqrtCommand(string parameters)
     {
         if (!string.IsNullOrEmpty(parameters))
         {

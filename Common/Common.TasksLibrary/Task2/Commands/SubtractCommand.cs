@@ -8,7 +8,7 @@ namespace Common.TasksLibrary.Task2.Commands;
 [CommandSignedAs("-")]
 public class SubtractCommand : ICalculatorCommand
 {
-    public SubtractCommand(string parameters)
+    private SubtractCommand(string parameters)
     {
         if (!string.IsNullOrEmpty(parameters))
         {

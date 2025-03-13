@@ -8,7 +8,7 @@ namespace Common.TasksLibrary.Task2.Commands;
 [CommandSignedAs("PRINT")]
 public class PrintCommand : ICalculatorCommand
 {
-    public PrintCommand(string parameters)
+    private PrintCommand(string parameters)
     {
         if (!string.IsNullOrEmpty(parameters))
         {

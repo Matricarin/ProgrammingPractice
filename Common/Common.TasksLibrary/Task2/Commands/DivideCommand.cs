@@ -33,6 +33,6 @@ public class DivideCommand : ICalculatorCommand
 
     public static ICalculatorCommand Create(string parameters)
     {
-        return new SubtractCommand(parameters);
+        return new DivideCommand(parameters);
     }
 }

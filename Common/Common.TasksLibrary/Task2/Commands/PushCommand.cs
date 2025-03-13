@@ -11,7 +11,7 @@ public class PushCommand : ICalculatorCommand
 {
     private readonly string _variableName;
     
-    public PushCommand(string parameters)
+    private PushCommand(string parameters)
     {
         if (string.IsNullOrWhiteSpace(parameters))
         {
