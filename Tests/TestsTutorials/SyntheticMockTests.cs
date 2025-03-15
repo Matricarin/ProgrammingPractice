@@ -93,4 +93,20 @@ public sealed class SyntheticMockTests
         
         Assert.Throws<FormatException>(() => foo.Object.IsCorrectString("Exception"));
     }
+
+    [Test]
+    public void SetPropertyTest()
+    {
+        var foo = new Mock<IFoo>();
+        var setterCalled = false;
+        foo.SetupSet<string>(f => f.Name = It.IsAny<string>())
+            .Callback(_ =>
+            {
+                setterCalled = true;
+            });
+
+        foo.Object.Name = "Foo";
+        foo.VerifySet(f => f.Name = It.IsAny<string>(), Times.AtLeastOnce());
+        Assert.IsTrue(setterCalled);
+    }
 }
