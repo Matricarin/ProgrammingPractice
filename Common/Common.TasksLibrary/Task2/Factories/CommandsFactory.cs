@@ -9,6 +9,7 @@ namespace Common.TasksLibrary.Task2.Factories;
 
 public sealed class CommandsFactory
 {
+    [Pure]
     public ICalculatorCommand GenerateCommand(string executingCommand)
     {
         var commandParser = new CommandParser(executingCommand);
