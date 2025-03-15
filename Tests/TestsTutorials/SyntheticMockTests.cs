@@ -93,4 +93,44 @@ public sealed class SyntheticMockTests
         
         Assert.Throws<FormatException>(() => foo.Object.IsCorrectString("Exception"));
     }
+
+    [Test]
+    public void SetPropertyTest()
+    {
+        var foo = new Mock<IFoo>();
+        var setterCalled = false;
+        foo.SetupSet<string>(f => f.Name = It.IsAny<string>())
+            .Callback(_ =>
+            {
+                setterCalled = true;
+            });
+
+        foo.Object.Name = "Foo";
+        foo.VerifySet(f => f.Name = It.IsAny<string>(), Times.AtLeastOnce());
+        Assert.IsTrue(setterCalled);
+    }
+
+    [Test]
+    public void MockEventsTest1()
+    {
+        var citizen = new Mock<ICitizen>();
+        var doctor = new Doctor(citizen.Object);
+        citizen.Raise(f => f.FallsIll += null, EventArgs.Empty);
+        Assert.That(doctor.TimesCured, Is.EqualTo(1));
+    }
+    
+    [Test]
+    public void MockEventsTest2()
+    {
+        var citizen = new Mock<ICitizen>();
+        var doctor = new Doctor(citizen.Object);
+        citizen.Setup(c => c.CallTheHospital())
+            .Raises(f => f.FallsIll += null, EventArgs.Empty);
+        
+        citizen.Object.CallTheHospital();
+        
+        Assert.That(doctor.TimesCured, Is.EqualTo(1));
+    }
+    
+    //also have Verification / Behavior / Repository / Protected()
 }

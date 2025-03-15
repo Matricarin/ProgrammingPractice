@@ -8,4 +8,5 @@ public interface IFoo
     bool Submit(ref Goo goo);
     int ProcessingNumber(int i);
     string SayHello();
+    string Name {get; set; }
 }
