@@ -8,4 +8,11 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Common\Common.TasksLibrary\Common.TasksLibrary.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="readme.txt" />
+    <Resource Include="readme.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
 </Project>
