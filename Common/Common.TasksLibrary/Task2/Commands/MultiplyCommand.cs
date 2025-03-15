@@ -1,18 +1,21 @@
-﻿using Common.TasksLibrary.Task2.Base;
+﻿using Common.TasksLibrary.Task2.Attributes;
+using Common.TasksLibrary.Task2.Base;
 using Common.TasksLibrary.Task2.Exceptions;
+using Common.TasksLibrary.Task2.Handlers;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
-public class MultiplyCommand : CalculatorCommand
+[CommandSignedAs("*")]
+public class MultiplyCommand : ICalculatorCommand
 {
-    public MultiplyCommand(string parameters)
+    private MultiplyCommand(string parameters)
     {
         if (!string.IsNullOrEmpty(parameters))
         {
             throw new GenerateCommandException(StringResources.Exception_CommandShouldntHaveParameters);
         }
     }
-    public override void Process(CalculatorExecutionContext context)
+    public bool Process(CalculatorExecutionContext context)
     {
         try
         {
@@ -25,5 +28,11 @@ public class MultiplyCommand : CalculatorCommand
         {
             throw new ProcessCommandException(e.Message);
         }
+        return true;
+    }
+
+    public static ICalculatorCommand Create(string parameters)
+    {
+        return new MultiplyCommand(parameters);
     }
 }

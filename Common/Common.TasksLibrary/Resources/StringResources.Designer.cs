@@ -69,6 +69,15 @@ namespace Common.TasksLibrary {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Command cannot be empty..
+        /// </summary>
+        internal static string Exception_Command_cannot_be_empty {
+            get {
+                return ResourceManager.GetString("Exception_Command_cannot_be_empty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The command push on stack only one value.
         /// </summary>
         internal static string Exception_CommandPushOnStackOnlyOne {

@@ -1,14 +1,17 @@
 ﻿using Common.TasksLibrary.Constants;
+using Common.TasksLibrary.Task2.Attributes;
 using Common.TasksLibrary.Task2.Base;
 using Common.TasksLibrary.Task2.Exceptions;
+using Common.TasksLibrary.Task2.Handlers;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
-public class PushCommand : CalculatorCommand
+[CommandSignedAs("PUSH")]
+public class PushCommand : ICalculatorCommand
 {
     private readonly string _variableName;
     
-    public PushCommand(string parameters)
+    private PushCommand(string parameters)
     {
         if (string.IsNullOrWhiteSpace(parameters))
         {
@@ -21,7 +24,7 @@ public class PushCommand : CalculatorCommand
         }
         _variableName = parameters;
     }
-    public override void Process(CalculatorExecutionContext context)
+    public bool Process(CalculatorExecutionContext context)
     {
         try
         {
@@ -31,5 +34,11 @@ public class PushCommand : CalculatorCommand
         {
             throw new ProcessCommandException(e.Message);
         }
+        return true;
+    }
+
+    public static ICalculatorCommand Create(string parameters)
+    {
+        return new PushCommand(parameters);
     }
 }

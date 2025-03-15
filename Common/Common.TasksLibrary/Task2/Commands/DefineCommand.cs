@@ -1,14 +1,18 @@
 ﻿using Common.TasksLibrary.Constants;
+using Common.TasksLibrary.Extensions;
+using Common.TasksLibrary.Task2.Attributes;
 using Common.TasksLibrary.Task2.Base;
 using Common.TasksLibrary.Task2.Exceptions;
+using Common.TasksLibrary.Task2.Handlers;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
-public sealed class DefineCommand : CalculatorCommand
+[CommandSignedAs("DEFINE")]
+public sealed class DefineCommand : ICalculatorCommand
 {
     private readonly string _variableName;
     private readonly double _variableValue;
-    public DefineCommand(string parameters)
+    private DefineCommand(string parameters)
     {
         var values = parameters.Split(CharsConstants.WhiteSpace);
         if (values.Length != 2)
@@ -22,7 +26,11 @@ public sealed class DefineCommand : CalculatorCommand
             throw new GenerateCommandException(StringResources.Exception_DefineCantParseValue);
         }
     }
-    public override void Process(CalculatorExecutionContext context)
+    public static ICalculatorCommand Create(string parameters)
+    {
+        return new DefineCommand(parameters);
+    }
+    public bool Process(CalculatorExecutionContext context)
     {
         try
         {
@@ -32,6 +40,7 @@ public sealed class DefineCommand : CalculatorCommand
         {
             throw new ProcessCommandException(e.Message);
         }
+        return true;
     }
 
     public override bool Equals(object? obj)
@@ -40,8 +49,16 @@ public sealed class DefineCommand : CalculatorCommand
         {
             return false;
         }
+        
         var other = (DefineCommand)obj;
-        return _variableName == other._variableName && _variableValue.Equals(other._variableValue);
+
+        if (other.IsNull())
+        {
+            return false;
+        }
+        
+        return _variableName == other._variableName 
+               && _variableValue.Equals(other._variableValue); 
     }
 
     public override int GetHashCode()

@@ -1,7 +1,10 @@
-﻿using Common.TasksLibrary;
+﻿using System.Diagnostics.Contracts;
+using Common.TasksLibrary;
 using Common.TasksLibrary.Extensions;
 using Common.TasksLibrary.Task2;
-using Common.TasksLibrary.Task2.Output;
+using Common.TasksLibrary.Task2.Factories;
+using Common.TasksLibrary.Task2.Handlers;
+using Common.TasksLibrary.Task2.Providers;
 using Microsoft.Extensions.Logging;
 
 namespace Tasks.Task2;
@@ -10,7 +13,7 @@ internal static class Program
 {
     private static void Main(string[] args)
     {
-        using ILoggerFactory factory = LoggerFactory.Create(f => f.AddConsole());
+        using var factory = LoggerFactory.Create(f => f.AddConsole());
         
         var logger = factory.CreateLogger(nameof(Program));
         
@@ -20,12 +23,14 @@ internal static class Program
             new CommandsFactory(), 
             new CalculatorExecutionContext(new ConsoleOutput(), new CalculatorContainer()));
 
+        var isContinueAfterCommandsListExecution = true;
+
         try
         {
             if (!IsProgramParametersEmpty(args, logger))
             {
                 var fileInfo = new FileInfo(args.First());
-                calculator.ExecuteFromFile(fileInfo);
+                isContinueAfterCommandsListExecution = calculator.ExecuteFromFile(fileInfo);
             }
         }
         catch (Exception e)
@@ -34,11 +39,15 @@ internal static class Program
         }
         finally
         {
-            ExecuteCommandsFromConsoleInput(calculator);
+            if (isContinueAfterCommandsListExecution)
+            {
+                ExecuteCommandsFromConsoleInput(calculator);
+            }
         }
         
     }
     
+    [Pure]
     private static bool IsProgramParametersEmpty(string[] args, ILogger logger)
     {
         if (args.Length == 0)
@@ -52,12 +61,13 @@ internal static class Program
     
     private static void ExecuteCommandsFromConsoleInput(Calculator calculator)
     {
-        while (true)
+        var isExecuting = true;
+        while (isExecuting)
         {
             var command = Console.ReadLine();
             if (!command.IsNull())
             {
-                calculator.Execute(command);
+                isExecuting = calculator.Execute(command);
             }
         }
     }

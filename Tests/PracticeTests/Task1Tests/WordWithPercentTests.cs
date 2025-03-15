@@ -31,13 +31,26 @@ public sealed class WordWithPercentTests
         
         Assert.That(firstWord, Is.Not.EqualTo(secondWord));
     }
-    
+
     [Test]
-    public void EqualsShouldReturnFalse_ObjectVaries()
+    public void EqualsShouldReturnTrue_DoubleCheck()
+    {
+        const double firstFrequency = 0.03;
+        const double secondFrequency = 0.03 * 0.01 / 0.01;
+        var firstWord = new WordWithPercent("first", firstFrequency);
+        var firstWordWithAlmostSameFrequency = new WordWithPercent("first", secondFrequency);
+        
+        Assert.That(firstWord, Is.EqualTo(firstWordWithAlmostSameFrequency));
+    }
+
+    [Test]
+    public void CheckHashCodesForWordsWithPercent()
     {
         var firstWord = new WordWithPercent("first", 0.03);
-        var str = "first";
+        var almostFirstWord = new WordWithPercent("first", 0.03);
         
-        Assert.False(firstWord.Equals(str));
+        var firstHash = firstWord.GetHashCode();
+        var almostFirstHash = almostFirstWord.GetHashCode();
+        Assert.That(firstHash, Is.EqualTo(almostFirstHash));
     }
 }

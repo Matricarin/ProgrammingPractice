@@ -1,11 +1,14 @@
-﻿using Common.TasksLibrary.Task2.Base;
+﻿using Common.TasksLibrary.Task2.Attributes;
+using Common.TasksLibrary.Task2.Base;
 using Common.TasksLibrary.Task2.Exceptions;
+using Common.TasksLibrary.Task2.Handlers;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
-public class PrintCommand : CalculatorCommand
+[CommandSignedAs("PRINT")]
+public class PrintCommand : ICalculatorCommand
 {
-    public PrintCommand(string parameters)
+    private PrintCommand(string parameters)
     {
         if (!string.IsNullOrEmpty(parameters))
         {
@@ -13,7 +16,7 @@ public class PrintCommand : CalculatorCommand
         }
     }
 
-    public override void Process(CalculatorExecutionContext context)
+    public bool Process(CalculatorExecutionContext context)
     {
         try
         {
@@ -32,5 +35,11 @@ public class PrintCommand : CalculatorCommand
         {
             throw new Exception(e.Message);
         }
+        return true;
+    }
+
+    public static ICalculatorCommand Create(string parameters)
+    {
+        return new PrintCommand(parameters);
     }
 }

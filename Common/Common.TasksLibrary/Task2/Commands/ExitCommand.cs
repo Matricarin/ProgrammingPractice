@@ -1,11 +1,14 @@
-﻿using Common.TasksLibrary.Task2.Base;
+﻿using Common.TasksLibrary.Task2.Attributes;
+using Common.TasksLibrary.Task2.Base;
 using Common.TasksLibrary.Task2.Exceptions;
+using Common.TasksLibrary.Task2.Handlers;
 
 namespace Common.TasksLibrary.Task2.Commands;
 
-public class ExitCommand : CalculatorCommand
+[CommandSignedAs("EXIT")]
+public class ExitCommand : ICalculatorCommand
 {
-    public ExitCommand(string parameters)
+    private ExitCommand(string parameters)
     {
         if (!string.IsNullOrEmpty(parameters))
         {
@@ -13,8 +16,9 @@ public class ExitCommand : CalculatorCommand
         }
     }
     
-    public override void Process(CalculatorExecutionContext context)
+    public bool Process(CalculatorExecutionContext context) => false;
+    public static ICalculatorCommand Create(string parameters)
     {
-        Environment.Exit(Environment.ExitCode);
+        return new ExitCommand(parameters);
     }
 }
