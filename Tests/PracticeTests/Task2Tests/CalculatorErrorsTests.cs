@@ -1,7 +1,8 @@
 ﻿using Common.TasksLibrary.Task2;
+using Common.TasksLibrary.Task2.Exceptions;
 using Common.TasksLibrary.Task2.Factories;
 using Common.TasksLibrary.Task2.Handlers;
-using Common.TasksLibrary.Task2.Output;
+using Common.TasksLibrary.Task2.Providers;
 using Microsoft.Extensions.Logging;
 using Moq;
 
@@ -16,7 +17,12 @@ public sealed class CalculatorErrorsTests
         var mock = new Mock<ILogger>();
         var counter = 0;
         
-        mock.Setup(l => l.LogError(It.IsAny<string>()))
+        mock.Setup(x => x.Log<string>(
+                LogLevel.Error,
+                It.IsAny<EventId>(),
+                It.IsAny<string>(),
+                It.IsAny<ProcessCommandException>(),
+                It.Is<Func<string, Exception?, string>>((state, exception) => true)))
             .Callback(() => counter++);
         
         var container = new CalculatorContainer();
