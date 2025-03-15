@@ -131,4 +131,6 @@ public sealed class SyntheticMockTests
         
         Assert.That(doctor.TimesCured, Is.EqualTo(1));
     }
+    
+    //also have Verification / Behavior / Repository / Protected()
 }
