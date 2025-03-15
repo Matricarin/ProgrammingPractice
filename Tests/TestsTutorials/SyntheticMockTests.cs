@@ -109,4 +109,26 @@ public sealed class SyntheticMockTests
         foo.VerifySet(f => f.Name = It.IsAny<string>(), Times.AtLeastOnce());
         Assert.IsTrue(setterCalled);
     }
+
+    [Test]
+    public void MockEventsTest1()
+    {
+        var citizen = new Mock<ICitizen>();
+        var doctor = new Doctor(citizen.Object);
+        citizen.Raise(f => f.FallsIll += null, EventArgs.Empty);
+        Assert.That(doctor.TimesCured, Is.EqualTo(1));
+    }
+    
+    [Test]
+    public void MockEventsTest2()
+    {
+        var citizen = new Mock<ICitizen>();
+        var doctor = new Doctor(citizen.Object);
+        citizen.Setup(c => c.CallTheHospital())
+            .Raises(f => f.FallsIll += null, EventArgs.Empty);
+        
+        citizen.Object.CallTheHospital();
+        
+        Assert.That(doctor.TimesCured, Is.EqualTo(1));
+    }
 }
