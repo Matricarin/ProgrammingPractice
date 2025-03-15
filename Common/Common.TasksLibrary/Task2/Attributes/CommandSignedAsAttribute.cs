@@ -1,6 +1,6 @@
 ﻿namespace Common.TasksLibrary.Task2.Attributes;
 
-[AttributeUsage(AttributeTargets.Class, AllowMultiple = true, Inherited = false)]
+[AttributeUsage(AttributeTargets.Class, Inherited = false)]
 public sealed class CommandSignedAsAttribute : Attribute
 {
     public string Sign { get; }
