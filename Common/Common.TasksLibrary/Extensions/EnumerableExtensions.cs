@@ -10,15 +10,16 @@ public static class EnumerableExtensions
         using (var stream = File.Create(Constants.StringConstants.ResultCsvFileName))
         {
             var encoding = Encoding.UTF8;
-                
-            var writer = new StreamWriter(stream, encoding);
-
-            foreach (var result in results)
+            
+            using (var writer = new StreamWriter(stream, encoding))
             {
-                writer.WriteLine(result.ToString());
-            }
+                foreach (var result in results)
+                {
+                    writer.WriteLine(result.ToString());
+                }
 
-            writer.Close();
+                writer.Close();
+            }
         }
     }
 }
