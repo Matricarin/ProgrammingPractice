@@ -51,11 +51,7 @@ public sealed class WordFrequencyAnalyzer
 
     private void AddWord(string word)
     {
-        if (!_dictionaryOfWordsWithQuantity.ContainsKey(word))
-        {
-            _dictionaryOfWordsWithQuantity.Add(word, 1);
-        }
-        else
+        if (!_dictionaryOfWordsWithQuantity.TryAdd(word, 1))
         {
             _dictionaryOfWordsWithQuantity[word]++;
         }
