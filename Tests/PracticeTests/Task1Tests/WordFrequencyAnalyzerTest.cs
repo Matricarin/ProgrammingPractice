@@ -19,7 +19,7 @@ public sealed class WordFrequencyAnalyzerTest
         try
         {
             var analyzer = new WordFrequencyAnalyzer(text);
-            analyzer.GetWordsFrequency();
+            var result = analyzer.GetWordsFrequency();
         }
         catch (Exception e)
         {
