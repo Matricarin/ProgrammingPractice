@@ -2,7 +2,7 @@
 
 public class BaseCell
 {
-    public BaseCell(int x, int y)
+    protected BaseCell(int x, int y)
     {
         X = x;
         Y = y;

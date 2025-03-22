@@ -1,6 +1,6 @@
 ﻿namespace Tasks.Task3.GameLib;
 
-public struct FieldInitialSettings
+public sealed class FieldInitialSettings
 {
     public FieldInitialSettings(int rows, int columns, int minesAmount)
     {
