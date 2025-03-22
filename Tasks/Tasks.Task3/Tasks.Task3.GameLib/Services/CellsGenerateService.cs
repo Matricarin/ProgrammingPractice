@@ -7,6 +7,7 @@ public sealed class CellsGenerateService : ICellsGenerateService<BaseCell>
     public IEnumerable<BaseCell> GenerateMines(Field<BaseCell> field, int minesAmount)
     {
         var cells = new List<BaseCell>();
+        var random = new Random();
         
         for (int i = 0; i < minesAmount; i++)
         {
