@@ -18,7 +18,10 @@ public sealed class CellsChecker
             {
                 if (row < fieldSettings.Rows && row >= 0 && column < fieldSettings.Columns && column >= 0)
                 {
-                    yield return new Tuple<int, int>(row, column);
+                    if (row != cell.X && row != cell.Y)
+                    {
+                        yield return new Tuple<int, int>(row, column);
+                    }
                 }
             }
         }
