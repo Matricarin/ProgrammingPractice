@@ -4,7 +4,7 @@ namespace Tasks.Task3.GameLib.Handlers;
 
 public sealed class CellsChecker
 {
-    public IEnumerable<Tuple<int, int>> GetAvailableCells(BaseCell cell, FieldInitialSettings fieldSettings)
+    public IEnumerable<Tuple<int, int>> GetAvailableCells(BaseCell cell, int rowsAmount, int columnsAmount)
     {
         var startX = cell.X - 1;
         var startY = cell.Y - 1;
@@ -16,7 +16,7 @@ public sealed class CellsChecker
         {
             for (int column = startY; column <= endY; column++)
             {
-                if (row < fieldSettings.Rows && row >= 0 && column < fieldSettings.Columns && column >= 0)
+                if (row < rowsAmount && row >= 0 && column < columnsAmount && column >= 0)
                 {
                     if (row == cell.X && column == cell.Y)
                     {

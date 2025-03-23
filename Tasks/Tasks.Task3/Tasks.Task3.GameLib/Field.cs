@@ -12,14 +12,20 @@ public sealed class Field
 
     public Field(FieldInitialSettings fieldInitialSettings)
     {
-        _generator = new CellsGenerateService(fieldInitialSettings);
+        _generator = new CellsGenerateService();
+        
         _cells = new BaseCell[fieldInitialSettings.Rows][];
         
+        for (var i = 0; i < _cells.Length; i++)
+        {
+            _cells[i] = new BaseCell[fieldInitialSettings.Columns];
+        }
+        
         var mines = _generator
-            .GenerateMines(_cells)
+            .GenerateMines(_cells, fieldInitialSettings)
             .ToArray();
         
-        _generator.GenerateNumbers(_cells, mines);
+        _generator.GenerateNumbers(_cells, mines, fieldInitialSettings);
         
         _generator.GenerateEmptyCells(_cells);
     }

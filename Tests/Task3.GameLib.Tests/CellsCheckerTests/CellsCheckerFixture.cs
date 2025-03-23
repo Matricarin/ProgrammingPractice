@@ -18,7 +18,7 @@ public sealed class CellsCheckerFixture
     [TestCaseSource(typeof(CellsCheckerTestData), nameof(CellsCheckerTestData.AvailableCellsData))]
     public void GetAvailableCellsTest(BaseCell cell, FieldInitialSettings setting, List<Tuple<int, int>> expectedCells)
     {
-        var actualCells = _cellsChecker.GetAvailableCells(cell, setting).ToList();
+        var actualCells = _cellsChecker.GetAvailableCells(cell, setting.Rows, setting.Columns).ToList();
         CollectionAssert.AreEquivalent(expectedCells, actualCells);
     }
     [Test]
