@@ -1,4 +1,5 @@
 ﻿using Tasks.Task3.GameLib.Cells;
+using Tasks.Task3.GameLib.Exceptions;
 
 namespace Tasks.Task3.GameLib.Handlers;
 
@@ -15,8 +16,19 @@ public sealed class MinesRandomizer
     
     public HashSet<BaseCell> GenerateRandomMines(FieldInitialSettings settings)
     {
-        var randomRows = new Random(45);
-        var randomColumns = new Random(180);
+        if (settings.MinesAmount == 0)
+        {
+            throw new GenerateMinesException("Mines amount cannot be 0.");
+        }
+
+        if (settings.MinesAmount > settings.Columns * settings.Rows * 0.5)
+        {
+            throw new GenerateMinesException("Mines amount cannot be greater than " + (settings.Columns * settings.Rows * 0.5) + ".");
+        }
+        
+        var randomRows = new Random(_rowsSeed);
+        var randomColumns = new Random(_columnsSeed);
+        
         var cellsHash = new HashSet<BaseCell>();
         cellsHash.Clear();
         while (cellsHash.Count < settings.MinesAmount)
