@@ -12,16 +12,18 @@ public sealed class CellsChecker
         var endX = cell.X + 1;
         var endY = cell.Y + 1;
 
-        for (int row = startY; row <= endY; row++)
+        for (int row = startX; row <= endX; row++)
         {
-            for (int column = startX; column <= endX; column++)
+            for (int column = startY; column <= endY; column++)
             {
                 if (row < fieldSettings.Rows && row >= 0 && column < fieldSettings.Columns && column >= 0)
                 {
-                    if (row != cell.X && row != cell.Y)
+                    if (row == cell.X && column == cell.Y)
                     {
-                        yield return new Tuple<int, int>(row, column);
-                    }
+                        continue;
+                    } 
+                    
+                    yield return new Tuple<int, int>(row, column);
                 }
             }
         }

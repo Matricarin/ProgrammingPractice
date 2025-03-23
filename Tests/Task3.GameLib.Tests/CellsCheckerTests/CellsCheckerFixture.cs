@@ -19,7 +19,7 @@ public sealed class CellsCheckerFixture
     public void GetAvailableCellsTest(BaseCell cell, FieldInitialSettings setting, List<Tuple<int, int>> expectedCells)
     {
         var actualCells = _cellsChecker.GetAvailableCells(cell, setting).ToList();
-        CollectionAssert.AreEqual(expectedCells, actualCells);
+        CollectionAssert.AreEquivalent(expectedCells, actualCells);
     }
     [Test]
     public void PutNumberInNullCellTest()
